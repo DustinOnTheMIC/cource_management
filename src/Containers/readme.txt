@@ -1,0 +1,1 @@
+giai thich ro khi nc
