@@ -1,1 +1,0 @@
-tạo folder cpn theo từng page rồi mời tạo cpm file

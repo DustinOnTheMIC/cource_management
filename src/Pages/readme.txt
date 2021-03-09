@@ -1,1 +1,0 @@
-chia ra tung page rieng

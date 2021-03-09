@@ -1,8 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './Assets/Css/animate.css'
+import './Assets/Css/aos.css'
+import './Assets/Css/flaticon.css'
+import './Assets/Css/glightbox.min.css'
+import './Assets/Css/style.css'
+import './Assets/Css/tiny-slider.css'
+
 
 ReactDOM.render(
   <React.StrictMode>
