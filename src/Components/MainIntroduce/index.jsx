@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import bg3 from '../../../Assets/images/bg_3.jpg'
+import bg3 from '../../Assets/images/bg_3.jpg'
 class index extends Component {
     render() {
         return (
