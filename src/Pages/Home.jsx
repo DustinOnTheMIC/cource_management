@@ -1,11 +1,9 @@
 import React from 'react';
-import BodyHome from '../Containers/BodyHome'
+import ContainHome from '../Containers/ContainHome'
 function Home(props) {
     return (
         <div>
-            <BodyHome/>
-
-            
+            <ContainHome/>
         </div>
     );
 }

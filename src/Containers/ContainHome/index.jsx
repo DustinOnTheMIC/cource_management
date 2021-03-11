@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
-import Top from '../../Components/HomeBodyComponents/BodyTop/Top'
 import Center from '../../Components/HomeBodyComponents/BodyCenter/Center'
 import Header from '../../Components/Header'
-import IntroductionInfo from '../../Components/HomeBodyComponents/IntroductionInfo'
+import IntroduceInfo from '../../Components/HomeBodyComponents/IntroduceInfo'
 import Bottom from '../../Components/HomeBodyComponents/BodyBottom'
-import GetEmail from '../../Components/GetEmail'
+import IntroduceCourse from '../../Components/HomeBodyComponents/IntroduceCourse'
 import Footer from '../../Components/Footer'
+import MoveToTop from '../../Components/MoveToTop'
 class index extends Component {
     render() {
         return (
             <div>
-                <Top/>
                 <Header/>
                 <Center/>
-                <IntroductionInfo/>
+                <IntroduceInfo/>
                 <Bottom/>
-                <GetEmail/>
+                <IntroduceCourse/>
+                <MoveToTop/>
                 <Footer/>
             </div>
         );
