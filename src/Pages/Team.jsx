@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ContainTeam from '../Containers/ContainTeam'
 import Footer from '../Components/Footer'
 import Header from '../Components/Header'
-import MoveToTop from '../Components/MoveToTop'
+// import MoveToTop from '../Components/MoveToTop'
 import MainIntroduce from '../Components/MainIntroduce'
 class Team extends Component {
     render() {
@@ -10,7 +10,7 @@ class Team extends Component {
             <div>
                 <Header/>
                 <ContainTeam/>
-                <MoveToTop/>
+                {/* <MoveToTop/> */}
                 <MainIntroduce/>
                 <Footer/>
             </div>

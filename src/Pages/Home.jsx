@@ -2,7 +2,8 @@ import React, { Component }from 'react';
 import ContainHome from '../Containers/ContainHome'
 import Footer from '../Components/Footer'
 import Header from '../Components/Header'
-import MoveToTop from '../Components/MoveToTop'
+// import MoveToTop from '../Components/MoveToTop'
+import ChatBot from '../Components/ChatBot'
 
 class Home extends Component {
     render() {
@@ -10,7 +11,7 @@ class Home extends Component {
             <div>
                 <Header/>
                 <ContainHome/>
-                <MoveToTop/>
+                <ChatBot/>
                 <Footer/>
             </div>
         );
