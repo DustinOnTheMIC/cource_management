@@ -1,15 +1,14 @@
-import React, { Component }from 'react';
-import ContainHome from '../Containers/ContainHome'
+import React, { Component } from 'react';
+import ContainAllClass from '../Containers/ContainAllClass'
 import Footer from '../Components/Footer'
 import Header from '../Components/Header'
 import MoveToTop from '../Components/MoveToTop'
-
-class Home extends Component {
+class AllClass extends Component {
     render() {
         return (
             <div>
                 <Header/>
-                <ContainHome/>
+                <ContainAllClass/>
                 <MoveToTop/>
                 <Footer/>
             </div>
@@ -17,4 +16,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default AllClass;
