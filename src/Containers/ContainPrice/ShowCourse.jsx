@@ -5,9 +5,9 @@ import PriceCourseItem from '../../Components/Price/PriceCourseItem';
 class ShowCourse extends Component {
     render() {
         return (
-            <section class="ftco-section">
-                <div class="container">
-                    <div class="row">
+            <section className="ftco-section">
+                <div className="container">
+                    <div className="row">
                         <PriceCourseItem />
                         <PriceCourseItem />
                         <PriceCourseItem />

@@ -6,10 +6,10 @@ import DataItem from '../../Components/About/DataItem';
 class ShowDataContact extends Component {
     render() {
         return (
-            <section class="ftco-section-counter img" style={{ backgroundImage: `url(${bg_3})` }}>
-                <div class="overlay"></div>
-                <div class="container">
-                    <div class="row section-counter">
+            <section className="ftco-section-counter img" style={{ backgroundImage: `url(${bg_3})` }}>
+                <div className="overlay"></div>
+                <div className="container">
+                    <div className="row section-counter">
                         <DataItem />
                         <DataItem />
                         <DataItem />
