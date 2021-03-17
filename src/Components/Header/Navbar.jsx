@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 class Navbar extends Component {
     render() {
@@ -14,39 +14,39 @@ class Navbar extends Component {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Link to="/" className="nav-link active">
+                                <NavLink exact="true" to="/" className="nav-link">
                                     Home
-                                </Link>
+                                </NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link to="/all_class" className="nav-link">
+                                <NavLink to="/all_class" className="nav-link">
                                     All Class
-                                </Link>
+                                </NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link to="/team" className="nav-link">
+                                <NavLink to="/team" className="nav-link">
                                     Team
-                                </Link>
+                                </NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link to="/about" className="nav-link">
+                                <NavLink to="/about" className="nav-link">
                                     About
-                                </Link>
+                                </NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link to="/pricing" className="nav-link">
+                                <NavLink to="/pricing" className="nav-link">
                                     Pricing
-                                </Link>
+                                </NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link to="/blogs" className="nav-link">
+                                <NavLink to="/blogs" className="nav-link">
                                     Blogs
-                                </Link>
+                                </NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link to="/contact" className="nav-link">
+                                <NavLink to="/contact" className="nav-link">
                                     Contact
-                                </Link>
+                                </NavLink>
                             </li>
                             {/* đ biết vì sao nó false mà lại render ra cái này :) */}
                             {/* {isLogin ? '' : <li className="nav-item"><a className="nav-link" href="contact.html">Login</a></li>} */}
