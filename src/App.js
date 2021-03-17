@@ -8,9 +8,12 @@ import {
 import routes from './Routers/route'
 import Header from './Components/Header/Index'
 import Footer from './Components/Footer'
+
 import AOS from "aos";
 import "aos/dist/aos.css";
-AOS.init();
+AOS.init({
+  one: true,
+});
 
 class App extends React.Component {
   render(){
