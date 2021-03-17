@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import bg3 from '../../Assets/images/bg_3.jpg'
+
 class index extends Component {
     render() {
         return (
@@ -8,7 +9,7 @@ class index extends Component {
                 <div class="container">
                     <div class="row section-counter">
                         <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
-                            <div class="counter-wrap-2 d-flex"> {/*data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000"*/}
+                            <div class="counter-wrap-2 d-flex" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000"> {/**/}
                                 <div class="icon">
                                     <span class="flaticon-graduation"></span>
                                 </div>
@@ -19,7 +20,7 @@ class index extends Component {
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
-                            <div class="counter-wrap-2 d-flex"> {/*data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" */}
+                            <div class="counter-wrap-2 d-flex" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" > {/**/}
                                 <div class="icon">
                                     <span class="flaticon-scientist"></span>
                                 </div>
@@ -30,7 +31,7 @@ class index extends Component {
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
-                            <div class="counter-wrap-2 d-flex"> {/* data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000" */}
+                            <div class="counter-wrap-2 d-flex"  data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">  
                                 <div class="icon">
                                     <span class="flaticon-calendar"></span>
                                 </div>
@@ -41,7 +42,7 @@ class index extends Component {
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
-                            <div class="counter-wrap-2 d-flex"> {/*data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" */}
+                            <div class="counter-wrap-2 d-flex" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000"> 
                                 <div class="icon">
                                     <span class="flaticon-learning"></span>
                                 </div>

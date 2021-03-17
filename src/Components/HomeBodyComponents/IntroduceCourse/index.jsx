@@ -9,14 +9,14 @@ class index extends Component {
             <section class="ftco-section bg-light ftco-no-pt">
                 <div class="container-xl">
                     <div class="row justify-content-center mb-5">
-                        <div class="col-md-7 heading-section text-center">{/*data-aos="fade-up" data-aos-duration="1000" */}
+                        <div class="col-md-7 heading-section text-center" data-aos="fade-up" data-aos-duration="1000">{/* */}
                             <span class="subheading">Our Blog</span>
                             <h2>Recent From Blog</h2>
                         </div>
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-md-6 col-lg-4 d-flex">
-                            <div class="blog-entry justify-content-end">{/*data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" */}
+                            <div class="blog-entry justify-content-end" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" >{/**/}
                                 <a href="blog-single.html" class="block-20 img" style={{ backgroundImage:`url(${image1})`}}>
                                 </a>
                                 <div class="text">
@@ -29,7 +29,7 @@ class index extends Component {
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-4 d-flex">
-                            <div class="blog-entry justify-content-end">{/*data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" */}
+                            <div class="blog-entry justify-content-end" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">{/* */}
                                 <a href="blog-single.html" class="block-20 img" style={{ backgroundImage:`url(${image2})`}}>
                                 </a>
                                 <div class="text">
@@ -42,7 +42,7 @@ class index extends Component {
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-4 d-flex">
-                            <div class="blog-entry justify-content-end">{/* data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" */}
+                            <div class="blog-entry justify-content-end" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">{/*  */}
                                 <a href="blog-single.html" class="block-20 img" style={{backgroundImage:`url(${image3})`}}>
                                 </a>
                                 <div class="text">

@@ -9,7 +9,7 @@ class index extends Component {
             <section class="ftco-section">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6 col-lg-3">{/* data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" */}
+                        <div class="col-md-6 col-lg-3 " data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                             <div class="staff">
                                 <div class="img" style={{backgroundImage:`url(${team1})`}}>
                                     <ul class="ftco-social">
@@ -25,7 +25,7 @@ class index extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3">{/* data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" */}
+                        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" >
                             <div class="staff">
                                 <div class="img" style={{backgroundImage:`url(${team2})`}}>
                                     <ul class="ftco-social">
@@ -41,7 +41,7 @@ class index extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3">{/* data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" */}
+                        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
                             <div class="staff">
                                 <div class="img" style={{backgroundImage:`url(${team3})`}}>
                                     <ul class="ftco-social">
@@ -57,7 +57,7 @@ class index extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3">{/* data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" */}
+                        <div class="col-md-6 col-lg-3"  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
                             <div class="staff">
                                 <div class="img" style={{backgroundImage:`url(${team4})`}}>
                                     <ul class="ftco-social">
@@ -73,7 +73,7 @@ class index extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3">{/* data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" */}
+                        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                             <div class="staff">
                                 <div class="img" style={{backgroundImage:`url(${team1})`}}>
                                     <ul class="ftco-social">
@@ -89,7 +89,7 @@ class index extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3">{/*data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" */}
+                        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" > 
                             <div class="staff">
                                 <div class="img" style={{backgroundImage:`url(${team2})`}}>
                                     <ul class="ftco-social">
@@ -105,7 +105,7 @@ class index extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3">{/*data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" */}
+                        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" >{/**/}
                             <div class="staff">
                                 <div class="img" style={{backgroundImage:`url(${team3})`}}>
                                     <ul class="ftco-social">
@@ -121,7 +121,7 @@ class index extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3">{/*data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" */}
+                        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">{/* */}
                             <div class="staff">
                                 <div class="img" style={{backgroundImage:`url(${team4})`}}>
                                     <ul class="ftco-social">
