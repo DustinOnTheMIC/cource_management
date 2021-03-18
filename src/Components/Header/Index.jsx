@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Navbar from './Navbar';
 
-class Index extends Component {
+class index extends Component {
     constructor(props) {
         super(props)
     }
     render() {
         return (
-            <div>
+            <div id="header">
                 <div className="top-wrap">
                     <div className="container">
                         <div className="row">
@@ -58,4 +58,4 @@ class Index extends Component {
     }
 }
 
-export default Index;
+export default index;

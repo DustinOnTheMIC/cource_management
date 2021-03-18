@@ -1,7 +1,7 @@
 import React, { Component }from 'react';
 import ContainHome from '../Containers/ContainHome'
 // import Footer from '../Components/Footer'
-// import Header from '../Components/Header/Index'
+// import Header from '../Components/Header'
 // import MoveToTop from '../Components/MoveToTop'
 import ChatBot from '../Components/ChatBot'
 

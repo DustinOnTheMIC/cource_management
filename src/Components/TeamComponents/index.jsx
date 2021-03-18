@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import team1 from '../../Assets/images/team-1.jpg'
-import team2 from '../../Assets/images/team-2.jpg'
-import team3 from '../../Assets/images/team-3.jpg'
-import team4 from '../../Assets/images/team-4.jpg'
 class index extends Component {
     render() {
         const {name, position, img} = this.props

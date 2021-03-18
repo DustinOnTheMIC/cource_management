@@ -7,6 +7,7 @@ import Contact from '../Pages/Contact';
 import Blogs from '../Pages/Blogs';
 import Pricing from '../Pages/Pricing';
 import About from '../Pages/About';
+import Error404 from '../Pages/Error404/Error404';
 
 const routes = [
     {
@@ -51,6 +52,12 @@ const routes = [
         exact : true,
         main: () => <About />
     },
+    {
+        path : '404',
+        mane: 'NotFound',
+        exact : true,
+        main: () => <Error404 />
+    }
 ];
 
 

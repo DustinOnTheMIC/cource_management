@@ -5,7 +5,7 @@ import image4 from '../../Assets/images/image_4.jpg';
 class index extends Component {
     render() {
         return (
-            <div>
+            <div id="footer">
                 <section className="ftco-intro py-5 bg-primary">
                     <div className="container">
                         <div className="row d-flex justify-content-center">
