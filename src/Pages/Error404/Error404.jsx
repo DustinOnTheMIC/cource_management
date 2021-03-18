@@ -3,6 +3,7 @@ import './Error404Css.css'
 import { NavLink } from 'react-router-dom';
 
 class Error404 extends Component {
+
   componentDidMount() {
     console.log('mouted');
     let header = document.getElementById('header');
@@ -13,12 +14,13 @@ class Error404 extends Component {
     }
   }
 
-  componentWillUnmount() {
+  handleBackToHome = () => {
+    console.log('called');
     let header = document.getElementById('header');
     let footer = document.getElementById('footer');
     if(header && footer){
-      header.style.display = 'auto';
-      footer.style.display = 'auto';
+      header.style.display = 'block';
+      footer.style.display = 'block';
     }
   }
   
@@ -37,7 +39,7 @@ class Error404 extends Component {
                     Look like you're lost
                   </h3>
                   <p>the page you are looking for not avaible!</p>
-                  <NavLink exact to="/" class="link_404">Back To Our Courses</NavLink>
+                  <NavLink exact to="/" onClick={() => this.handleBackToHome()} class="link_404">Back To Our Courses</NavLink>
                 </div>
               </div>
             </div>

@@ -8,6 +8,7 @@ import {
 import routes from './Routers/route'
 import Header from './Components/Header'
 import Footer from './Components/Footer'
+import MoveToTop from './Components/MoveToTop'
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -24,6 +25,7 @@ class App extends React.Component {
         <main>
           {this.showRouter(routes)}
         </main>
+        <MoveToTop/>
         <Footer />
       </Router>
   );
