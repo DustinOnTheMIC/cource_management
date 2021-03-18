@@ -5,8 +5,16 @@ class index extends Component {
     render() {
         return (
             <div>
-                <Introduce pageTitle="Classes"/>
-                <Classes/>
+                <Introduce pageTitle="Classes" />
+                <section className="ftco-section courses-section">
+                    <div className="container">
+                        <div className="row">
+                            <Classes />
+                            <Classes />
+                            <Classes />
+                        </div>
+                    </div>
+                </section>
             </div>
         );
     }
