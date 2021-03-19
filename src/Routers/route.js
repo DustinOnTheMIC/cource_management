@@ -7,6 +7,7 @@ import Contact from '../Pages/Contact';
 import Blogs from '../Pages/Blogs';
 import Pricing from '../Pages/Pricing';
 import About from '../Pages/About';
+import Notfound from '../Pages/Notfound';
 
 const routes = [
     {
@@ -50,6 +51,12 @@ const routes = [
         name : 'About',
         exact : true,
         main: () => <About />
+    },
+    {
+        path : '*',
+        name : 'Notfound',
+        exact : true,
+        main: () => <Notfound />
     },
 ];
 

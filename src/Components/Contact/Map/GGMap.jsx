@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Map, GoogleApiWrapper } from "google-maps-react";
+import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 
 class GGMap extends Component {
   render() {
@@ -10,8 +10,11 @@ class GGMap extends Component {
             className="style-gg-map"
             google={this.props.google}
             zoom={8}
-            initialCenter={{ lat: 16.068, lng: 108.212 }}
-          />
+            //254 NGUYEN VAN LINH
+            initialCenter={{ lat: 16.06044678410693, lng: 108.20979584114299 }}
+          >
+            <Marker position={{ lat: 16.06044678410693, lng: 108.20979584114299 }} />
+          </Map>
         </div>
       </div>
     );
