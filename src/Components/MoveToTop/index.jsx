@@ -24,7 +24,7 @@ class index extends Component {
 
     render() {
         return (
-            <button className="btn-move-to-top" onClick={e => this.handleMoveToTop(e)} id="btnMoveToTop">Top</button>
+            <button className="btn-move-to-top rotate" onClick={e => this.handleMoveToTop(e)} id="btnMoveToTop"><i class="fa fa-fighter-jet"></i></button>
         );
     }
 }

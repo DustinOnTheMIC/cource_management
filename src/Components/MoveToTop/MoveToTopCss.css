@@ -1,15 +1,20 @@
 .btn-move-to-top{
     display: none;
     position: fixed;
-    bottom: 30px;
+    bottom: 25px;
     right: 100px;
     z-index: 99;
-    font-size: 16px;
+    font-size: 40px;
     border: none;
     outline: none;
-    background: linear-gradient(108deg, #82ccdd, transparent);
-    color: white;
+    background: linear-gradient(223deg, rgb(30 178 166), transparent);
+    color: rgba(30, 178, 166,0.5);
     cursor: pointer;
-    padding: 15px;
-    border-radius: 100%;
+    padding: 0;
+    background: transparent;
+    border-radius: 57%;
+}
+
+.rotate{
+    transform: rotate(-90deg)
 }
