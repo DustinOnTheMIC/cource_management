@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
 class Navbar extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            isLogin : true
+        }
+    }
     render() {
+        const { isLogin } = this.state
         return (
             <nav className="navbar navbar-expand-lg  ftco-navbar-light">
                 <div className="container-xl">
@@ -48,8 +55,11 @@ class Navbar extends Component {
                                     Contact
                                 </NavLink>
                             </li>
-                            {/* đ biết vì sao nó false mà lại render ra cái này :) */}
-                            {/* {isLogin ? '' : <li className="nav-item"><a className="nav-link" href="contact.html">Login</a></li>} */}
+                            {
+                                isLogin ? 
+                                    <li className="nav-item"><NavLink className="nav-link" to='/profile'>Profile</NavLink></li>
+                                    : <li className="nav-item"><NavLink className="nav-link" to='/login'>Login</NavLink></li>
+                             }
                         </ul>
                     </div>
                 </div>
