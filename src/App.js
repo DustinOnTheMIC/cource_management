@@ -23,11 +23,11 @@ class App extends React.Component {
     return (
       <Router>
         <Header />
-        <Switch>
         <main>
-          {this.showRouter(routes)}
+          <Switch>
+            {this.showRouter(routes)}
+          </Switch>
         </main>
-        </Switch>
         <MoveToTop/>
         <Footer />
       </Router>

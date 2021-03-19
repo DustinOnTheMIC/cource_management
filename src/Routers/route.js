@@ -9,7 +9,6 @@ import Pricing from '../Pages/Pricing';
 import About from '../Pages/About';
 import UserProfile from '../Components/UserProfileComponents/UserProfile/UserProfile'
 import Error404 from '../Pages/Error404/Error404';
-import NotFound from '../Pages/NotFound';
 
 const routes = [
     {
@@ -64,8 +63,8 @@ const routes = [
         path : '*',
         name: 'NotFound',
         exact : true,
-        main: () => <NotFound />
-    }
+        main: () => <Error404 />
+    },
 ];
 
 
