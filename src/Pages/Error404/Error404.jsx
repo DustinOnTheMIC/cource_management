@@ -26,20 +26,20 @@ class Error404 extends Component {
   
   render() {
     return (
-      <div class="page_404">
-        <div class="container-fluid">
-          <div class="row justify-content-center">
-            <div class="col-sm-12 ">
-              <div class="text-center align-items-center justify-content-center">
-                <div class="four_zero_four_bg">
-                  <h1 class="text-center ">404</h1>
+      <div className="page_404">
+        <div className="container-fluid">
+          <div className="row justify-content-center">
+            <div className="col-sm-12 ">
+              <div className="text-center align-items-center justify-content-center">
+                <div className="four_zero_four_bg">
+                  <h1 className="text-center ">404</h1>
                 </div>
-                <div class="contant_box_404">
-                  <h3 class="h2">
+                <div className="contant_box_404">
+                  <h3 className="h2">
                     Look like you're lost
                   </h3>
                   <p>the page you are looking for not avaible!</p>
-                  <NavLink exact to="/" onClick={() => this.handleBackToHome()} class="link_404">Back To Our Courses</NavLink>
+                  <NavLink exact to="/" onClick={() => this.handleBackToHome()} className="link_404">Back To Our Courses</NavLink>
                 </div>
               </div>
             </div>

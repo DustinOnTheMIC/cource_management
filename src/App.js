@@ -2,6 +2,7 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
+  Switch,
 } from "react-router-dom";
 
 
@@ -22,9 +23,11 @@ class App extends React.Component {
     return (
       <Router>
         <Header />
+        <Switch>
         <main>
           {this.showRouter(routes)}
         </main>
+        </Switch>
         <MoveToTop/>
         <Footer />
       </Router>
