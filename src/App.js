@@ -7,7 +7,7 @@ import {
 
 
 import routes from './Routers/route'
-import Header from './Components/Header'
+import Header from './Components/Header/Index'
 import Footer from './Components/Footer'
 import MoveToTop from './Components/MoveToTop'
 

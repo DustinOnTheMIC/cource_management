@@ -7,7 +7,7 @@ import Contact from '../Pages/Contact';
 import Blogs from '../Pages/Blogs';
 import Pricing from '../Pages/Pricing';
 import About from '../Pages/About';
-import UserProfile from '../Components/UserProfileComponents/UserProfile/UserProfile'
+import UserProfile from '../Pages/UserProfile';
 import Error404 from '../Pages/Error404/Error404';
 
 
