@@ -12,19 +12,8 @@
     color: #fff;
 }
 
-/* STYLE FOR GG MAP */
 .style-gg-map {
-    width: 45% !important;
-    position: absolute;
     height: 74% !important;
     right: 5% !important;
+    width: 45% !important;
 }
-
-@media (max-width: 991px) {
-    .style-gg-map {
-        width: 80% !important;
-        position: absolute;
-        height:60% !important;
-        right: 10% !important;
-    }
-  }

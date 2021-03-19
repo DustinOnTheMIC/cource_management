@@ -9,6 +9,13 @@ import {
 import routes from './Routers/route'
 import Header from './Components/Header/Index'
 import Footer from './Components/Footer'
+import MoveToTop from './Components/MoveToTop'
+
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init({
+  one: true,
+});
 
 class App extends React.Component {
   render(){
@@ -21,6 +28,7 @@ class App extends React.Component {
           {this.showRouter(routes)}
           </Switch>
         </main>
+        <MoveToTop/>
         <Footer />
       </Router>
   );

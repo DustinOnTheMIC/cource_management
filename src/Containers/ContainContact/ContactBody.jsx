@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import FormContact from '../../Components/Contact/Form/FormContact';
 import InforAddress from '../../Components/Contact/InforAddress/InforAddress';
-import GGMap from '../../Components/Contact/Mapp/GGMap';
+import Map from '../../Components/Contact/Map/Map';
+
 
 class ContactBody extends Component {
     render() {
@@ -29,7 +30,7 @@ class ContactBody extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <GGMap />
+                                    <Map />
                                 </div>
                             </div>
                         </div>
