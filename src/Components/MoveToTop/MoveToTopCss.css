@@ -1,15 +1,15 @@
 .btn-move-to-top{
     display: none;
     position: fixed;
-    bottom: 20px;
-    right: 30px;
+    bottom: 30px;
+    right: 100px;
     z-index: 99;
-    font-size: 18px;
+    font-size: 16px;
     border: none;
     outline: none;
-    background: linear-gradient(35deg, #82ccdd, transparent);
+    background: linear-gradient(108deg, #82ccdd, transparent);
     color: white;
     cursor: pointer;
     padding: 15px;
-    border-radius: 50%;
+    border-radius: 100%;
 }

@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import bg2 from '../../../Assets/images/bg_2.jpg'
 
-// LẤY CÁI NÀY CỦA T CHIA, BỎ VÔ MÁY CÁI CỦA M LUÔN, TRUYỂN PROPS VÔ, CHỨ CÁI NÀY CHUNG MÀ
-
 class Introduce extends Component {
     constructor(props) {
         super(props);
