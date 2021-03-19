@@ -17,3 +17,11 @@
     right: 5% !important;
     width: 45% !important;
 }
+
+@media (max-width:991px){
+    .style-gg-map {
+        height: 60% !important;
+        right: 15% !important;
+        width: 70% !important;
+    }
+}

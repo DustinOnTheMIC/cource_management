@@ -11540,6 +11540,11 @@ h5,
   color: rgba(255, 255, 255, 0.9);
   font-weight: 500;
 }
+
+ .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover {
+   color: #1eb2a6;
+ }
+
 .ftco-navbar-light .navbar-nav > .nav-item > .nav-link span {
   position: relative;
   display: block;
