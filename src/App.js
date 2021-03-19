@@ -25,7 +25,7 @@ class App extends React.Component {
         <Header />
         <main>
           <Switch>
-            {this.showRouter(routes)}
+          {this.showRouter(routes)}
           </Switch>
         </main>
         <MoveToTop/>

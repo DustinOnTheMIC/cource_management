@@ -11,3 +11,9 @@
     box-shadow: 0 0 1px 3px rgb(30, 178, 166) !important;
     color: #fff;
 }
+
+.style-gg-map {
+    height: 74% !important;
+    right: 5% !important;
+    width: 45% !important;
+}

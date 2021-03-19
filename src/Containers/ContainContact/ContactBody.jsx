@@ -3,6 +3,7 @@ import FormContact from '../../Components/Contact/Form/FormContact';
 import InforAddress from '../../Components/Contact/InforAddress/InforAddress';
 import Map from '../../Components/Contact/Map/Map';
 
+
 class ContactBody extends Component {
     render() {
         return (
