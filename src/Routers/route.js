@@ -60,7 +60,7 @@ const routes = [
         main: () => <UserProfile />
     },
     {
-        path : '/notfound',
+        path : '*',
         name: 'NotFound',
         exact : true,
         main: () => <Error404 />
