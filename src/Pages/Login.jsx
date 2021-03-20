@@ -29,6 +29,8 @@ class Login extends Component {
         }
     }
 
+
+
     isEmail = (arg) => {
         if(arg){
             document.getElementById('formCheckEmail').classList.add('d-none')
@@ -45,8 +47,15 @@ class Login extends Component {
         //call API check email
         //if true => 
         e.preventDefault()
-        this.isEmail(true)
+        this.isEmail(false)
         
+    }
+
+    handleTurnBack = e => {
+        e.preventDefault()
+        document.getElementById('formCheckEmail').classList.remove('d-none')
+        document.getElementById('formSignUp').classList.add('d-none')
+        document.getElementById('formSignIn').classList.add('d-none')
     }
 
     handleSignIn = e => {
@@ -89,7 +98,7 @@ class Login extends Component {
                                                 <label for="username">Your Email</label>
                                                 <input type="text" placeholder="Email" className="form-control mb-5"></input>
                                             </div>
-                                            <input type="submit" value="Next Step" className="btn btn-block mt-5 btn-warning" onClick={e => this.handleCheckEmail(e)}></input>
+                                            <input type="submit" value="Next Step" className="btn btn-block mt-5 btn-primary" onClick={e => this.handleCheckEmail(e)}></input>
                                         </form>
                                     </div>
                                 </div>
@@ -105,6 +114,7 @@ class Login extends Component {
                                                 <label for="username">Your Password</label>
                                                 <input type="text" placeholder="Password" className="form-control mb-5"></input>
                                             </div>
+                                            <input type="submit" value="Turn Back" className="btn btn-block mt-5 btn-outline-primary" onClick={e => this.handleTurnBack(e)}></input>
                                             <input type="submit" value="Sign In" className="btn btn-block mt-5 btn-primary" onClick={e => this.handleSignIn(e)}></input>
                                         </form>
                                     </div>
@@ -118,9 +128,14 @@ class Login extends Component {
                                         </div>
                                         <form action="#" method="post">
                                             <div className="form-group first mt-5">
-                                                <label for="username">Your Phone Number</label>
-                                                <input type="text" placeholder="Phone number" className="form-control mb-5"></input>
+                                                <label for="username">Your Name</label>
+                                                <input type="text" placeholder="Name" className="form-control mb-5"></input>
                                             </div>
+                                            <div className="form-group first mt-5">
+                                                <label for="username">Your Phone Number</label>
+                                                <input type="number" placeholder="Phone number" className="form-control mb-5"></input>
+                                            </div>
+                                            <input type="submit" value="Turn Back" className="btn btn-block mt-5 btn-outline-primary" onClick={e => this.handleTurnBack(e)}></input>
                                             <input type="submit" value="Sign Up" className="btn btn-block mt-5 btn-primary" onClick={e => this.handleSignUp(e)}></input>
                                         </form>
                                     </div>
