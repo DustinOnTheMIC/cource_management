@@ -7,9 +7,9 @@ import Contact from '../Pages/Contact';
 import Blogs from '../Pages/Blogs';
 import Pricing from '../Pages/Pricing';
 import About from '../Pages/About';
-import UserProfile from '../Components/UserProfileComponents/UserProfile/UserProfile'
+import UserProfile from '../Pages/UserProfile';
 import Error404 from '../Pages/Error404/Error404';
-
+import Login from '../Pages/Login'
 
 const routes = [
     {
@@ -59,6 +59,12 @@ const routes = [
         name : 'About',
         exact : true,
         main: () => <UserProfile />
+    },
+    {
+        path : '/login',
+        name : 'Login',
+        exact : true,
+        main: () => <Login />
     },
     {
         path : '*',
