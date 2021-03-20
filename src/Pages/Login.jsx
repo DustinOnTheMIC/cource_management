@@ -69,59 +69,59 @@ class Login extends Component {
             
             <div>
                 {this.state.redirect ? (<Redirect push to="/"/>) : null}
-                <div class="content mt-5">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <img src={imgLogin} alt="Imag" class="img-fluid"></img>
+                <div className="content mt-5">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-6">
+                                <img src={imgLogin} alt="Imag" className="img-fluid"></img>
                             </div>
-                            <div class="col-md-6 contents mt-5">
-                                <div class="d-flex">
-                                <div id="formCheckEmail" class="row justify-content-center mt-5 col-12">
-                                    <div class="col-md-8">
-                                        <div class="mb-4">
+                            <div className="col-md-6 contents mt-5">
+                                <div className="d-flex">
+                                <div id="formCheckEmail" className="row justify-content-center mt-5 col-12">
+                                    <div className="col-md-8">
+                                        <div className="mb-4">
                                             <h3>Check Your Email</h3>
-                                            <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur
+                                            <p className="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur
                                                 adipisicing.</p>
                                         </div>
                                         <form action="#" method="post">
-                                            <div class="form-group first mt-5">
+                                            <div className="form-group first mt-5">
                                                 <label for="username">Your Email</label>
-                                                <input type="text" placeholder="Email" class="form-control mb-5"></input>
+                                                <input type="text" placeholder="Email" className="form-control mb-5"></input>
                                             </div>
-                                            <input type="submit" value="Next Step" class="btn btn-block mt-5 btn-warning" onClick={e => this.handleCheckEmail(e)}></input>
+                                            <input type="submit" value="Next Step" className="btn btn-block mt-5 btn-warning" onClick={e => this.handleCheckEmail(e)}></input>
                                         </form>
                                     </div>
                                 </div>
-                                <div id="formSignIn" class="row justify-content-center mt-5 col-12">
-                                    <div class="col-md-8">
-                                        <div class="mb-4">
+                                <div id="formSignIn" className="row justify-content-center mt-5 col-12">
+                                    <div className="col-md-8">
+                                        <div className="mb-4">
                                             <h3>Sign In</h3>
-                                            <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur
+                                            <p className="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur
                                                 adipisicing.</p>
                                         </div>
                                         <form action="#" method="post">
-                                            <div class="form-group first mt-5">
+                                            <div className="form-group first mt-5">
                                                 <label for="username">Your Password</label>
-                                                <input type="text" placeholder="Password" class="form-control mb-5"></input>
+                                                <input type="text" placeholder="Password" className="form-control mb-5"></input>
                                             </div>
-                                            <input type="submit" value="Sign In" class="btn btn-block mt-5 btn-primary" onClick={e => this.handleSignIn(e)}></input>
+                                            <input type="submit" value="Sign In" className="btn btn-block mt-5 btn-primary" onClick={e => this.handleSignIn(e)}></input>
                                         </form>
                                     </div>
                                 </div>
-                                <div id="formSignUp" class="row justify-content-center mt-5 col-12">
-                                    <div class="col-md-8">
-                                        <div class="mb-4">
+                                <div id="formSignUp" className="row justify-content-center mt-5 col-12">
+                                    <div className="col-md-8">
+                                        <div className="mb-4">
                                             <h3>Sign Up</h3>
-                                            <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur
+                                            <p className="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur
                                                 adipisicing.</p>
                                         </div>
                                         <form action="#" method="post">
-                                            <div class="form-group first mt-5">
+                                            <div className="form-group first mt-5">
                                                 <label for="username">Your Phone Number</label>
-                                                <input type="text" placeholder="Phone number" class="form-control mb-5"></input>
+                                                <input type="text" placeholder="Phone number" className="form-control mb-5"></input>
                                             </div>
-                                            <input type="submit" value="Sign Up" class="btn btn-block mt-5 btn-primary" onClick={e => this.handleSignUp(e)}></input>
+                                            <input type="submit" value="Sign Up" className="btn btn-block mt-5 btn-primary" onClick={e => this.handleSignUp(e)}></input>
                                         </form>
                                     </div>
                                 </div>
