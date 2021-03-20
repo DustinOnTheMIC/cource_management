@@ -5,7 +5,7 @@ class Navbar extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isLogin : false
+            isLogin : true
         }
     }
     render() {

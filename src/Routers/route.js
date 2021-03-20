@@ -70,7 +70,7 @@ const routes = [
         path : '*',
         name: 'NotFound',
         exact : true,
-        main: () => <Error404 />
+        main: ({history}) => <Error404 history={history}/>
     },
 ];
 
