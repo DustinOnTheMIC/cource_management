@@ -43,7 +43,8 @@ class FormInfo extends Component {
                 content: "input",
               })
             .then((value) => {
-                if(this.props.name === 'phone'){
+                if(value){
+                  if(this.props.name === 'phone'){
                     if(isNaN(parseFloat(value))){
                         swal('Your phone number is invalid')
                     }else {
@@ -53,12 +54,11 @@ class FormInfo extends Component {
                         });
                     }
                 }else{
-                
-                  //call API to changed
-                  this.props.onUpdateValue(this.props.name, value)
-                  swal(`Done! You just change your ${this.props.name} to ${value}`, {
-                    icon: "success",
-                  });
+                    this.props.onUpdateValue(this.props.name, value)
+                    swal(`Done! You just change your ${this.props.name} to ${value}`, {
+                      icon: "success",
+                    });
+                  } 
                 }
             });
         }
