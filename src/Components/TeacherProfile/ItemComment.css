@@ -1,0 +1,30 @@
+.item-comment
+{
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+
+    border: 1px solid #c3c3c3;
+    width: 80%;
+    margin: 10px 10%;
+    border-radius: 20px;
+    color: #1eb2a6;
+}
+
+.user-comment a
+{
+    margin-right: 20px;
+}
+
+
+.fa-star {
+    color: #ffca81;
+}
+
+.show-comment {
+    height: 250px;
+    overflow: auto;
+    border-left: 20px solid #1eb2a6;
+    border-right: 20px solid #1eb2a6;
+}

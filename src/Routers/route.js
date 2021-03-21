@@ -10,6 +10,7 @@ import About from '../Pages/About';
 import UserProfile from '../Pages/UserProfile';
 import Error404 from '../Pages/Error404/Error404';
 import Login from '../Pages/Login'
+import TeaProfile from '../Pages/TeaProfile'
 
 const routes = [
     {
@@ -59,6 +60,12 @@ const routes = [
         name : 'About',
         exact : true,
         main: () => <UserProfile />
+    },
+    {
+        path : '/teacher_profile',
+        name : 'TeaProfile',
+        exact : true,
+        main: () => <TeaProfile />
     },
     {
         path : '/login',
