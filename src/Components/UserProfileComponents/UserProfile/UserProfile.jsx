@@ -77,7 +77,7 @@ class UserProfile extends Component {
                   </div>
                 </div>
                 <div className="name d-flex flex-wrap mt-4 justify-content-center">
-                  <div className="panel col-md-10 col-12 d-flex justify-content-center flex-column">
+                  <div className="panel col-md-10 col-12 d-flex justify-content-center flex-column mb-5">
                     <h1 className="title">Bio Graph</h1>
                     <div className="panel-body bio-graph-info">
                       {this.state.user.map(item => {
@@ -90,7 +90,7 @@ class UserProfile extends Component {
                     </div>
                     <div className="item-submit-info">
                       <button className="btn btn-custom">
-                        <FontAwesomeIcon icon={faSave} size='2x'/>
+                        Save
                       </button>
                     </div>
                   </div>

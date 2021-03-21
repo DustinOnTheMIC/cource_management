@@ -78,7 +78,7 @@ export const config ={
     floating: true,
     steps: steps,
     botAvatar: botAvatar,
-    headerTitle: 'AI chạy bằng cơm',
+    headerTitle: 'AI run by riceư',
     botDelay:0,
     handleEnd: (value)=> {
         // window.location.href = value.values.pop()

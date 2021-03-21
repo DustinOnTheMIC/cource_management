@@ -445,8 +445,13 @@ footer p a:hover {
   display: inline-block;
 }
 
+.btn-custom {
+  border: 1px solid #1EB2A6 !important
+}
+
 .btn-custom:hover{ 
-  background-color: #1EB2A6 !important
+  background-color: #1EB2A6 !important;
+  color: white !important;
 }
 
 .custom-hover:hover{
