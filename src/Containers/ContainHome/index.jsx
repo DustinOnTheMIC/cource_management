@@ -20,9 +20,9 @@ class index extends Component {
                             </div>
                         </div>
                         <div className="row justify-content-center">
-                                <IntroduceCourse/>
-                                <IntroduceCourse/>
-                                <IntroduceCourse/>
+                                <IntroduceCourse name="Javascript" img="https://sogo.edu.vn/wp-content/uploads/2019/08/javascript-la-gi.jpg"/>
+                                <IntroduceCourse name="Java" img="https://cafedev.vn/wp-content/uploads/2019/12/cafedev_java13.jpg"/>
+                                <IntroduceCourse name="PHP" img="https://codewebdao.com/upload/users/1/img/hinhminhhoa/php/php.png"/>
                         </div>
                     </div>
                 </section>
