@@ -13,8 +13,10 @@ class GGMap extends Component {
             //254 NGUYEN VAN LINH
             initialCenter={{ lat: 16.06044678410693, lng: 108.20979584114299 }}
           >
+            
             <Marker position={{ lat: 16.06044678410693, lng: 108.20979584114299 }} />
           </Map>
+          
         </div>
       </div>
     );
