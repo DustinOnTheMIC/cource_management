@@ -15,14 +15,14 @@ class index extends Component {
                     <div className="container-xl">
                         <div className="row justify-content-center mb-5">
                             <div className="col-md-7 heading-section text-center" data-aos="fade-up" data-aos-duration="1000">
-                                <span className="subheading">Our Subject</span>
+                                <span className="subheading">Our Popular Subject</span>
                                 <h2>ALL WHAT YOU NEED IS CHOOSE</h2>
                             </div>
                         </div>
                         <div className="row justify-content-center">
-                                <IntroduceCourse/>
-                                <IntroduceCourse/>
-                                <IntroduceCourse/>
+                                <IntroduceCourse name="Javascript" img="https://sogo.edu.vn/wp-content/uploads/2019/08/javascript-la-gi.jpg"/>
+                                <IntroduceCourse name="Java" img="https://cafedev.vn/wp-content/uploads/2019/12/cafedev_java13.jpg"/>
+                                <IntroduceCourse name="PHP" img="https://codewebdao.com/upload/users/1/img/hinhminhhoa/php/php.png"/>
                         </div>
                     </div>
                 </section>

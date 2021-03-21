@@ -9,7 +9,7 @@ class index extends Component {
         this.state = {
             theme: {
                 background: '#f1f2f6',
-                fontFamily: 'Helvetica Neue',
+                fontFamily: this.fontFamily,
                 headerBgColor: '#1EB2A6',
                 headerFontColor: '#fff',
                 headerFontSize: '15px',
@@ -20,11 +20,21 @@ class index extends Component {
             }
         }
     }
+    
+    fontFamily = [
+        'system-ui', '-apple-system', 
+        '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 
+        'Arial', '"Noto Sans"', ' "Liberation Sans"', 
+        'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', 
+        '"Segoe UI Symbol"', 
+    ].join(',')
+
+
     render() {
         const { theme } = this.state
         return (
-            <ThemeProvider theme={theme}  style={{marginBottom: '20px'}}  >
-                <ChatBot {...config}/>
+            <ThemeProvider theme={theme} style={{ marginBottom: '20px' }}  >
+                <ChatBot {...config} />
             </ThemeProvider>
         );
     }
