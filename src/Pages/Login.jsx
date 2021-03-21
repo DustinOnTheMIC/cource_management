@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import imgLogin from '../Assets/images/undraw_remotely_2j6y.svg'
 import { Redirect } from 'react-router-dom';
+import swal from 'sweetalert'
+
 class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
         }
     }
+
     componentDidMount() {
         document.getElementById('formCheckEmail').classList.remove('d-none')
         document.getElementById('formSignUp').classList.add('d-none')
@@ -31,7 +34,7 @@ class Login extends Component {
 
 
 
-    isEmail = (arg) => {
+    isEmail = arg => {
         if(arg){
             document.getElementById('formCheckEmail').classList.add('d-none')
             document.getElementById('formSignUp').classList.add('d-none')
@@ -47,7 +50,7 @@ class Login extends Component {
         //call API check email
         //if true => 
         e.preventDefault()
-        this.isEmail(false)
+        this.isEmail(true)
         
     }
 
@@ -71,7 +74,36 @@ class Login extends Component {
         this.handleBackToHome()
         this.setState({redirect: true})
     }
-      
+    
+    handleForgetPassword = e => {
+        e.preventDefault()
+        swal({
+            text: `Please enter the code that sent in you email`,
+            buttons: true,
+            dangerMode: true,
+            content: "input",
+        })
+        .then((value) => {
+            if (value) {
+            //call API check the code sended
+                swal({
+                    text: `Enter your new password`,
+                    buttons: true,
+                    dangerMode: true,
+                    content: "input",
+                    type: 'number'
+                })
+                .then((value) => {
+                    if(value){
+                        //call API change password
+                        swal(`Done! You just change your password`, {
+                        icon: "success",
+                        });
+                    }
+                });
+            }
+        }); 
+    }
 
     render() {
         return (
@@ -106,16 +138,19 @@ class Login extends Component {
                                     <div className="col-md-8">
                                         <div className="mb-4">
                                             <h3>Sign In</h3>
-                                            <p className="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur
-                                                adipisicing.</p>
+                                            <p className="mb-4">Hi Dustin welcome back to our course <br></br> Please enter your password</p>
                                         </div>
                                         <form action="#" method="post">
                                             <div className="form-group first mt-5">
                                                 <label for="username">Your Password</label>
-                                                <input type="text" placeholder="Password" className="form-control mb-5"></input>
+                                                <input type="password" placeholder="Password" className="form-control mb-5"></input>
                                             </div>
-                                            <input type="submit" value="Turn Back" className="btn btn-block mt-5 btn-outline-primary" onClick={e => this.handleTurnBack(e)}></input>
-                                            <input type="submit" value="Sign In" className="btn btn-block mt-5 btn-primary" onClick={e => this.handleSignIn(e)}></input>
+                                            <a href="#forgetpassword" onClick={e => this.handleForgetPassword(e)} className="">forget password?</a>
+                                            <div>
+                                                <input type="submit" value="Turn Back" className="btn btn-block mt-5 btn-outline-primary" onClick={e => this.handleTurnBack(e)}></input>
+                                                <input type="submit" value="Sign In" className="btn btn-block mt-5 btn-primary" onClick={e => this.handleSignIn(e)}></input>
+                                            </div>
+
                                         </form>
                                     </div>
                                 </div>
