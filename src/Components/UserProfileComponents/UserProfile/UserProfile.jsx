@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./UserProfileCss.css";
-import swal from "sweetalert";
 import CardExam from "../CardExam/CardExam";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave} from '@fortawesome/free-solid-svg-icons'
