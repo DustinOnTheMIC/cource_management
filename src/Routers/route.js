@@ -10,7 +10,7 @@ import About from '../Pages/About';
 import UserProfile from '../Pages/UserProfile';
 import Error404 from '../Pages/Error404/Error404';
 import Login from '../Pages/Login'
-import TeaProfile from '../Pages/TeaProfile'
+import TeaProfile from '../Pages/TeacherProfile'
 
 const routes = [
     {
