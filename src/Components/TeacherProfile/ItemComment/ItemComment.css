@@ -1,7 +1,5 @@
 .item-comment
 {
-    display: flex;
-    justify-content:space-between;
     align-items:center;
     padding:20px;
 
@@ -17,14 +15,15 @@
     margin-right: 20px;
 }
 
-
+.show-comment::-scrollbar {
+    display: unset !important;
+    
+}
 .fa-star {
     color: #ffca81;
 }
 
 .show-comment {
-    height: 250px;
+    height: 300px;
     overflow: auto;
-    border-left: 20px solid #1eb2a6;
-    border-right: 20px solid #1eb2a6;
 }

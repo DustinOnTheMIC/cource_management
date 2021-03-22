@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import ShowInForTea from '../Containers/ContainTeacher/ShowInForTea';
+import ShowInfoTeacher from '../Containers/ContainTeacher/ShowInfoTeacher';
 
 class UserProfile extends Component {
     render() {
         return (
-            <ShowInForTea />
+            <ShowInfoTeacher />
         );
     }
 }
