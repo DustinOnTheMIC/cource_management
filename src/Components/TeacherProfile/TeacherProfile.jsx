@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../UserProfileComponents/UserProfile/UserProfileCss.css";
 
-class InforTea extends Component {
+class TeacherProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -90,4 +90,4 @@ class InforTea extends Component {
   }
 }
 
-export default InforTea;
+export default TeacherProfile;
