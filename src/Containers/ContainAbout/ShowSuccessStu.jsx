@@ -5,6 +5,12 @@ import "../../Components/Common/custom.css";
 
 class ShowSuccessStu extends Component {
   render() {
+    const breakPoints = [
+      { width: 1, itemsToShow: 1 },
+      { width: 550, itemsToShow: 2, itemsToScroll: 2 },
+      { width: 768, itemsToShow: 3 },
+      { width: 1200, itemsToShow: 4 },
+    ];
     return (
       <section className="ftco-section testimony-section bg-light">
         <div className="container-xl">
@@ -25,7 +31,7 @@ class ShowSuccessStu extends Component {
               data-aos-duration="1000"
               data-aos-delay="100"
             >
-              <Carousel itemsToShow={3}>
+              <Carousel breakPoints={breakPoints}>
                 <SuccessStuItem />
                 <SuccessStuItem />
                 <SuccessStuItem />
