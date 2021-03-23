@@ -3,11 +3,11 @@ import Carousel from "react-elastic-carousel";
 import "../../Components/Common/custom.css";
 
 import Classes from "../../Components/AllClassBodyComponents/Classes";
-import TeacherProfile from "../../Components/TeacherProfile/TeacherProfile";
+import InforTea from "../../Components/TeacherProfile/InforTea";
 import "../../Components/Common/custom.css";
-import CommentRate from "../../Components/TeacherProfile/CommentRate/CommentRate";
+import CommentRate from "../../Components/TeacherProfile/CommentRate";
 
-class ShowTeacherProfilecher extends Component {
+class ShowInForTea extends Component {
   render() {
     const breakPoints = [
       { width: 1, itemsToShow: 1 },
@@ -17,9 +17,8 @@ class ShowTeacherProfilecher extends Component {
     ];
     return (
       <div>
-        <TeacherProfile />
-        <div className="container align-items-center">
-          <CommentRate />
+        <InforTea />
+        <div className="container">
           <h1 className="title text-center">The class is teaching</h1>
           <div className="row mb-5 ">
             <Carousel breakPoints={breakPoints}>
@@ -30,10 +29,10 @@ class ShowTeacherProfilecher extends Component {
             </Carousel>
           </div>
         </div>
-        
+        <CommentRate />
       </div>
     );
   }
 }
 
-export default ShowTeacherProfilecher;
+export default ShowInForTea;
