@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import ShowInfoTeacher from '../Containers/ContainTeacher/ShowInfoTeacher';
+import Footer from '../Components/Footer'
+import Header from '../Components/Header'
 
 class UserProfile extends Component {
     render() {
         return (
-            <ShowInfoTeacher />
+            <div>
+                <Header/>
+                <ShowInfoTeacher />
+                <Footer/>
+            </div>
         );
     }
 }

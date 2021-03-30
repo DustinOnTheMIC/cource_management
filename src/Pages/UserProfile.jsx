@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import UserProfileCPN from '../Components/UserProfileComponents/UserProfile/UserProfile'
+import Footer from '../Components/Footer'
+import Header from '../Components/Header'
 
 class UserProfile extends Component {
     render() {
         return (
-            <UserProfileCPN/>
+            <div>
+                <Header/>
+                <UserProfileCPN/>
+                <Footer/>
+            </div>
         );
     }
 }

@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import Navbar from './Navbar';
 
 class index extends Component {
-    constructor(props) {
-        super(props)
-    }
+
     render() {
         return (
             <div id="header">

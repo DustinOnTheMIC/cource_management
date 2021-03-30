@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
 class Navbar extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            isLogin : true
-        }
+    
+    componentDidMount() {
+        console.log(this.props);
     }
-    render() {
-        const { isLogin } = this.state
+    
+    render() {    
+        const isLogin =  localStorage.getItem('isLog')
+
         return (
             <nav className="navbar navbar-expand-lg  ftco-navbar-light">
                 <div className="container-xl">
@@ -56,9 +56,9 @@ class Navbar extends Component {
                                 </NavLink>
                             </li>
                             {
-                                isLogin ? 
-                                    <li className="nav-item"><NavLink className="nav-link" to='/profile'>Profile</NavLink></li>
-                                    : <li className="nav-item"><NavLink className="nav-link" to='/login'>Login</NavLink></li>
+                                isLogin === 'fakeLog' ? '' : 
+                                    isLogin === 'log' ? <li className="nav-item"><NavLink className="nav-link" to='/profile'>Profile</NavLink></li>
+                                    : <li className="nav-item"><NavLink className="nav-link" to='/login'>Login</NavLink></li> 
                              }
                         </ul>
                     </div>
@@ -68,4 +68,5 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+
+export default Navbar

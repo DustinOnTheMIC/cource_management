@@ -11,9 +11,7 @@ import './Assets/Css/tiny-slider.css'
 
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <App />,
   document.getElementById('root')
 );
 

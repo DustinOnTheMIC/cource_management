@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import imgLogin from '../Assets/images/undraw_remotely_2j6y.svg'
 import { Redirect } from 'react-router-dom';
 import swal from 'sweetalert'
+import axios from 'axios';
+
 
 class Login extends Component {
+
     constructor(props) {
         super(props)
         this.state = {
@@ -21,6 +24,13 @@ class Login extends Component {
           header.style.display = 'none';
           footer.style.display = 'none';
         }
+        localStorage.removeItem('isLog')
+    }
+
+    handleInputChange(e){
+        let name = e.target.name
+        let value = e.target.value
+        this.setState({[name]: value})
     }
     
     handleBackToHome = () => {
@@ -31,8 +41,6 @@ class Login extends Component {
           footer.style.display = 'block';
         }
     }
-
-
 
     isEmail = arg => {
         if(arg){
@@ -45,13 +53,26 @@ class Login extends Component {
             document.getElementById('formSignIn').classList.add('d-none')
         }
     }
-    
+
     handleCheckEmail = e => {
-        //call API check email
-        //if true => 
         e.preventDefault()
-        this.isEmail(true)
-        
+        //call API check email
+        console.log(this.state);
+        axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/auth/name',{
+            email: this.state.email
+        })
+        .then(res => {
+            this.setState({userName: res.data.UserName})
+            this.isEmail(true)
+        })
+        .catch(err => {
+            if(err.response.status === 400){
+                this.isEmail(false)
+                this.setState({ isEmail:false })
+            }
+        })
+        //if true => 
+        // this.isEmail(true)
     }
 
     handleTurnBack = e => {
@@ -62,17 +83,41 @@ class Login extends Component {
     }
 
     handleSignIn = e => {
-        //call API check Password
+        let data = {
+            email: this.state.email,
+            password: this.state.password
+        }
         //if true =>
         e.preventDefault()
-        this.handleBackToHome()
-        this.setState({redirect: true})
+        //call API check Password
+        axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/auth/login', data)
+        .then(res => {
+            console.log(res)
+            localStorage.setItem('isLog', 'log')
+            this.handleBackToHome()
+            this.setState({redirect: true})
+        })
+        .catch(err => console.log(err))
     }
 
     handleSignUp = e => {
         e.preventDefault()
-        this.handleBackToHome()
-        this.setState({redirect: true})
+        if(this.state.isEmail){
+            
+        }else{
+            // this.props.isLog('fakeLog')
+            let user = {
+                name: this.state.name,
+                email: this.state.email,
+                phone: this.state.phone
+            }
+            console.log(this.state);
+            localStorage.setItem('isLog', 'fakeLog')
+            localStorage.setItem('user',user)
+            console.log(JSON.stringify(localStorage.getItem('user')))
+            this.handleBackToHome()
+            this.setState({redirect: true})
+        }
     }
     
     handleForgetPassword = e => {
@@ -106,10 +151,10 @@ class Login extends Component {
     }
 
     render() {
+        const {userName} = this.state
         return (
-            
             <div>
-                {this.state.redirect ? (<Redirect push to="/"/>) : null}
+                {this.state.redirect ? (<Redirect push to="/" />) : null}
                 <div className="content mt-5">
                     <div className="container">
                         <div className="row">
@@ -127,8 +172,8 @@ class Login extends Component {
                                         </div>
                                         <form action="#" method="post">
                                             <div className="form-group first mt-5">
-                                                <label for="username">Your Email</label>
-                                                <input type="text" placeholder="Email" className="form-control mb-5"></input>
+                                                <label >Your Email</label>
+                                                <input type="text" placeholder="Email" name="email" className="form-control mb-5" onChange={e => this.handleInputChange(e)}></input>
                                             </div>
                                             <input type="submit" value="Next Step" className="btn btn-block mt-5 btn-primary" onClick={e => this.handleCheckEmail(e)}></input>
                                         </form>
@@ -138,12 +183,12 @@ class Login extends Component {
                                     <div className="col-md-8">
                                         <div className="mb-4">
                                             <h3>Sign In</h3>
-                                            <p className="mb-4">Hi Dustin welcome back to our course <br></br> Please enter your password</p>
+                                            <p className="mb-4">Hi {userName} welcome back to our course <br></br> Please enter your password</p>
                                         </div>
                                         <form action="#" method="post">
                                             <div className="form-group first mt-5">
-                                                <label for="username">Your Password</label>
-                                                <input type="password" placeholder="Password" className="form-control mb-5"></input>
+                                                <label>Your Password</label>
+                                                <input type="password" placeholder="Password" name="password" className="form-control mb-5" onChange={e => this.handleInputChange(e)}></input>
                                             </div>
                                             <a href="#forgetpassword" onClick={e => this.handleForgetPassword(e)} className="">forget password?</a>
                                             <div>
@@ -163,12 +208,12 @@ class Login extends Component {
                                         </div>
                                         <form action="#" method="post">
                                             <div className="form-group first mt-5">
-                                                <label for="username">Your Name</label>
-                                                <input type="text" placeholder="Name" className="form-control mb-5"></input>
+                                                <label>Your Name</label>
+                                                <input type="text" placeholder="Name" className="form-control mb-5" name='name' onChange={e => this.handleInputChange(e)}></input>
                                             </div>
                                             <div className="form-group first mt-5">
-                                                <label for="username">Your Phone Number</label>
-                                                <input type="number" placeholder="Phone number" className="form-control mb-5"></input>
+                                                <label>Your Phone Number</label>
+                                                <input type="number" placeholder="Phone number" name="phone" className="form-control mb-5" onChange={e => this.handleInputChange(e)}></input>
                                             </div>
                                             <input type="submit" value="Turn Back" className="btn btn-block mt-5 btn-outline-primary" onClick={e => this.handleTurnBack(e)}></input>
                                             <input type="submit" value="Sign Up" className="btn btn-block mt-5 btn-primary" onClick={e => this.handleSignUp(e)}></input>
@@ -185,4 +230,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default Login
