@@ -23,13 +23,13 @@ class TeacherProfile extends Component {
           <div className="profile-content">
             <div className="container">
               <div className="row align-items-center">
-                <div className="col-4">
+                <div className="col-12 col-md-4">
                   <div className="card-body">
                     <div className="d-flex flex-column align-items-center text-center">
                       <img
                         src="https://bootdey.com/img/Content/avatar/avatar7.png"
                         alt="Admin"
-                        className="rounded-circle"
+                        className="rounded-circle custom-img"
                         width="150"
                       />
                       <div className="mt-3">
@@ -42,7 +42,7 @@ class TeacherProfile extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="col-8">
+                <div className="col-12 col-md-8">
                   <div className="card mt-3">
                     <div className="card-body">
                       <div className="row">
