@@ -2,24 +2,61 @@ import React, { Component } from "react";
 import author1 from "../../../Assets/images/author-1.jpg";
 import { NavLink } from "react-router-dom";
 import swal from "sweetalert";
+import axios from "axios"
 
 class index extends Component {
+
   handleSubscribe = (e) => {
-    swal({
-      text: `Do you want to subscribe to this class?`,
-      buttons: true,
-      dangerMode: true,
-    }).then((value) => {
-      if (value) {
-        swal(`Done! You `, {
-          icon: "success",
-        });
+
+    if(localStorage.getItem('access_token')) {
+      
+      let authorization = "bearer " + localStorage.getItem('access_token')
+      let id_class = 1 
+      let price = 2000 //this.props.id khi map xong lấy price bỏ vô đây
+
+      let data = {
+        
       }
-    });
-  };
+      axios.post('link', )
+    } 
+    else if(localStorage.getItem('isLog')==='fakeLog') { //trường hợp đăng nhập tạm (chưa có mật khẩu)
+      let name = localStorage.getItem('name')
+      let mail = localStorage.getItem('mail')
+      let phone = localStorage.getItem('phone')
+      let id_class = 1 
+      let price = 2000 //this.props.id khi map xong lấy price bỏ vô đây
+
+      let data = {
+        name: name,
+        mail: mail,
+        phone: phone,
+        price: price,
+        id_class: id_class
+      }
+
+      axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/auth/register',data)
+      .then(res => {
+        swal({
+          text: `Do you want to subscribe to this class?`,
+          buttons: true,
+          dangerMode: true,
+        }).then((value) => {
+          if (value) {
+            swal(`Done! You just subscribe this class`, {
+              icon: "success",
+            });
+          }
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    } 
+  }
+    
 
   render() {
-    const { name, rate, teacherName, teacherPic, cost, link } = this.props;
+    const { id_class, name, rate, teacherName, teacherPic, price, link } = this.props;
     //để vậy sau này add vào sau
 
     return (
@@ -58,9 +95,9 @@ class index extends Component {
           </div>
           <div className="text-center">
             <button
+              id='1'
               onClick={(e) => this.handleSubscribe(e)}
-              className="btn d-block btn-primary btn-outline-primary py-3 col-12"
-            >
+              className="btn d-block btn-primary btn-outline-primary py-3 col-12">
               Enroll Now!
             </button>
           </div>

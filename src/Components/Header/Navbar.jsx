@@ -8,8 +8,13 @@ class Navbar extends Component {
     }
     
     render() {    
-        const isLogin =  localStorage.getItem('isLog')
-
+        let isLogin = ''
+        if(localStorage.getItem('token')){
+            isLogin = 'log'
+        }else if(localStorage.getItem('isLog')==='fakeLog'){
+            isLogin = 'fakeLog'
+        }
+        
         return (
             <nav className="navbar navbar-expand-lg  ftco-navbar-light">
                 <div className="container-xl">
@@ -56,7 +61,7 @@ class Navbar extends Component {
                                 </NavLink>
                             </li>
                             {
-                                isLogin === 'fakeLog' ? '' : 
+                                isLogin === 'fakeLog' ? <li className="nav-item"><NavLink className="nav-link" to='/login'>Change Account</NavLink></li> : 
                                     isLogin === 'log' ? <li className="nav-item"><NavLink className="nav-link" to='/profile'>Profile</NavLink></li>
                                     : <li className="nav-item"><NavLink className="nav-link" to='/login'>Login</NavLink></li> 
                              }

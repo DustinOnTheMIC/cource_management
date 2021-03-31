@@ -9,8 +9,8 @@ class UserProfile extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      user : [
-
+      user:[
+        
       ]
     }
   }
@@ -22,6 +22,7 @@ class UserProfile extends Component {
       {phone: '(+84) 999 999 999'},
       {password: '**************'}
     ]
+    
     let user = []
     userInfo.forEach(item => {
       user.push(

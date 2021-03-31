@@ -25,6 +25,7 @@ class Login extends Component {
           footer.style.display = 'none';
         }
         localStorage.removeItem('isLog')
+
     }
 
     handleInputChange(e){
@@ -62,10 +63,11 @@ class Login extends Component {
             email: this.state.email
         })
         .then(res => {
-            this.setState({userName: res.data.UserName})
+            this.setState({name: res.data.name})
             this.isEmail(true)
         })
         .catch(err => {
+            console.log(err);
             if(err.response.status === 400){
                 this.isEmail(false)
                 this.setState({ isEmail:false })
@@ -92,8 +94,7 @@ class Login extends Component {
         //call API check Password
         axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/auth/login', data)
         .then(res => {
-            console.log(res)
-            localStorage.setItem('isLog', 'log')
+            localStorage.setItem('token', res.data.data.access_token)
             this.handleBackToHome()
             this.setState({redirect: true})
         })
@@ -105,16 +106,15 @@ class Login extends Component {
         if(this.state.isEmail){
             
         }else{
-            // this.props.isLog('fakeLog')
-            let user = {
-                name: this.state.name,
-                email: this.state.email,
-                phone: this.state.phone
-            }
-            console.log(this.state);
+            localStorage.setItem('name', this.state.name)
+            localStorage.setItem('email', this.state.email)
+            localStorage.setItem('phone', this.state.phone)
             localStorage.setItem('isLog', 'fakeLog')
-            localStorage.setItem('user',user)
-            console.log(JSON.stringify(localStorage.getItem('user')))
+
+            setTimeout(() => {
+                localStorage.removeItem('isLog')
+            }, 1000*60*60);
+
             this.handleBackToHome()
             this.setState({redirect: true})
         }
@@ -151,7 +151,7 @@ class Login extends Component {
     }
 
     render() {
-        const {userName} = this.state
+        const {name} = this.state
         return (
             <div>
                 {this.state.redirect ? (<Redirect push to="/" />) : null}
@@ -183,7 +183,7 @@ class Login extends Component {
                                     <div className="col-md-8">
                                         <div className="mb-4">
                                             <h3>Sign In</h3>
-                                            <p className="mb-4">Hi {userName} welcome back to our course <br></br> Please enter your password</p>
+                                            <p className="mb-4">Hi {name} welcome back to our course <br></br> Please enter your password</p>
                                         </div>
                                         <form action="#" method="post">
                                             <div className="form-group first mt-5">
