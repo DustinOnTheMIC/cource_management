@@ -97,6 +97,9 @@ class Login extends Component {
             localStorage.setItem('token', res.data.data.access_token)
             this.handleBackToHome()
             this.setState({redirect: true})
+            localStorage.removeItem('name')
+            localStorage.removeItem('email')
+            localStorage.removeItem('phone')
         })
         .catch(err => console.log(err))
     }
@@ -110,7 +113,8 @@ class Login extends Component {
             localStorage.setItem('email', this.state.email)
             localStorage.setItem('phone', this.state.phone)
             localStorage.setItem('isLog', 'fakeLog')
-
+            localStorage.removeItem('token')
+            
             setTimeout(() => {
                 localStorage.removeItem('isLog')
             }, 1000*60*60);
