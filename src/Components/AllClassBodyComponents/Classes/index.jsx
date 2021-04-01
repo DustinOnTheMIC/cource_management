@@ -12,6 +12,9 @@ class index extends Component {
     }
   }
   handleSubscribe = (e) => {
+    e.preventDefault()
+    this.setState({isLog: null})
+    
     swal({
       text: `Do you want to subscribe to this class?`,
       buttons: true,
@@ -27,7 +30,7 @@ class index extends Component {
             price: price,
             id_class: id_class
           }
-    
+
           axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/newRegister', data, {
             headers: {
               'Authorization': authorization
@@ -66,7 +69,7 @@ class index extends Component {
             console.log(err);
           })
         } else { //chưa đăng nhập thì setstate để chạy cái dưới render
-          this.setState({isLog: false})
+          this.setState({isLog: 'not'})
         }
       }
     });
@@ -79,8 +82,11 @@ class index extends Component {
 
     return (
       <div data-aos="flip-left" data-aos-delay="100" data-aos-duration="1000">
-        {/* chưa có tài khoản sẽ ra chạy về login */}
-        {this.state.isLog ? <NavLink to="/login" className="nav-link"></NavLink> : ""} 
+        
+        {this.state.isLog ? {/* chưa có tài khoản sẽ ra chạy về login */}
+          (this.state.isLog === 'not' ? <NavLink to="/login" className="nav-link"></NavLink> : null) 
+        : null}
+
         <div className="courses">
           <div className="d-flex">
             <div className="icon">
