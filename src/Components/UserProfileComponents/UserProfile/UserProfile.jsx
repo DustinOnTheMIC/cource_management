@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import "./UserProfileCss.css";
-import CardExam from "../CardExam/CardExam";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSave} from '@fortawesome/free-solid-svg-icons'
+import React, { Component } from "react"
+import "./UserProfileCss.css"
+import CardExam from "../CardExam/CardExam"
 import FormInfo from '../FormInfo/FormInfo'
+import swal from "sweetalert"
+import axios from "axios"
 
 class UserProfile extends Component {
   constructor(props) {
@@ -11,27 +11,25 @@ class UserProfile extends Component {
     this.state = {
       user:[
         
-      ]
+      ],
     }
   }
 
   componentDidMount() {
-    let userInfo = [
-      {name: 'Dustin On The MIC'},
-      {email: 'Buiductinwork@gmail.com'},
-      {phone: '(+84) 999 999 999'},
-      {password: '**************'}
-    ]
+    let userInfo = { //sau này đổi nó thành cái axios gọi request lên để lấy info về
+      name: 'Dustin On The MIC',
+      email: 'Buiductinwork@gmail.com',
+      phone: '(+84) 999 999 999',
+      password: null
+    }
+
+    this.setState({userInfo : userInfo})
     
     let user = []
-    userInfo.forEach(item => {
-      user.push(
-        {
-          name: Object.getOwnPropertyNames(item)[0],
-          content: Object.values(item)[0]
-        }
-      )
-    })
+    for (const [key, value] of Object.entries(userInfo)) {
+      user.push({name: key, content: value})
+    }
+
     this.setState({user})
   }
   
@@ -40,6 +38,52 @@ class UserProfile extends Component {
     let user = this.state.user.filter(item => item.name !== a)
     user.splice(index, 0, {name: a, content: arg})
     this.setState({user:user})
+
+    document.getElementById('btnSave').classList.remove('d-none')
+
+    console.log(this.state);
+  }
+
+  checkInfo(){
+      const nameChanged = this.state.user[0].content
+      const phoneChanged = this.state.user[2].content
+      const passwordChanged = this.state.user[3].content
+      const {name, phone, password} = this.state.userInfo
+      if(nameChanged !== name && phoneChanged !== phone && passwordChanged !== password){
+        return {name: nameChanged, phone: phoneChanged, password: passwordChanged}
+      }else if(nameChanged !== name && phoneChanged !== phone){
+        return {name: nameChanged, phone: phoneChanged}
+      }else if(nameChanged !== name){
+        return {name: nameChanged}
+      }
+  }
+
+  handleSaveUserInfo = e => {
+    e.preventDefault()
+    swal({
+      text: `Are you sure to change this value?`,
+      buttons: true,
+      dangerMode: true,
+    }).then((value) => {
+      if(value){
+        let authorization = "bearer " + localStorage.getItem('token')
+        console.log(this.state.userInfo);
+        let data = this.checkInfo()
+        axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/updateUser', data, {
+          headers: {
+            'Authorization': authorization
+          }
+        })
+        .then(res => {
+          swal(`Done! You just changed your information`, {
+            icon: "success",
+          });
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      }
+    })
   }
   
 
@@ -89,7 +133,11 @@ class UserProfile extends Component {
                       })}
                     </div>
                     <div className="item-submit-info">
-                      <button className="btn btn-custom">
+                      <button
+                        id='btnSave'
+                        className="btn btn-custom d-none" 
+                        onClick={e => this.handleSaveUserInfo(e)}
+                        title="If not click this button, the information you changed will never been saved">
                         Save
                       </button>
                     </div>

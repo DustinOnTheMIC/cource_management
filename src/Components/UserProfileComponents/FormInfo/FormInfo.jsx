@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faPen } from '@fortawesome/free-solid-svg-icons'
-import swal from "sweetalert";
+import swal from "sweetalert"
+import axios from "axios"
 
 class FormInfo extends Component {
 
     handleChange = (e) => {
-
         e.preventDefault();
         if (this.props.name === "password") {
           swal({
@@ -17,21 +17,28 @@ class FormInfo extends Component {
           }).then((value) => {
             if (value) {
               //call API check old password
-              swal({
-                text: `Enter your new password`,
-                buttons: true,
-                dangerMode: true,
-                content: "input",
-                type: 'number'
-              }).then((value) => {
-                if(value){
-                    //call API change password
-                    this.props.onUpdateValue(this.props.name, value)
-                    swal(`Done! You just change your ${this.props.name} to ${value}`, {
-                    icon: "success",
-                    });
+              let authorization = "bearer " + localStorage.getItem('token')
+              axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/checkPass',value,{
+                headers: {
+                  'Authorization': authorization
                 }
-              });
+              })
+              .then(res => {
+                swal({
+                  text: `Enter your new password`,
+                  buttons: true,
+                  dangerMode: true,
+                  content: "input",
+                  type: 'number'
+                }).then((value) => {
+                  if(value){
+                    this.props.onUpdateValue(this.props.name, value)
+                    swal(`Done! You just change your password but didn't submit to the server`, {
+                      icon: "success",
+                    });
+                  }
+                });
+              })
             }
           });
         }
@@ -55,7 +62,7 @@ class FormInfo extends Component {
                     }
                 }else{
                     this.props.onUpdateValue(this.props.name, value)
-                    swal(`Done! You just change your ${this.props.name} to ${value}`, {
+                    swal(`Done! You just change your ${this.props.name} to ${value} but didn't submit to the server`, {
                       icon: "success",
                     });
                   } 
@@ -73,7 +80,7 @@ class FormInfo extends Component {
                     <span>{capitalizeName}:</span>
                     <span
                         className="text-info">
-                        {content}
+                        {name === 'password' ? '***********' : content}
                     </span>
                     {name === 'email' ? '' : <FontAwesomeIcon className="ml-5 p5 custom-hover" icon={faPen} onClick={e => this.handleChange(e)} />}
                 </div>

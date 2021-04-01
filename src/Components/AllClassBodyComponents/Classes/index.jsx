@@ -5,53 +5,74 @@ import swal from "sweetalert";
 import axios from "axios"
 
 class index extends Component {
-
+  constructor(props) {
+    super(props)
+    this.state = {
+      isLog : false
+    }
+  }
   handleSubscribe = (e) => {
+    e.preventDefault()
+    this.setState({isLog: null})
+    
+    swal({
+      text: `Do you want to subscribe to this class?`,
+      buttons: true,
+      dangerMode: true,
+    }).then((value) => {
+      if (value) {
+        if(localStorage.getItem('token')) { //trường hợp đã đăng nhập => có token
+          console.log("called");
+          let authorization = "bearer " + localStorage.getItem('token') //token đây
+          let id_class = 1 
+          let price = 2000 //this.props.id khi map xong lấy price bỏ vô đây
+          let data = {
+            price: price,
+            id_class: id_class
+          }
 
-    if(localStorage.getItem('access_token')) {
-      
-      let authorization = "bearer " + localStorage.getItem('access_token')
-      let id_class = 1 
-      let price = 2000 //this.props.id khi map xong lấy price bỏ vô đây
-
-      let data = {
-        
-      }
-      axios.post('link', )
-    } 
-    else if(localStorage.getItem('isLog')==='fakeLog') { //trường hợp đăng nhập tạm (chưa có mật khẩu)
-      let name = localStorage.getItem('name')
-      let mail = localStorage.getItem('mail')
-      let phone = localStorage.getItem('phone')
-      let id_class = 1 
-      let price = 2000 //this.props.id khi map xong lấy price bỏ vô đây
-
-      let data = {
-        name: name,
-        mail: mail,
-        phone: phone,
-        price: price,
-        id_class: id_class
-      }
-
-      axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/auth/register',data)
-      .then(res => {
-        swal({
-          text: `Do you want to subscribe to this class?`,
-          buttons: true,
-          dangerMode: true,
-        }).then((value) => {
-          if (value) {
+          axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/newRegister', data, {
+            headers: {
+              'Authorization': authorization
+            }
+          })
+          .then(res => {
             swal(`Done! You just subscribe this class`, {
               icon: "success",
             });
+          })
+          .catch(err =>{
+            console.log(err);
+          })
+        }
+        else if(localStorage.getItem('isLog')==='fakeLog') { //trường hợp đăng nhập tạm (chưa có mật khẩu)
+          let name = localStorage.getItem('name')
+          let email = localStorage.getItem('email')
+          let phone = localStorage.getItem('phone')
+          let id_class = 1 
+          let price = 2000 //this.props.id khi map xong lấy price bỏ vô đây
+    
+          let data = {
+            name: name,
+            email: email,
+            phone: phone,
+            price: price,
+            id_class: id_class
           }
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      })
-    } 
+          axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/auth/register',data)
+          .then(res => {
+            swal(`Done! You just subscribe this class`, {
+              icon: "success",
+            });
+          })
+          .catch(err => {
+            console.log(err);
+          })
+        } else { //chưa đăng nhập thì setstate để chạy cái dưới render
+          this.setState({isLog: 'not'})
+        }
+      }
+    });
   }
     
 
@@ -61,6 +82,11 @@ class index extends Component {
 
     return (
       <div data-aos="flip-left" data-aos-delay="100" data-aos-duration="1000">
+        
+        {this.state.isLog ? {/* chưa có tài khoản sẽ ra chạy về login */}
+          (this.state.isLog === 'not' ? <NavLink to="/login" className="nav-link"></NavLink> : null) 
+        : null}
+
         <div className="courses">
           <div className="d-flex">
             <div className="icon">
