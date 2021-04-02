@@ -17,7 +17,7 @@ class ItemComment extends Component {
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
-           <span class="fa fa-star-o"></span>
+           <span class="fa fa-star-o"></span> 
 
           </div>
         </div>
