@@ -3,6 +3,11 @@ import swal from '@sweetalert/with-react'
 import './Rating.css'
 
 class CommentBox extends Component {
+
+  handlePickingStar(e){
+    console.log(e.target.value);
+  }
+
     handleRating = e => {
         e.preventDefault()
         swal({
@@ -11,7 +16,7 @@ class CommentBox extends Component {
           dangerMode: true,
           content: <div>
             <div class="rating">
-              <input type="radio" name="rating" value="5" id="5"></input>
+              <input type="radio" name="rating" value="5" id="5" onClick={e => this.handlePickingStar(e)}></input>
               <label for="5">☆</label>
               <input type="radio" name="rating" value="4" id="4"></input>
               <label for="4">☆</label>
@@ -26,6 +31,7 @@ class CommentBox extends Component {
         }).then((value) => {
           if(value){
             //Call API comment
+            console.log(value);
             swal("Thanks for your time", {
               icon: "success",
             });
