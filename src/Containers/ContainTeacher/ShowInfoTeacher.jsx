@@ -3,7 +3,7 @@ import Carousel from "react-elastic-carousel";
 import "../../Components/Common/custom.css";
 
 import Classes from "../../Components/AllClassBodyComponents/Classes";
-import InforTeacher from "../../Components/TeacherProfile/InforTeacher";
+import InforTeacher from "../../Components/TeacherProfile/InfoTeacher";
 import "../../Components/Common/custom.css";
 import CommentRate from "../../Components/TeacherProfile/CommentRate";
 
