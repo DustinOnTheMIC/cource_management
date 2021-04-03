@@ -7,7 +7,7 @@ import ShowCourse from '../Containers/ContainPrice/ShowCourse';
 import ShowQuestion from '../Containers/ContainPrice/ShowQuestion';
 import Introduce from '../Components/Common/Introduce/Introduce';
 import Footer from '../Components/Footer'
-import Header from '../Components/Header'
+import Header from '../Components/Header/Index'
 
 AOS.init();
 
