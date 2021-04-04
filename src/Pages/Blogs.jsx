@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Introduce from '../Components/Common/Introduce/Introduce';
 import BlogBody from '../Containers/ContainBlog/BlogBody';
 import Footer from '../Components/Footer'
-import Header from '../Components/Header/Index'
+import Header from '../Components/Header'
 
 
 class Blogs extends Component {
