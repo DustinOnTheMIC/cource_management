@@ -54,9 +54,14 @@ class index extends Component {
   showSubject = (dataSubject) => {
     let result = null;
     if (dataSubject) {
-      dataSubject.map((item,index) => {
-        result = (
-          <ItemSubject key={index} idSubject={item.id_subject} imgSubject={item.image} nameSubject={item.name} />
+      result = dataSubject.map((item, index) => {
+        return (
+          <ItemSubject
+            key={index}
+            idSubject={item.id}
+            imgSubject={item.image}
+            nameSubject={item.name}
+          />
         );
       });
     }

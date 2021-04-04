@@ -74,6 +74,12 @@ const routes = [
         main: () => <Login />
     },
     {
+        path : '/subject/:id/class',
+        name : 'ClassOfSubject',
+        exact : true,
+        main: ({ match }) => <AllClass match={match} />
+    },
+    {
         path : '*',
         name: 'NotFound',
         exact : true,
