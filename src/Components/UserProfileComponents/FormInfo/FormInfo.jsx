@@ -18,7 +18,11 @@ class FormInfo extends Component {
             if (value) {
               //call API check old password
               let authorization = "bearer " + localStorage.getItem('token')
-              axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/checkPass',value,{
+              let data = {
+                password: value
+              }
+              console.log(value);
+              axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/checkPass',data,{
                 headers: {
                   'Authorization': authorization
                 }

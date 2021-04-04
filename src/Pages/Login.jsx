@@ -17,6 +17,7 @@ class Login extends Component {
 
     setTimer = () => {
         this.timeoutFakeLogStatus = setTimeout(() => {
+            localStorage.removeItem('token')
             localStorage.removeItem('isLog')
             localStorage.removeItem('name')
             localStorage.removeItem('email')
@@ -177,9 +178,12 @@ class Login extends Component {
                 {this.state.redirect ? (<Redirect push to="/" />) : null}
                 <div className="content mt-5">
                     <div className="container">
+                        
                         <div className="row">
+                        
                             <div className="col-md-6">
-                                <img src={imgLogin} alt="Imag" className="img-fluid"></img>
+                                <a className="mb-5 display-3" href="#">ACADEMIA</a>
+                                <img src={imgLogin} alt="Imag" className="img-fluid mt-1"></img>
                             </div>
                             <div className="col-md-6 contents mt-5">
                                 <div className="d-flex">
