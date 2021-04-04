@@ -22,9 +22,13 @@
     color: #ffca81;
 }
 
+.show-comment::-scrollbar {
+    display: unset !important;
+
+}
+
 .show-comment {
-    height: 250px;
+    margin-top: 20px;
+    height: 300px;
     overflow: auto;
-    border-left: 20px solid #1eb2a6;
-    border-right: 20px solid #1eb2a6;
 }
