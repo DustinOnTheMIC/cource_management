@@ -4,6 +4,15 @@
 /node_modules
 /.pnp
 .pnp.js
+About.jsx
+AllClass.jsx
+Blogs.jsx
+Contact.jsx
+Home.jsx
+Pricing.jsx
+TeacherProfile.jsx
+Team.jsx
+UserProfile.jsx
 
 
 # testing

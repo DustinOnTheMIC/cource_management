@@ -4,7 +4,7 @@ import ShowBenifit from '../Containers/ContainAbout/ShowBenifit';
 import ShowDataContact from '../Containers/ContainAbout/ShowDataContact';
 import ShowSuccessStu from '../Containers/ContainAbout/ShowSuccessStu';
 import Footer from '../Components/Footer'
-import Header from '../Components/Header'
+import Header from '../Components/Header/Index'
 
 class About extends Component {
     render() {
