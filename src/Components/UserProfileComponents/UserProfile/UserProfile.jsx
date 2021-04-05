@@ -4,6 +4,7 @@ import CardExam from "../CardExam/CardExam"
 import FormInfo from '../FormInfo/FormInfo'
 import swal from "sweetalert"
 import axios from "axios"
+import Loading from '../../Loading/Loading'
 
 class UserProfile extends Component {
   constructor(props) {
@@ -60,14 +61,15 @@ class UserProfile extends Component {
 
   handleSaveUserInfo = e => {
     e.preventDefault()
+    
     swal({
       text: `Are you sure to change this value?`,
       buttons: true,
       dangerMode: true,
     }).then((value) => {
       if(value){
+        this.setState({isLoading: true})
         let authorization = "bearer " + localStorage.getItem('token')
-        console.log(this.state.userInfo);
         let data = this.checkInfo()
         axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/updateUser', data, {
           headers: {
@@ -75,12 +77,16 @@ class UserProfile extends Component {
           }
         })
         .then(res => {
+          this.setState({isLoading: false})
           swal(`Done! You just changed your information`, {
             icon: "success",
           });
         })
         .catch(err => {
-          console.log(err)
+          this.setState({isLoading: false})
+          swal(`There is something wrong with the server, please try again`, {
+            icon: "warning",
+          });
         })
       }
     })
@@ -90,6 +96,7 @@ class UserProfile extends Component {
   render() {
     return (
       <div className="mb-5">
+        {this.state.isLoading ? <Loading/> : null}
         <div
           className="page-header header-filter"
           data-parallax="true"

@@ -3,6 +3,7 @@ import imgLogin from '../Assets/images/undraw_remotely_2j6y.svg'
 import { Redirect } from 'react-router-dom';
 import swal from 'sweetalert'
 import axios from 'axios';
+import Loading from '../Components/Loading/Loading'
 
 
 class Login extends Component {
@@ -73,6 +74,7 @@ class Login extends Component {
 
     handleCheckEmail = e => {
         e.preventDefault()
+        this.setState({isLoading: true})
         //call API check email
         console.log(this.state);
         axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/auth/name',{
@@ -81,12 +83,16 @@ class Login extends Component {
         .then(res => {
             this.setState({name: res.data.name})
             this.isEmail(true)
+            this.setState({isLoading: false})
         })
         .catch(err => {
-            console.log(err);
-            if(err.response.status === 400){
+            console.log(err.response.status);
+            if(err.response.status === 400 ){
+                console.log(err.status);
                 this.isEmail(false)
                 this.setState({ isEmail:false })
+                this.setState({isLoading: false})
+                
             }
         })
         //if true => 
@@ -106,6 +112,7 @@ class Login extends Component {
             password: this.state.password
         }
         //if true =>
+        this.setState({isLoading: true})
         e.preventDefault()
         //call API check Password
         axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/auth/login', data)
@@ -118,8 +125,14 @@ class Login extends Component {
             localStorage.removeItem('name')
             localStorage.removeItem('email')
             localStorage.removeItem('phone')
+            this.setState({isLoading: false})
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            this.setState({isLoading: false})
+            swal({
+                text: `Your password is incorrect`,
+            })
+        })
     }
 
     handleSignUp = e => {
@@ -175,6 +188,7 @@ class Login extends Component {
         const {name} = this.state
         return (
             <div>
+                {this.state.isLoading ? <Loading/> : null}
                 {this.state.redirect ? (<Redirect push to="/" />) : null}
                 <div className="content mt-5">
                     <div className="container">
