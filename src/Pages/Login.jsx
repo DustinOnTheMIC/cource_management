@@ -92,7 +92,6 @@ class Login extends Component {
                 this.isEmail(false)
                 this.setState({ isEmail:false })
                 this.setState({isLoading: false})
-                
             }
         })
         //if true => 
@@ -131,6 +130,7 @@ class Login extends Component {
             this.setState({isLoading: false})
             swal({
                 text: `Your password is incorrect`,
+                icon: 'warning'
             })
         })
     }
