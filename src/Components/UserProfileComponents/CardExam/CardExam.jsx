@@ -20,19 +20,19 @@ class CardExam extends Component {
                         <li></li>
                         <li></li>
                     </ul>
-                    <div className="bg-c-green counter-block m-t-10 p-20">
-                        <div className="row">
-                            <div className="col-4">
+                    <div className="bg-c-green counter-block m-t-10 p-20 ">
+                        <div className="row justify-content-center">
+                            {/* <div className="col-4">
                                 <i className="fa fa-comment"></i>
                                 <p>1256</p>
                             </div>
                             <div className="col-4">
                                 <i className="fa fa-user"></i>
                                 <p>8562</p>
-                            </div>
-                            <div className="col-4">
-                                <i className="fa fa-suitcase"></i>
-                                <p>189</p>
+                            </div> */}
+                            <div className="col-12">
+                                <i className="">Result</i>
+                                <p>90/100</p>
                             </div>
                         </div>
                     </div>

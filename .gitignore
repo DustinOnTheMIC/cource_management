@@ -6,14 +6,21 @@
 .pnp.js
 About.jsx
 AllClass.jsx
+<<<<<<< HEAD
+Blog.jsx
+=======
 Blogs.jsx
+>>>>>>> 14ca6420497dcca359e6717d2a9bb72305d8b693
 Contact.jsx
 Home.jsx
 Pricing.jsx
 TeacherProfile.jsx
 Team.jsx
 UserProfile.jsx
+<<<<<<< HEAD
+=======
 
+>>>>>>> 14ca6420497dcca359e6717d2a9bb72305d8b693
 
 # testing
 /coverage
