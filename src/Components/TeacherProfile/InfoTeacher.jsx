@@ -10,6 +10,8 @@ class InforTea extends Component {
   }
 
   render() {
+    let { name, description, img, address, phone, email, rating } = this.props;
+    console.log(rating);
     return (
       <div className="mb-5">
         <div
@@ -27,17 +29,21 @@ class InforTea extends Component {
                   <div className="card-body">
                     <div className="d-flex flex-column align-items-center text-center">
                       <img
-                        src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                        alt="Admin"
+                        src={`${img}`}
+                        alt={name}
                         className="rounded-circle custom-img"
                         width="150"
                       />
                       <div className="mt-3">
-                        <h4>John Doe</h4>
-                        <p className="text-secondary mb-1">Full Stack Developer</p>
-                        <p className="text-muted font-size-sm">
-                          Bay Area, San Francisco, CA
-                        </p>
+                        <h4>{name}</h4>
+                        <p className="text-secondary mb-1">{description}</p>
+                          <p className="rate">
+                            {Array((rating))
+                              .fill()
+                              .map((item,index) => (
+                                <span key={index} className="fa fa-star"></span>
+                              ))}
+                          </p>
                       </div>
                     </div>
                   </div>
@@ -47,36 +53,30 @@ class InforTea extends Component {
                     <div className="card-body">
                       <div className="row">
                         <div className="col-sm-3">
-                          <h6 className="mb-0">Full Name</h6>
+                          <h6 className="mb-0">Name</h6>
                         </div>
-                        <div className="col-sm-9 text-secondary">
-                          Kenneth Valdez
-                        </div>
+                        <div className="col-sm-9 text-secondary">{name}</div>
                       </div>
                       <hr />
                       <div className="row">
                         <div className="col-sm-3">
                           <h6 className="mb-0">Email</h6>
                         </div>
-                        <div className="col-sm-9 text-secondary">fip@jukmuh.al</div>
+                        <div className="col-sm-9 text-secondary">{email}</div>
                       </div>
                       <hr />
                       <div className="row">
                         <div className="col-sm-3">
                           <h6 className="mb-0">Mobile</h6>
                         </div>
-                        <div className="col-sm-9 text-secondary">
-                          (320) 380-4539
-                        </div>
+                        <div className="col-sm-9 text-secondary">{phone}</div>
                       </div>
                       <hr />
                       <div className="row">
                         <div className="col-sm-3">
                           <h6 className="mb-0">Address</h6>
                         </div>
-                        <div className="col-sm-9 text-secondary">
-                          Bay Area, San Francisco, CA
-                        </div>
+                        <div className="col-sm-9 text-secondary">{address}</div>
                       </div>
                     </div>
                   </div>

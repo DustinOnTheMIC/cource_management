@@ -15,7 +15,7 @@ class CommentBox extends Component {
           buttons: true,
           dangerMode: true,
           content: <div>
-            <div class="rating">
+            <div className="rating">
               <input type="radio" name="rating" value="5" id="5" onClick={e => this.handlePickingStar(e)}></input>
               <label for="5">☆</label>
               <input type="radio" name="rating" value="4" id="4"></input>
@@ -40,11 +40,11 @@ class CommentBox extends Component {
     }
     render() {
         return (
-            <div class="col-8">
-                <div class="input-group mb-3 d-flex ">
-                  <input type="text" class="form-control py-0 my-0 text-box-custom" placeholder="What do you think about him?"></input>
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary py-2" onClick={e => this.handleRating(e)} type="button">Submit</button>
+            <div className="col-8">
+                <div className="input-group mb-3 d-flex ">
+                  <input type="text" className="form-control py-0 my-0 text-box-custom" placeholder="What do you think about him?"></input>
+                  <div className="input-group-append">
+                    <button className="btn btn-outline-secondary py-2" onClick={e => this.handleRating(e)} type="button">Submit</button>
                   </div>
                 </div>
             </div>

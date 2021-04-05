@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 class index extends Component {
   render() {
-    const { name, position, img } = this.props;
+    const { name, position, img, id_teacher } = this.props;
     return (
       <div
         className="col-md-6 col-lg-3 "
@@ -10,38 +10,38 @@ class index extends Component {
         data-aos-duration="1000"
         data-aos-delay="100"
       >
-        <Link to="/teacher_profile">
-          <div className="staff">
-            <div className="img" style={{ backgroundImage: `url(${img})` }}>
-              <ul className="ftco-social">
-                <li>
-                  <a href="#this">
-                    <span className="fa fa-twitter"></span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#this">
-                    <span className="fa fa-facebook"></span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#this">
-                    <span className="fa fa-instagram"></span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#this">
-                    <span className="fa fa-google-plus"></span>
-                  </a>
-                </li>
-              </ul>
-            </div>
+        <div className="staff">
+          <div className="img" style={{ backgroundImage: `url(${img})` }}>
+            <ul className="ftco-social">
+              <li>
+                <a href="https://twitter.com/?lang=en">
+                  <span className="fa fa-twitter"></span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/">
+                  <span className="fa fa-facebook"></span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/">
+                  <span className="fa fa-instagram"></span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.google.com/intl/vi/account/about/">
+                  <span className="fa fa-google-plus"></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <Link to={`/teacher/${id_teacher}/profile`}>
             <div className="text">
               <h3>{name}</h3>
               <span className="position">{position}</span>
             </div>
-          </div>
-        </Link>
+          </Link>
+        </div>
       </div>
     );
   }
