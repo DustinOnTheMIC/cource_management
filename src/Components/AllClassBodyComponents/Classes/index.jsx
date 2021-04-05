@@ -144,7 +144,7 @@ class index extends Component {
           </div>
           <div className="text-center bg-light rounded py-2 my-3">
             <p className="course-price mb-0">
-              <span>{priceClass} VND</span> / <span>khóa</span>
+              <span>$ {priceClass} </span> / <span>course</span>
             </p>
           </div>
           <div className="text-center">

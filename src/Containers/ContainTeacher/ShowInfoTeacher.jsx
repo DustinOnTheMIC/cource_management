@@ -8,6 +8,7 @@ import Classes from "../../Components/AllClassBodyComponents/Classes";
 import InfoTeacher from "../../Components/TeacherProfile/InfoTeacher";
 import "../../Components/Common/custom.css";
 import CommentRate from "../../Components/TeacherProfile/CommentRate/CommentRate";
+import Loading from '../../Components/Loading/Loading'
 
 class ShowInfoTeacher extends Component {
   constructor(props) {
@@ -17,8 +18,10 @@ class ShowInfoTeacher extends Component {
     };
   }
   componentDidMount() {
+    this.setState({isLoading: true}) 
     axios.get(API.API_TEACHER + `/${this.props.id_teacher}`).then((res) => {
       this.setState({
+        isLoading: false,
         dataTeacher: res.data.data,
       });
     }).catch((err) => console.log(err));
@@ -36,7 +39,7 @@ class ShowInfoTeacher extends Component {
       <div>
         {dataTeacher.length === 0 ? (
           <div>
-            <p>Data is loading</p>
+             {this.state.isLoading ? <Loading/> : null}
           </div>
         ) : (
           dataTeacher.map((item, index) => (
