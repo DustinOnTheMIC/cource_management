@@ -18,6 +18,10 @@
     width: 45% !important;
 }
 
+button.sc-bkzZxe{
+    display: none;
+}
+
 @media (max-width:991px){
     .style-gg-map {
         height: 60% !important;

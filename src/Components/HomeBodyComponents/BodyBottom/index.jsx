@@ -18,7 +18,6 @@ class index extends Component {
         this.setState({
           dataSubject: res.data.data,
         });
-        console.log(this.state.dataSubject);
       })
       .catch((err) => {
         console.log(err);
@@ -44,14 +43,14 @@ class index extends Component {
           </div>
 
           <div className="row g-lg-2 justify-content-center">
-            {this.showSubject(dataSubject)}
+            {this.dataSubject(dataSubject)}
           </div>
         </div>
       </section>
     );
   }
 
-  showSubject = (dataSubject) => {
+  dataSubject = (dataSubject) => {
     let result = null;
     if (dataSubject) {
       result = dataSubject.map((item, index) => {

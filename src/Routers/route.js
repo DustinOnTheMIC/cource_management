@@ -62,10 +62,10 @@ const routes = [
         main: () => <UserProfile />
     },
     {
-        path : '/teacher_profile',
+        path : '/teacher/:id_teacher/profile',
         name : 'TeacherProfile',
         exact : true,
-        main: () => <TeacherProfile />
+        main: ({match}) => <TeacherProfile match={match} />
     },
     {
         path : '/login',
@@ -74,10 +74,10 @@ const routes = [
         main: () => <Login />
     },
     {
-        path : '/subject/:id/class',
+        path : '/subject/:id_subject/class',
         name : 'ClassOfSubject',
         exact : true,
-        main: ({ match }) => <AllClass match={match} />
+        main: ({match}) => <AllClass match={match}/>
     },
     {
         path : '*',

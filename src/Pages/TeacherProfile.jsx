@@ -8,7 +8,7 @@ class TeacherProfile extends Component {
         return (
             <div>
                 <Header/>
-                <ShowInfoTeacher />
+                <ShowInfoTeacher id_teacher={this.props.match.params.id_teacher} />
                 <Footer/>
             </div>
         );

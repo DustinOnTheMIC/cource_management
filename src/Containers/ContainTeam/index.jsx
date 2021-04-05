@@ -9,12 +9,10 @@ class index extends Component {
                 <section className="ftco-section">
                     <div className="container">
                         <div className="row">
-                            <TeamMember name="Ph.D Adrian Molises" position="DEVELOPER AND LEAD INSTRUCTOR" img="https://i.pinimg.com/474x/58/c3/e2/58c3e222b2eb3aacf67e45e987f318d6.jpg"/>
-                            <TeamMember name="Ph.D Adrian mois" position="DEVELOPER AND LEAD INSTRUCTOR" img="https://i.pinimg.com/474x/58/c3/e2/58c3e222b2eb3aacf67e45e987f318d6.jpg"/>
-                            <TeamMember name="Ph.D Adrian muoi" position="DEVELOPER AND LEAD INSTRUCTOR" img="https://i.pinimg.com/474x/58/c3/e2/58c3e222b2eb3aacf67e45e987f318d6.jpg"/>
-                            <TeamMember name="Ph.D Adrian mo" position="DEVELOPER AND LEAD INSTRUCTOR" img="https://i.pinimg.com/474x/58/c3/e2/58c3e222b2eb3aacf67e45e987f318d6.jpg"/>
-                            <TeamMember name="Ph.D Adrian mut" position="DEVELOPER AND LEAD INSTRUCTOR" img="https://i.pinimg.com/474x/58/c3/e2/58c3e222b2eb3aacf67e45e987f318d6.jpg"/>
-                            <TeamMember name="Ph.D Adrian mouse" position="DEVELOPER AND LEAD INSTRUCTOR" img="https://i.pinimg.com/474x/58/c3/e2/58c3e222b2eb3aacf67e45e987f318d6.jpg"/>
+                            <TeamMember id_teacher={1} name="Ph.D Adrian Molises" position="DEVELOPER AND LEAD INSTRUCTOR" img="https://i.pinimg.com/474x/58/c3/e2/58c3e222b2eb3aacf67e45e987f318d6.jpg"/>
+                            <TeamMember id_teacher={1} name="Ph.D Adrian Molises" position="DEVELOPER AND LEAD INSTRUCTOR" img="https://i.pinimg.com/474x/58/c3/e2/58c3e222b2eb3aacf67e45e987f318d6.jpg"/>
+                            <TeamMember id_teacher={1} name="Ph.D Adrian Molises" position="DEVELOPER AND LEAD INSTRUCTOR" img="https://i.pinimg.com/474x/58/c3/e2/58c3e222b2eb3aacf67e45e987f318d6.jpg"/>
+                            <TeamMember id_teacher={1} name="Ph.D Adrian Molises" position="DEVELOPER AND LEAD INSTRUCTOR" img="https://i.pinimg.com/474x/58/c3/e2/58c3e222b2eb3aacf67e45e987f318d6.jpg"/>
                         </div>
                     </div>
                 </section>
