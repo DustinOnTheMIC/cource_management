@@ -4,11 +4,13 @@ import Footer from '../Components/Footer'
 import Header from '../Components/Header/Index'
 // import MoveToTop from '../Components/MoveToTop'
 class AllClass extends Component {
+    
     render() {
+        let {id_subject} = this.props.match ? this.props.match.params : ''
         return (
             <div>
                 <Header/>
-                <ContainAllClass/>
+                <ContainAllClass id_subject={id_subject}/>
                 {/* <MoveToTop/> */}
                 <Footer/>
             </div>
