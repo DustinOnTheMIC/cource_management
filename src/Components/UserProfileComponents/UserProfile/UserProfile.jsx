@@ -5,6 +5,7 @@ import FormInfo from '../FormInfo/FormInfo'
 import swal from "sweetalert"
 import axios from "axios"
 import Loading from '../../Loading/Loading'
+import * as API from '../../../env'
 
 class UserProfile extends Component {
   constructor(props) {
@@ -69,11 +70,10 @@ class UserProfile extends Component {
     }).then((value) => {
       if(value){
         this.setState({isLoading: true})
-        let authorization = "bearer " + localStorage.getItem('token')
         let data = this.checkInfo()
         axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/updateUser', data, {
           headers: {
-            'Authorization': authorization
+            'Authorization': API.API_AUTHENTICATION
           }
         })
         .then(res => {

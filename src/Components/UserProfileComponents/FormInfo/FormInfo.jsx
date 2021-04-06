@@ -4,7 +4,7 @@ import {  faPen } from '@fortawesome/free-solid-svg-icons'
 import swal from "sweetalert"
 import axios from "axios"
 import Loading from '../../Loading/Loading'
-
+import * as API from '../../../env'
 class FormInfo extends Component {
     constructor(props) {
       super(props)
@@ -25,14 +25,13 @@ class FormInfo extends Component {
         }).then((value) => {
           if (value) {
             //call API check old password
-            let authorization = "bearer " + localStorage.getItem('token')
             let data = {
               password: value
             }
             console.log(value);
             axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/checkPass',data,{
               headers: {
-                'Authorization': authorization
+                'Authorization': API.API_AUTHENTICATION
               }
             })
             .then(res => {

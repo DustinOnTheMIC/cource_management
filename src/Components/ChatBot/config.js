@@ -52,7 +52,7 @@ const steps = [
         }
     },
     {
-        id: 'helloWithName',
+        id: 'helloWithName',   
         message: 'Hello {previousValue}, what do you want to learn today?',
         trigger: 'showOptionCourse',
     },
@@ -78,10 +78,10 @@ export const config ={
     floating: true,
     steps: steps,
     botAvatar: botAvatar,
-    headerTitle: 'AI run by riceư',
+    headerTitle: 'AI run by rice',
     botDelay:0,
     handleEnd: (value)=> {
         // window.location.href = value.values.pop()
     },
-    background:'#353740'  
+    background:'#353740'
 };

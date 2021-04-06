@@ -145,10 +145,8 @@ class Login extends Component {
             localStorage.setItem('phone', this.state.phone)
             localStorage.setItem('isLog', 'fakeLog')
             localStorage.removeItem('token')
-            
             this.clearTimer()
             this.setTimer()
-            
             this.handleBackToHome()
             this.setState({redirect: true})
         }
