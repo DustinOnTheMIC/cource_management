@@ -22,8 +22,8 @@ class index extends Component {
       axios
         .get(API.API_CLASS + `/${id_subject}`)
         .then((res) => {
-          this.setState({isLoading: false}) //un mount loading component
           this.setState({
+            isLoading: false,
             infoClass: res.data.data,
             pageTitle: res.data.data[0].subject.name,
             textDescriptionSubject: res.data.data[0].subject.description,
@@ -38,8 +38,8 @@ class index extends Component {
       axios
         .get(API.API_CLASS)
         .then((res) => {
-          this.setState({isLoading: false}) //un mount loading component
           this.setState({
+            isLoading: false,
             infoClass: res.data.data,
           });
         })

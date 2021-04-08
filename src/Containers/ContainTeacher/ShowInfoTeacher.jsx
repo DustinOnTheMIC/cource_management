@@ -8,46 +8,63 @@ import Classes from "../../Components/AllClassBodyComponents/Classes";
 import InfoTeacher from "../../Components/TeacherProfile/InfoTeacher";
 import "../../Components/Common/custom.css";
 import CommentRate from "../../Components/TeacherProfile/CommentRate/CommentRate";
+import Loading from "../../Components/Loading/Loading";
 
 class ShowInfoTeacher extends Component {
   constructor(props) {
     super(props);
     this.state = {
       dataTeacher: "",
+      dataClass: "",
     };
   }
   componentDidMount() {
-    axios.get(API.API_TEACHER + `/${this.props.id_teacher}`).then((res) => {
-      this.setState({
-        dataTeacher: res.data.data,
-      });
-    }).catch((err) => console.log(err));
+    this.setState({ isLoading: true });
+    // GET DATA FOR TEACHER
+    axios
+      .get(API.API_TEACHER + `/${this.props.id_teacher}`)
+      .then((res) => {
+        this.setState({
+          isLoading: false,
+          dataTeacher: [res.data.data],
+        });
+      })
+      .catch((err) => console.log(err));
+    // GET DATA FOR CLASS OF TEACHER
+    axios
+      .get(API.API_CLASS_OF_TEACHER + `/${this.props.id_teacher}`)
+      .then((res) => {
+        this.setState({
+          isLoading: false,
+          dataClass: res.data.data,
+        });
+        console.log(this.state.dataClass);
+      })
+      .catch((err) => console.log(err));
   }
 
   render() {
     const breakPoints = [
-      { width: 1, itemsToShow: 1 },
+      { width: 550, itemsToShow: 1 },
       { width: 550, itemsToShow: 2, itemsToScroll: 2 },
       { width: 768, itemsToShow: 3 },
       { width: 1200, itemsToShow: 4 },
     ];
-    let { dataTeacher } = this.state;
+    let { dataTeacher, dataClass } = this.state;
     return (
       <div>
         {dataTeacher.length === 0 ? (
-          <div>
-            <p>Data is loading</p>
-          </div>
+          <div>{this.state.isLoading ? <Loading /> : null}</div>
         ) : (
           dataTeacher.map((item, index) => (
             <InfoTeacher
               key={index}
-              name={item.teacher.name}
+              name={item.name}
               description={"Full Stack Developer"}
               img={"https://bootdey.com/img/Content/avatar/avatar7.png"}
-              address={item.teacher.address}
-              phone={item.teacher.phone}
-              email={item.teacher.email}
+              address={item.address}
+              phone={item.phone}
+              email={item.email}
               rating={5}
             />
           ))
@@ -61,7 +78,7 @@ class ShowInfoTeacher extends Component {
               </div>
             ) : (
               <Carousel breakPoints={breakPoints}>
-                {this.dataClass(dataTeacher)}
+                {this.dataClass(dataClass)}
               </Carousel>
             )}
           </div>
@@ -75,16 +92,17 @@ class ShowInfoTeacher extends Component {
     if (dataClass) {
       result = dataClass.map((item, index) => {
         return (
-          <Classes
-            key={index}
-            nameClass={item.name}
-            teacherName={item.teacher.name}
-            teacherPic={item.teacher.image}
-            priceClass={item.price}
-            descriptionClass={item.subject.description}
-            classPic={item.subject.image}
-            id_class={item.id}
-          />
+            <Classes
+              key={index}
+              nameClass={item.name}
+              teacherName={item.teacher.name}
+              teacherPic={item.teacher.image}
+              priceClass={item.price}
+              descriptionClass={item.subject.description}
+              classPic={item.subject.image}
+              id_class={item.id}
+              id_teacher={item.teacher.id_teacher}
+            />
         );
       });
     }
