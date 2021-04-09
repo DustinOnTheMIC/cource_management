@@ -61,7 +61,7 @@ class ShowInfoTeacher extends Component {
               key={index}
               name={item.name}
               description={"Full Stack Developer"}
-              img={"https://bootdey.com/img/Content/avatar/avatar7.png"}
+              img={item.image}
               address={item.address}
               phone={item.phone}
               email={item.email}
@@ -94,7 +94,7 @@ class ShowInfoTeacher extends Component {
         return (
             <Classes
               key={index}
-              nameClass={item.name}
+              nameClass={'HTML, CSS, and Javascript for Web Developers'}
               teacherName={item.teacher.name}
               teacherPic={item.teacher.image}
               priceClass={item.price}

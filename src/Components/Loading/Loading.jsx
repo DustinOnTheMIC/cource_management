@@ -5,10 +5,10 @@ class Loading extends Component {
     render() {
         return (
             <div className='wrap-loading'>
-                <div class="spinner">
-                    <div class="inner one"></div>
-                    <div class="inner two"></div>
-                    <div class="inner three"></div>
+                <div className="spinner">
+                    <div className="inner one"></div>
+                    <div className="inner two"></div>
+                    <div className="inner three"></div>
                 </div>
             </div>
         );

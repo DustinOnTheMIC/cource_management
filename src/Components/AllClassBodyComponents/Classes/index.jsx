@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import author1 from "../../../Assets/images/author-1.jpg";
 import { Link, Redirect } from "react-router-dom";
 import swal from "sweetalert";
 import axios from "axios";
@@ -126,7 +125,7 @@ class index extends Component {
               <div className="author-wrap d-flex align-items-center">
                 <div
                   className="img"
-                  style={{ backgroundImage: `url(${author1})` }}
+                  style={{ backgroundImage: `url(${API.API_CURRENT}/${teacherPic})` }}
                 ></div>
                 <Link to={`/teacher/${id_teacher}/profile`}>
                   <span className="author">{teacherName}</span>

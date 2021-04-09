@@ -47,7 +47,7 @@ class index extends Component {
             id_teacher={item.id_teacher}
             name={item.name}
             position={item.address}
-            img="https://i.pinimg.com/474x/58/c3/e2/58c3e222b2eb3aacf67e45e987f318d6.jpg"
+            img={item.image}
           />
         );
       });
