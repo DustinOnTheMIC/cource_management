@@ -4,16 +4,17 @@ import {  faPen } from '@fortawesome/free-solid-svg-icons'
 import swal from "sweetalert"
 import axios from "axios"
 import Loading from '../../Loading/Loading'
-import * as API from '../../../env'
+import * as USER from '../../../constant'
 class FormInfo extends Component {
     constructor(props) {
       super(props)
       this.state = {
-
+        token: ''
       }
     }
 
     handleChange = (e) => {
+      this.setState({ token: `Bearer ${ USER.TOKEN() }`})
       this.setState({isLoading: true})
       e.preventDefault();
       if (this.props.name === "password") {
@@ -31,7 +32,7 @@ class FormInfo extends Component {
             console.log(value);
             axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/checkPass',data,{
               headers: {
-                'Authorization': API.API_AUTHENTICATION
+                'Authorization': this.state.token
               }
             })
             .then(res => {

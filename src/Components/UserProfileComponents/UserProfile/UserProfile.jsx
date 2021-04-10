@@ -5,7 +5,7 @@ import FormInfo from '../FormInfo/FormInfo'
 import swal from "sweetalert"
 import axios from "axios"
 import Loading from '../../Loading/Loading'
-import * as API from '../../../env'
+import * as USER from '../../../constant'
 
 class UserProfile extends Component {
   constructor(props) {
@@ -14,6 +14,7 @@ class UserProfile extends Component {
       user:[
         
       ],
+      token: ''
     }
   }
 
@@ -22,11 +23,11 @@ class UserProfile extends Component {
       name: 'Dustin On The MIC',
       email: 'Buiductinwork@gmail.com',
       phone: '(+84) 999 999 999',
-      password: null
+      password: null,
     }
 
     this.setState({userInfo : userInfo})
-    
+    this.setState({token: `Bearer ${USER.TOKEN()}`})
     let user = []
     for (const [key, value] of Object.entries(userInfo)) {
       user.push({name: key, content: value})
@@ -73,7 +74,7 @@ class UserProfile extends Component {
         let data = this.checkInfo()
         axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/updateUser', data, {
           headers: {
-            'Authorization': API.API_AUTHENTICATION
+            'Authorization': this.state.token
           }
         })
         .then(res => {

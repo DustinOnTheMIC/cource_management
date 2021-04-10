@@ -4,96 +4,99 @@ import { Link, Redirect } from "react-router-dom";
 import swal from "sweetalert";
 import axios from "axios";
 import * as API from "../../../env";
+import * as USER from '../../../constant'
 
 class index extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLog: false,
+      token: USER.TOKEN()
     };
   }
+  
+
   handleSubscribe = (e) => {
     e.preventDefault();
-    this.setState({ isLog: null });
+    // this.setState({ isLog: null });
+    this.setState({ isLog: USER.STATUS()})
 
-    if (localStorage.getItem("token")) {
-      swal({
-        text: `Do you want to subscribe to this class?`,
-        buttons: true,
-        dangerMode: true,
-      }).then((value) => {
-        if (value) {
-          if (localStorage.getItem("token")) {
-            //trường hợp đã đăng nhập => có token
-            console.log("called");
-            // let authorization = "bearer " + localStorage.getItem('token') //token đây
-            let id_class = 1;
-            let price = 2000; //this.props.id khi map xong lấy price bỏ vô đây
-            let data = {
-              price: price,
-              id_class: id_class,
-            };
+    let id_class = this.props.id_class;
+    let price = this.props.priceClass; //this.props.id khi map xong lấy price bỏ vô đây
 
-            axios
-              .post(
-                "https://quanlikhoahoc.herokuapp.com/api/v1/newRegister",
-                data,
-                {
-                  headers: {
-                    Authorization: API.API_AUTHENTICATION,
-                  },
-                }
-              )
-              .then((res) => {
-                swal(`Done! You just subscribe this class`, {
-                  icon: "success",
-                });
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          } else if (localStorage.getItem("isLog") === "fakeLog") {
-            //trường hợp đăng nhập tạm (chưa có mật khẩu)
-            let name = localStorage.getItem("name");
-            let email = localStorage.getItem("email");
-            let phone = localStorage.getItem("phone");
-            let { id_class } = this.props;
-            let price = 2000; //this.props.id khi map xong lấy price bỏ vô đây
+    this.setState({token:`Bearer ${ USER.TOKEN() }`})
 
-            let data = {
-              name: name,
-              email: email,
-              phone: phone,
-              price: price,
-              id_class: id_class,
-            };
-            axios
-              .post(
-                "https://quanlikhoahoc.herokuapp.com/api/v1/auth/register",
-                data
-              )
-              .then((res) => {
-                swal(`Done! You just subscribe this class`, {
-                  icon: "success",
-                });
-              })
-              .catch((err) => {
-                console.log(err);
-              });
+    this.props.handleLoading(true)
+      //trường hợp đã đăng nhập => có token
+      // let authorization = "bearer " + localStorage.getItem('token') //token đây
+    swal({
+      text: `Do you want to subscribe to this class?`,
+      buttons: true,
+      dangerMode: true,
+    }).then((value) => {
+      if (value) {
+        if (USER.TOKEN()) {
+        let data = {
+          price: price,
+          id_class: id_class,
+        };
+          axios.post(
+            "https://quanlikhoahoc.herokuapp.com/api/v1/newRegister",
+            data,
+            {
+              headers: {
+                Authorization: this.state.token,
+              },
+            }
+          )
+          .then((res) => {
+            swal(`Done! You just subscribe this class`, {
+              icon: "success",
+            });
+            this.props.handleLoading(false)
+          })
+          .catch((err) => {
+            swal(`The email has already been taken.`);
+            this.props.handleLoading(false)
+          });
+        }else if (USER.STATUS() === 'fakeLog') {
+        //trường hợp đăng nhập tạm (chưa có mật khẩu)
+        let data = {
+          name: USER.NAME(),
+          email: USER.EMAIL(),
+          phone: USER.PHONE(),
+          price: price,
+          id_class: id_class,
+        };
+        axios
+          .post(
+            "https://quanlikhoahoc.herokuapp.com/api/v1/auth/register",
+            data
+          )
+          .then((res) => {
+            swal(`Done! You just subscribe this class`, {
+              icon: "success",
+            });
+            this.props.handleLoading(false)
+          })
+          .catch((err) => {
+            swal(`The email has already been taken.`);
+            this.props.handleLoading(false)
+          });
+      } else if(!USER.STATUS() && !USER.TOKEN()) {
+        this.props.handleLoading(false)
+        swal({
+          text: `Please login before you subscribe this class`,
+          buttons: true,
+          dangerMode: true,
+        }).then((value) => {
+          if (value) {
+            this.setState({ isLog: "not" });
           }
-        }
-      });
-    } else {
-      swal({
-        text: `Please login before you subscribe this class`,
-        buttons: true,
-        dangerMode: true,
-      }).then((value) => {
-        if (value) {
-          this.setState({ isLog: "not" });
-        }
-      });
+        });
+      }
     }
+    });
   };
 
   render() {
@@ -115,7 +118,7 @@ class index extends Component {
             <Redirect to="/login" className="nav-link"></Redirect>
           ) : null
         ) : null}
-
+        
         <div className="courses">
           <div className="d-flex">
             <div className="icon">
