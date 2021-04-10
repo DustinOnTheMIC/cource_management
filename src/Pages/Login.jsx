@@ -110,6 +110,7 @@ class Login extends Component {
             localStorage.removeItem('phone')
             this.setState({isLoading: false})
             this.setState({redirect: true})
+            console.log(res);
         })
         .catch(err => {
             this.setState({isLoading: false})

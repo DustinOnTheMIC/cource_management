@@ -11,6 +11,7 @@ class index extends Component {
         data-aos-delay="100"
       >
         <div className="staff">
+        <Link to={`/teacher/${id_teacher}/profile`}>
           <div className="img" style={{ backgroundImage: `url(${img})` }}>
             <ul className="ftco-social">
               <li>
@@ -35,7 +36,7 @@ class index extends Component {
               </li>
             </ul>
           </div>
-          <Link to={`/teacher/${id_teacher}/profile`}>
+          
             <div className="text">
               <h3>{name}</h3>
               <span className="position">{position}</span>

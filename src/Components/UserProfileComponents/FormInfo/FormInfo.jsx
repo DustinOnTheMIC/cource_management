@@ -15,7 +15,7 @@ class FormInfo extends Component {
 
     handleChange = (e) => {
       this.setState({ token: `Bearer ${ USER.TOKEN() }`})
-      this.setState({isLoading: true})
+      this.props.onLoading(true)
       e.preventDefault();
       if (this.props.name === "password") {
         swal({
@@ -36,20 +36,27 @@ class FormInfo extends Component {
               }
             })
             .then(res => {
-              this.setState({isLoading: false})
+              this.onLoading(false)
               swal({
                 text: `Enter your new password`,
                 buttons: true,
                 dangerMode: true,
                 content: "input",
                 type: 'number'
-              }).then((value) => {
+              }) 
+            .then((value) => {
                 if(value){
                   this.props.onUpdateValue(this.props.name, value)
                   swal(`Done! You just change your password but didn't submit to the server`, {
                     icon: "success",
                   });
                 }
+              });
+            })
+            .catch(err => {
+              this.props.onLoading(false)
+              swal(`Your password is incorrect`, {
+                icon: "warning",
               });
             })
           }

@@ -9,6 +9,7 @@ class index extends Component {
     super(props);
     this.state = {
       dataTeacher: "",
+      isLoading: true
     };
   }
   componentDidMount() {
@@ -26,7 +27,7 @@ class index extends Component {
       let {dataTeacher} = this.state;
     return (
       <div>
-        <Introduce pageTitle="Team" />
+        <Introduce pageTitle="Teacher" />
         <section className="ftco-section">
           <div className="container">
             <div className="row">

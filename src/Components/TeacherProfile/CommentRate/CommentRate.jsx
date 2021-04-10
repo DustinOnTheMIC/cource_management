@@ -19,7 +19,7 @@ class CommentRate extends Component {
               <div className="form-row d-flex align-items-center justify-content-center">
                 {this.state.isRatable ? <CommentBox/> : <p>What students said will help you make a right choice</p>}
               </div>
-              <div className="show-comment">
+              <div className="show-comment" id='scroll'>
                 <ItemComment />
                 <ItemComment />
                 <ItemComment />
