@@ -16,10 +16,10 @@ class ShowInfoTeacher extends Component {
     this.state = {
       dataTeacher: "",
       dataClass: "",
+      isLoading : true
     };
   }
   componentDidMount() {
-    this.setState({ isLoading: true });
     // GET DATA FOR TEACHER
     axios
       .get(API.API_TEACHER + `/${this.props.id_teacher}`)
@@ -38,7 +38,6 @@ class ShowInfoTeacher extends Component {
           isLoading: false,
           dataClass: res.data.data,
         });
-        console.log(this.state.dataClass);
       })
       .catch((err) => console.log(err));
   }
