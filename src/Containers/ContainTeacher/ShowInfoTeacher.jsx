@@ -16,7 +16,7 @@ class ShowInfoTeacher extends Component {
     this.state = {
       dataTeacher: "",
       dataClass: "",
-      isLoading : true
+      isLoading: true,
     };
   }
   componentDidMount() {
@@ -71,9 +71,9 @@ class ShowInfoTeacher extends Component {
         <div className="container">
           <h1 className="title text-center">The class is teaching</h1>
           <div className="row mb-5 ">
-            {dataTeacher.length === 0 ? (
+            {dataClass.length === 0 ? (
               <div>
-                <p>Data is loading</p>
+                <p>Oopp! There aren't any classes</p>
               </div>
             ) : (
               <Carousel breakPoints={breakPoints}>
@@ -91,17 +91,17 @@ class ShowInfoTeacher extends Component {
     if (dataClass) {
       result = dataClass.map((item, index) => {
         return (
-            <Classes
-              key={index}
-              nameClass={'HTML, CSS, and Javascript for Web Developers'}
-              teacherName={item.teacher.name}
-              teacherPic={item.teacher.image}
-              priceClass={item.price}
-              descriptionClass={item.subject.description}
-              classPic={item.subject.image}
-              id_class={item.id}
-              id_teacher={item.teacher.id_teacher}
-            />
+          <Classes
+            key={index}
+            nameClass={"HTML, CSS, and Javascript for Web Developers"}
+            teacherName={item.teacher.name}
+            teacherPic={item.teacher.image}
+            priceClass={item.price}
+            descriptionClass={item.subject.description}
+            classPic={item.subject.image}
+            id_class={item.id}
+            id_teacher={item.teacher.id_teacher}
+          />
         );
       });
     }

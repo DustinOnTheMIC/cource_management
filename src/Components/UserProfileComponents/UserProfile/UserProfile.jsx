@@ -5,6 +5,7 @@ import FormInfo from '../FormInfo/FormInfo'
 import swal from "sweetalert"
 import axios from "axios"
 import Loading from '../../Loading/Loading'
+import checkValidate from '../../../validate' // CALL CHECKVALIDATE HERE
 
 class UserProfile extends Component {
   constructor(props) {
@@ -23,6 +24,8 @@ class UserProfile extends Component {
       phone: '(+84) 999 999 999',
       password: null
     }
+
+    // USE VALIDATION => checkValidate.checkValidate('email','thanhson') => true return ''
 
     this.setState({userInfo : userInfo})
     
@@ -61,7 +64,6 @@ class UserProfile extends Component {
 
   handleSaveUserInfo = e => {
     e.preventDefault()
-    
     swal({
       text: `Are you sure to change this value?`,
       buttons: true,
