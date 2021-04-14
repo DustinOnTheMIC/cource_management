@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
 import Introduce from "../../Components/Common/Introduce/Introduce";
+import Loading from "../../Components/Loading/Loading";
 import TeamMember from "../../Components/TeamComponents";
 import * as API from "../../env";
 
@@ -17,6 +18,7 @@ class index extends Component {
       .get(API.API_TEACHER)
       .then((res) => {
         this.setState({
+          isLoading: false,
           dataTeacher: res.data.data,
         });
       })
@@ -24,10 +26,15 @@ class index extends Component {
   }
 
   render() {
-      let {dataTeacher} = this.state;
+    let {dataTeacher} = this.state;
     return (
       <div>
-        <Introduce pageTitle="Teacher" />
+        <div>
+          {
+            <div>{this.state.isLoading ? <Loading /> : null}</div>
+          }
+        </div>
+        <Introduce pageTitle="Team" />
         <section className="ftco-section">
           <div className="container">
             <div className="row">
@@ -48,7 +55,7 @@ class index extends Component {
             id_teacher={item.id_teacher}
             name={item.name}
             position={item.address}
-            img="https://i.pinimg.com/474x/58/c3/e2/58c3e222b2eb3aacf67e45e987f318d6.jpg"
+            img={item.image}
           />
         );
       });

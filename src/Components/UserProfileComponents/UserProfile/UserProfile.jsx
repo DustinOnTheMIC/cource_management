@@ -27,6 +27,8 @@ class UserProfile extends Component {
       password: null,
     }
 
+    // USE VALIDATION => checkValidate.checkValidate('email','thanhson') => true return ''
+
     this.setState({userInfo : userInfo})
     this.setState({token: `Bearer ${USER.TOKEN()}`})
     let user = []

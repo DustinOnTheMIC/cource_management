@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import * as API from '../../env'
 import "../UserProfileComponents/UserProfile/UserProfileCss.css";
 
 class InforTea extends Component {
@@ -11,7 +12,6 @@ class InforTea extends Component {
 
   render() {
     let { name, description, img, address, phone, email, rating } = this.props;
-    console.log(rating);
     return (
       <div className="mb-5">
         <div
@@ -29,7 +29,7 @@ class InforTea extends Component {
                   <div className="card-body">
                     <div className="d-flex flex-column align-items-center text-center">
                       <img
-                        src={`${img}`}
+                        src={`${API.API_CURRENT}/${img}`}
                         alt={name}
                         className="rounded-circle custom-img"
                         width="150"

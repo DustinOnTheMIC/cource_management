@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import * as API from '../../env'
 class index extends Component {
   render() {
     const { name, position, img, id_teacher } = this.props;
@@ -12,7 +13,7 @@ class index extends Component {
       >
         <div className="staff">
         <Link to={`/teacher/${id_teacher}/profile`}>
-          <div className="img" style={{ backgroundImage: `url(${img})` }}>
+          <div className="img" style={{ backgroundImage: `url(${API.API_CURRENT}/${img})` }}>
             <ul className="ftco-social">
               <li>
                 <a href="https://twitter.com/?lang=en">
