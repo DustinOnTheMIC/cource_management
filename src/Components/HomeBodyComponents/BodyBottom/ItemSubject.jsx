@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 class ItemSubject extends Component {
+  componentDidMount() {
+    console.log(this.props);
+  }
+  
   render() {
     const { imgSubject, nameSubject, idSubject } = this.props;
     return (

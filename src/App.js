@@ -5,6 +5,7 @@ import MoveToTop from './Components/MoveToTop'
 import './index.css'
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Chatbot from './Components/ChatBot'
 
 AOS.init({
   one: true,
@@ -20,6 +21,7 @@ class App extends React.Component {
           {this.showRouter(routes)}
           </Switch>
         </main>
+        <Chatbot/>
         <MoveToTop/>
       </Router>
   );

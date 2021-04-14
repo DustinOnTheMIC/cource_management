@@ -29,7 +29,6 @@ class index extends Component {
         '"Segoe UI Symbol"', 
     ].join(',')
 
-
     render() {
         const { theme } = this.state
         return (
