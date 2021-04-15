@@ -14,9 +14,13 @@ class index extends Component {
     };
   }
 
+  handleLoading = (status) => {
+    this.setState({ isLoading: status})
+  }
+
   componentDidMount() {
     const { id_subject } = this.props;
-    this.setState({isLoading: true}) //mount loading component
+    this.handleLoading(true) //mount loading component
     if (id_subject) {
       // get all class of subject 
       axios
@@ -30,7 +34,7 @@ class index extends Component {
           });
         })
         .catch((err) => {
-          this.setState({isLoading: false}) //un mount loading component
+          this.handleLoading(false) //un mount loading component
           console.log(err)
         });
     } else {
@@ -44,7 +48,7 @@ class index extends Component {
           });
         })
         .catch((err) => {
-          this.setState({isLoading: false}) //un mount loading component
+          this.handleLoading(false) //un mount loading component
           console.log(err)
         });
     }
@@ -88,6 +92,7 @@ class index extends Component {
               descriptionClass={item.subject.description}
               classPic={item.subject.image}
               id_class={item.id}
+              handleLoading={this.handleLoading}
             />
           </div>
         );

@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import * as USER from '../../constant'
 
 class Navbar extends Component {
     
-    componentDidMount() {
-        console.log(this.props);
-    }
-    
     render() {    
         let isLogin = ''
-        if(localStorage.getItem('token')){
+        if(USER.TOKEN()){
             isLogin = 'log'
-        }else if(localStorage.getItem('isLog')==='fakeLog'){
+        }else if(USER.STATUS() === 'fakeLog'){
             isLogin = 'fakeLog'
         }
         

@@ -4,17 +4,18 @@ import {  faPen } from '@fortawesome/free-solid-svg-icons'
 import swal from "sweetalert"
 import axios from "axios"
 import Loading from '../../Loading/Loading'
-
+import * as USER from '../../../constant'
 class FormInfo extends Component {
     constructor(props) {
       super(props)
       this.state = {
-
+        token: ''
       }
     }
 
     handleChange = (e) => {
-      this.setState({isLoading: true})
+      this.setState({ token: `Bearer ${ USER.TOKEN() }`})
+      this.props.onLoading(true)
       e.preventDefault();
       if (this.props.name === "password") {
         swal({
@@ -25,31 +26,37 @@ class FormInfo extends Component {
         }).then((value) => {
           if (value) {
             //call API check old password
-            let authorization = "bearer " + localStorage.getItem('token')
             let data = {
               password: value
             }
             console.log(value);
             axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/checkPass',data,{
               headers: {
-                'Authorization': authorization
+                'Authorization': this.state.token
               }
             })
             .then(res => {
-              this.setState({isLoading: false})
+              this.onLoading(false)
               swal({
                 text: `Enter your new password`,
                 buttons: true,
                 dangerMode: true,
                 content: "input",
                 type: 'number'
-              }).then((value) => {
+              }) 
+            .then((value) => {
                 if(value){
                   this.props.onUpdateValue(this.props.name, value)
                   swal(`Done! You just change your password but didn't submit to the server`, {
                     icon: "success",
                   });
                 }
+              });
+            })
+            .catch(err => {
+              this.props.onLoading(false)
+              swal(`Your password is incorrect`, {
+                icon: "warning",
               });
             })
           }

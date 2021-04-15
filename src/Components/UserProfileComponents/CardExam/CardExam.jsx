@@ -3,7 +3,7 @@ import './CardExamCss.css'
 class CardExam extends Component {
     render() {
         return (
-            <div className=" col-9 col-md-7 col-lg-5 col-xl-3 mx-3">
+            <div className=" col-9 col-md-7 col-lg-5 col-xl-3 mx-3 mb-5">
             <div className="card user-card">
                 <div className="card-block">
                     <div className="user-image">

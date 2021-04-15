@@ -10,7 +10,7 @@ class index extends Component {
     super(props);
     this.state = {
       dataTeacher: "",
-      isLoading : true
+      isLoading: true
     };
   }
   componentDidMount() {

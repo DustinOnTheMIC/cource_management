@@ -5,7 +5,8 @@ import FormInfo from '../FormInfo/FormInfo'
 import swal from "sweetalert"
 import axios from "axios"
 import Loading from '../../Loading/Loading'
-import checkValidate from '../../../validate' // CALL CHECKVALIDATE HERE
+import * as USER from '../../../constant'
+import NextExam from "../NextExam/NextExam"
 
 class UserProfile extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class UserProfile extends Component {
       user:[
         
       ],
+      token: ''
     }
   }
 
@@ -22,19 +24,22 @@ class UserProfile extends Component {
       name: 'Dustin On The MIC',
       email: 'Buiductinwork@gmail.com',
       phone: '(+84) 999 999 999',
-      password: null
+      password: null,
     }
 
     // USE VALIDATION => checkValidate.checkValidate('email','thanhson') => true return ''
 
     this.setState({userInfo : userInfo})
-    
+    this.setState({token: `Bearer ${USER.TOKEN()}`})
     let user = []
     for (const [key, value] of Object.entries(userInfo)) {
       user.push({name: key, content: value})
     }
-
     this.setState({user})
+  }
+
+  onLoading = (status) => {
+    this.setState({isLoading: status})
   }
   
   onUpdateValue = (a,arg) => {
@@ -42,10 +47,8 @@ class UserProfile extends Component {
     let user = this.state.user.filter(item => item.name !== a)
     user.splice(index, 0, {name: a, content: arg})
     this.setState({user:user})
-
     document.getElementById('btnSave').classList.remove('d-none')
-
-    console.log(this.state);
+    this.onLoading(false)
   }
 
   checkInfo(){
@@ -70,22 +73,21 @@ class UserProfile extends Component {
       dangerMode: true,
     }).then((value) => {
       if(value){
-        this.setState({isLoading: true})
-        let authorization = "bearer " + localStorage.getItem('token')
+        this.onLoading(true)
         let data = this.checkInfo()
         axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/updateUser', data, {
           headers: {
-            'Authorization': authorization
+            'Authorization': this.state.token
           }
         })
         .then(res => {
-          this.setState({isLoading: false})
+          this.onLoading(false)
           swal(`Done! You just changed your information`, {
             icon: "success",
           });
         })
         .catch(err => {
-          this.setState({isLoading: false})
+          this.onLoading(false)
           swal(`There is something wrong with the server, please try again`, {
             icon: "warning",
           });
@@ -138,7 +140,8 @@ class UserProfile extends Component {
                           key={item.name}
                           name={item.name} 
                           content={item.content} 
-                          onUpdateValue={this.onUpdateValue}/>
+                          onUpdateValue={this.onUpdateValue}
+                          onLoading={this.onLoading}/>
                       })}
                     </div>
                     <div className="item-submit-info">
@@ -152,9 +155,17 @@ class UserProfile extends Component {
                     </div>
                   </div>
                 </div>
+                {/* next exam */}
+                <NextExam/>
+
+
+                {/* {this.state.examDone ? this.state.examDone.map((key, item) => {}) : null} */}
 
                 <h1 className="title col-12 text-center">Your Exam</h1>
                 <div className="d-flex flex-wrap justify-content-center">
+
+                  {this.state.examDone ? this.state.examDone.map((key,example) => <CardExam />)  : null}
+
                   <CardExam
                     subject="Javascript"
                     img="https://tinhocaz.com/wp-content/uploads/2020/10/validate-js.png"
