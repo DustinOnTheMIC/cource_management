@@ -5,7 +5,7 @@ import swal from 'sweetalert'
 import axios from 'axios';
 import Loading from '../Components/Loading/Loading'
 import * as USER from '../constant'
-
+import { checkValidate } from '../validate'
 
 class Login extends Component {
 
@@ -36,7 +36,7 @@ class Login extends Component {
         USER.CLEAR_LOCALSTORAGE()
     }
 
-    handleInputChange(e){
+    handleInputChange(e) {
         let name = e.target.name
         let value = e.target.value
         this.setState({[name]: value})
@@ -56,29 +56,39 @@ class Login extends Component {
 
     handleCheckEmail = e => {
         e.preventDefault()
-        //call API check email
-        if(this.state.email !== undefined && this.state.email !== ''){
-            this.setState({isLoading: true})
-            axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/auth/name',{
-                email: this.state.email
-            })
-            .then(res => {
-                this.setState({name: res.data.name})
-                this.isEmail(true)
-                this.setState({isLoading: false})
-            })
-            .catch(err => {
-                if(err.response.status === 400 ){
-                    this.isEmail(false)
-                    this.setState({ isEmail:false })
+
+        if(checkValidate('email', this.state.email) === "") {
+            //call API check email
+            if(this.state.email !== undefined && this.state.email !== '') {
+                this.setState({isLoading: true})
+                axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/auth/name', {
+                    email: this.state.email
+                })
+
+                .then(res => {
+                    this.setState({name: res.data.name})
+                    this.isEmail(true)
+                    this.setState({isLoading: false})
+                })
+
+                .catch(err => {
                     this.setState({ isLoading: false })
-                }
+
+                    if(err.response.status === 400 ){
+                        this.isEmail(false)
+                        this.setState({ isEmail:false })
+                    }
+                })
+            } else {
+                this.setState({verifyEmail: false})
+            }
+            //if true => 
+            // this.isEmail(true)
+        } else {
+            swal(checkValidate("email", this.state.email).toString(), {
+                icon: "warning",
             })
-        }else{
-            this.setState({verifyEmail: false})
         }
-        //if true => 
-        // this.isEmail(true)
     }
 
     handleTurnBack = e => {
@@ -88,7 +98,7 @@ class Login extends Component {
         document.getElementById('formSignIn').classList.add('d-none')
     }
 
-    handleSignIn(e){
+    handleSignIn(e) {
         e.preventDefault()
         
         let data = {
@@ -102,6 +112,7 @@ class Login extends Component {
         
         //call API check Password
         axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/auth/login', data)
+
         .then(res => {
             localStorage.setItem('token', res.data.data.access_token) // set token
             this.clearTimer()
@@ -112,12 +123,21 @@ class Login extends Component {
             this.setState({redirect: true})
             console.log(res);
         })
+
         .catch(err => {
             this.setState({isLoading: false})
-            swal({
-                text: `Your password is incorrect`,
-                icon: 'warning'
-            })
+            const status = err.response.status;
+
+            if(status === 400) {
+                swal({
+                    text: `Your password is incorrect`,
+                    icon: 'warning'
+                })
+            }else {
+                swal(`There is an error with the server, please try again.`, {
+                icon: "error",
+                })
+            }
         })
     }
 
@@ -136,12 +156,14 @@ class Login extends Component {
     
     handleForgetPassword = e => {
         e.preventDefault()
+
         swal({
             text: `Please enter the code that sent in you email`,
             buttons: true,
             dangerMode: true,
             content: "input",
         })
+
         .then((value) => {
             if (value) {
             //call API check the code sended
@@ -152,6 +174,7 @@ class Login extends Component {
                     content: "input",
                     type: 'number'
                 })
+
                 .then((value) => {
                     if(value){
                         //call API change password

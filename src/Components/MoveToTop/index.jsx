@@ -24,7 +24,7 @@ class index extends Component {
 
     render() {
         return (
-            <button className="btn-move-to-top rotate" onClick={e => this.handleMoveToTop(e)} id="btnMoveToTop"><i className="fa fa-fighter-jet"></i></button>
+            <button className="btn-move-to-top" onClick={e => this.handleMoveToTop(e)} id="btnMoveToTop"><img src="https://img.icons8.com/fluent/48/000000/double-up.png" alt=""/></button>
         );
     }
 }
