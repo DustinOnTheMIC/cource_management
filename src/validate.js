@@ -1,4 +1,4 @@
-function checkValidate(name, value) {
+export function checkValidate(name, value) {
     let err = null;
     switch (name) {
         case ('email'):
@@ -43,8 +43,8 @@ function checkValidate(name, value) {
                     value.search(/[a-zA-Z]/) === -1 ||
                     value.length < 8
                 ) {
-                    err = "Password at least 8 characters containing special characters " +
-                        ", numeric, alphanumeric characters and at LEAST ONE UPPERCASE character !!";
+                    err = "Password at least 8 characters containing special characters, " +
+                        "numeric, alphanumeric characters and at LEAST ONE UPPERCASE character !!";
                 } else {
                     err = "";
                 }
@@ -56,14 +56,10 @@ function checkValidate(name, value) {
             if (value.match(phoneRule)) {
                 err = "";
             } else {
-                err = "Please enter your phone"
+                err = "Your phone number is invalid, must be 10 number"
             }
             break;
         default:
     }
     return err;
-}
-
-export default {
-    checkValidate
 }
