@@ -1,7 +1,4 @@
-.text-box-custom{
-    border-radius: 20px !important;
 
-} 
 #scroll::-webkit-scrollbar-track
 {
 	box-shadow: inset 0 0 6px rgba(0,0,0,0.3);

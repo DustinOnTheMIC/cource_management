@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import * as API from '../../env'
+import * as API from "../../env";
 class index extends Component {
   render() {
     const { name, position, img, id_teacher } = this.props;
@@ -12,8 +12,10 @@ class index extends Component {
         data-aos-delay="100"
       >
         <div className="staff">
-        <Link to={`/teacher/${id_teacher}/profile`}>
-          <div className="img" style={{ backgroundImage: `url(${API.API_CURRENT}/${img})` }}>
+          <div
+            className="img"
+            style={{ backgroundImage: `url(${API.API_CURRENT}/${img})` }}
+          >
             <ul className="ftco-social">
               <li>
                 <a href="https://twitter.com/?lang=en">
@@ -37,7 +39,7 @@ class index extends Component {
               </li>
             </ul>
           </div>
-          
+          <Link to={`/teacher/${id_teacher}/profile`}>
             <div className="text">
               <h3>{name}</h3>
               <span className="position">{position}</span>
