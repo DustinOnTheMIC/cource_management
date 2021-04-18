@@ -82,7 +82,7 @@ class ShowInfoTeacher extends Component {
             )}
           </div>
         </div>
-        <CommentRate />
+        <CommentRate id_teacher={this.props.id_teacher} />
       </div>
     );
   }

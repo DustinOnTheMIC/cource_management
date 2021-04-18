@@ -3,21 +3,22 @@ import './ItemComment.css'
 
 class ItemComment extends Component {
   render() {
+    let {name,rate,content}= this.props;
     return (
       <div>
         <div className="item-comment">
           <div className="user-comment">
-            <span>The Rio</span>
+            <span>{name}</span>
             <br />
-            <span>This teacher make me think about my farther, coz he is my father</span>
+            <span>{content}</span>
             <br />
           </div>
           <div className="star-rating-comment">
-            <span className="fa fa-star checked"></span>
-            <span className="fa fa-star checked"></span>
-            <span className="fa fa-star checked"></span>
-            <span className="fa fa-star checked"></span>
-           <span className="fa fa-star-o"></span>
+            {
+              Array(rate).fill().map((_,index) => (
+                <span key={index} className="fa fa-star checked"></span>
+              ))
+            }
           </div>
         </div>
       </div>

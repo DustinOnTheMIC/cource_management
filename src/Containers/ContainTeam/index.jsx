@@ -48,10 +48,10 @@ class index extends Component {
   dataTeacher = (dataTeacher) => {
     let result = null;
     if (dataTeacher) {
-        console.log(dataTeacher);
       result = dataTeacher.map((item, index) => {
         return (
           <TeamMember
+            key={index}
             id_teacher={item.id_teacher}
             name={item.name}
             position={item.address}

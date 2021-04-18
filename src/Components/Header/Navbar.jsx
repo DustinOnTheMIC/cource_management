@@ -50,7 +50,7 @@ class Navbar extends Component {
                             {
                                 isLogin === 'fakeLog' ? <li className="nav-item"><NavLink className="nav-link" to='/login'>Change Account</NavLink></li> : 
                                     isLogin === 'log' ? <li className="nav-item"><NavLink className="nav-link" to='/profile'>Profile</NavLink></li>
-                                    : <li className="nav-item"><NavLink className="nav-link" to='/login'>Login</NavLink></li> 
+                                    : <li className="nav-item"><NavLink className="nav-link" to='/login'> Login / Register </NavLink></li> 
                              }
                              {
                                  isLogin === 'log' ? <li className="nav-item"><NavLink className="nav-link" to='/login'>Change Account</NavLink></li> : ""
