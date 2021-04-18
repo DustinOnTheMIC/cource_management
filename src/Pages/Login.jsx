@@ -114,6 +114,7 @@ class Login extends Component {
         axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/auth/login', data)
 
         .then(res => {
+            localStorage.setItem('idUser', res.data.data.id) // set idUser
             localStorage.setItem('token', res.data.data.access_token) // set token
             this.clearTimer()
             localStorage.removeItem('name')
@@ -121,7 +122,6 @@ class Login extends Component {
             localStorage.removeItem('phone')
             this.setState({isLoading: false})
             this.setState({redirect: true})
-            console.log(res);
         })
 
         .catch(err => {

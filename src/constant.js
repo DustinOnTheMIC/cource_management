@@ -1,3 +1,4 @@
+export function IDUSER() { return localStorage.getItem('idUser') }
 export function EMAIL() { return localStorage.getItem('email') }
 export function NAME() { return localStorage.getItem('name') }
 export function PHONE() { return localStorage.getItem('phone') }

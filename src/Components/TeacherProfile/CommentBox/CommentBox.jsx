@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import swal from "@sweetalert/with-react";
 import "./Rating.css";
 import axios from "axios";
+import * as API from "../../../env";
+import * as USER from "../../../constant";
 
 class CommentBox extends Component {
   constructor(props) {
@@ -10,7 +12,27 @@ class CommentBox extends Component {
       teacher_cmt: "",
       teacher_rating: "",
       isCardRating: false,
+      isCmt: false,
     };
+  }
+
+  componentDidMount() {
+    // LINK CHECK ISCMT FAKE 
+    // https://quanlikhoahoc.herokuapp.com/api/v1/rated/checkValidate/1
+    // LINK CHECK ISCMT COMMON 
+    // ${API.API_CHECK_SHOW_SUB_CMT}/${USER.IDUSER()}
+    axios
+      .get(`https://quanlikhoahoc.herokuapp.com/api/v1/rated/checkValidate/1`, {
+        headers: {
+          Authorization: `Bearer ${USER.TOKEN()}`,
+        },
+      })
+      .then((res) => {
+        this.setState({
+          isCmt: res.data.message,
+        });
+      })
+      .catch((err) => console.log(err));
   }
 
   handleChange = (e) => {
@@ -33,15 +55,30 @@ class CommentBox extends Component {
       if (result) {
         this.setState({
           teacher_rating: e.target.value,
-          isCardRating: false,
         });
         let { teacher_cmt, teacher_rating } = this.state;
-        let dataSubmit = {
-          content: teacher_cmt,
-          rated: teacher_rating,
-          id_teacher: this.props.id_teacher,
-        };
-        console.log(dataSubmit);
+        axios
+          .post(
+            `${API.API_POST_CMT}`,
+            {
+              content: teacher_cmt,
+              rate: teacher_rating,
+              id_teacher: this.props.id_teacher,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${USER.TOKEN()}`,
+              },
+            }
+          )
+          .then(() => {
+            this.setState({
+              teacher_cmt: "",
+              teacher_rating: "",
+              isCardRating: false,
+            });
+          })
+          .catch((err) => console.log(err));
       } else {
         swal({
           title: "Thank you",
@@ -65,7 +102,7 @@ class CommentBox extends Component {
     });
   }
   render() {
-    let { isCardRating } = this.state;
+    let { isCardRating, isCmt } = this.state;
     return (
       <div className="comment-box">
         <div
@@ -131,23 +168,35 @@ class CommentBox extends Component {
           </div>
         </div>
         {/* END CARD RATING */}
-        <div className="input-group mb-3 d-flex">
-          <input
-            type="text"
-            name="teacher_cmt"
-            onChange={this.handleChange}
-            className="form-control py-0 my-0 text-box-custom"
-            placeholder="What do you think about the teacher?"
-          ></input>
-          <div className="input-group-append">
-            <button
-              className="btn btn-submit-cmt py-2"
-              onClick={(e) => this.openPopup(e)}
-              type="button"
-            >
-              Submit
-            </button>
-          </div>
+        <div>
+          {isCmt ? (
+            <div className="input-group mb-3 d-flex">
+              <input
+                type="text"
+                name="teacher_cmt"
+                value={this.state.teacher_cmt}
+                onChange={this.handleChange}
+                className="form-control py-0 my-0 text-box-custom"
+                placeholder="What do you think about the teacher?"
+              ></input>
+              <div className="input-group-append">
+                <button
+                  className="btn btn-submit-cmt py-2"
+                  onClick={(e) => this.openPopup(e)}
+                  type="button"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          ) : (
+            <p>
+              <i>
+                You must be complete the course before commenting and evaluating
+                this instructor
+              </i>
+            </p>
+          )}
         </div>
       </div>
     );

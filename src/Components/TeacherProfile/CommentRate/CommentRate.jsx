@@ -4,14 +4,14 @@ import "./CommentRate.css";
 import CommentBox from "../CommentBox/CommentBox.jsx";
 import axios from "axios";
 import * as USER from "../../../constant";
-import *  as API from '../../../env'
+import * as API from "../../../env";
 
 class CommentRate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isRatable: true, //user có đủ khả năng để rating không, cái này sau này chuyển thành props
-      dataCmt : ''
+      dataCmt: "",
+      loading: true,
     };
   }
 
@@ -24,30 +24,28 @@ class CommentRate extends Component {
       })
       .then((res) => {
         this.setState({
-          dataCmt : res.data.data
-        })
+          dataCmt: res.data.data,
+          loading: false,
+        });
       })
       .catch((err) => console.log(err));
   }
 
   render() {
+    let { dataCmt } = this.state;
     return (
       <div className="container">
         <div className="row mb-5">
           <div className="row mb-5 justify-content-center ">
             <div className="col-md-8 col-12">
               <div className="form-row d-flex align-items-center justify-content-center">
-                {this.state.isRatable ? (
-                  <CommentBox id_teacher={this.props.id_teacher} />
-                ) : (
-                  <p>What students said will help you make a right choice</p>
-                )}
+                <CommentBox id_teacher={this.props.id_teacher} />
               </div>
-              <div className="show-comment" id="scroll">
-                <ItemComment />
-                <ItemComment />
-                <ItemComment />
-                <ItemComment />
+              <div
+                className={dataCmt.length > 0 ? "show-comment" : ""}
+                id="scroll"
+              >
+                {this.itemComment(dataCmt)}
               </div>
             </div>
           </div>
@@ -55,6 +53,28 @@ class CommentRate extends Component {
       </div>
     );
   }
+  itemComment = (data) => {
+    let result = null;
+    if (data.length > 0) {
+      result = data.map((item, index) => {
+        return (
+          <ItemComment
+            key={index}
+            name={item.user.name}
+            content={item.content}
+            rate={item.rate}
+          />
+        );
+      });
+    } else {
+      result = (
+        <p>
+          <i> Let's enter first comment for this teacher</i>
+        </p>
+      );
+    }
+    return result;
+  };
 }
 
 export default CommentRate;
