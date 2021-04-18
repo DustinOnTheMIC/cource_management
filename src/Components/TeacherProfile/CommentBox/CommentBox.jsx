@@ -77,6 +77,7 @@ class CommentBox extends Component {
               teacher_rating: "",
               isCardRating: false,
             });
+            window.location.reload()
           })
           .catch((err) => console.log(err));
       } else {
