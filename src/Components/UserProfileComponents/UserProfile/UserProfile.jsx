@@ -66,31 +66,48 @@ class UserProfile extends Component {
   }
 
   handleSaveUserInfo = e => {
+    
     e.preventDefault()
+
     swal({
       text: `Are you sure to change this value?`,
       buttons: true,
       dangerMode: true,
-    }).then((value) => {
+    })
+    
+    .then((value) => {
       if(value){
+
         this.onLoading(true)
+
         let data = this.checkInfo()
         axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/updateUser', data, {
           headers: {
             'Authorization': this.state.token
           }
         })
+
         .then(res => {
           this.onLoading(false)
           swal(`Done! You just changed your information`, {
             icon: "success",
           });
         })
+
         .catch(err => {
+
           this.onLoading(false)
-          swal(`There is something wrong with the server, please try again`, {
-            icon: "warning",
-          });
+
+          const status = err.response.status;
+          if(status === 401) {
+            swal(`Please login again to use this feature`, {
+              icon: "error",
+            });
+          } else {
+            swal(`There is something wrong with the server, please try again`, {
+              icon: "error",
+            });
+          }
         })
       }
     })

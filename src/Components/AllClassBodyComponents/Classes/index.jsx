@@ -49,16 +49,38 @@ class index extends Component {
             }
           )
           .then((res) => {
-            swal(`Done! You just subscribe this class`, {
+            swal(`Done! You just subscribe this class.`, {
               icon: "success",
             });
             this.props.handleLoading(false)
           })
           .catch((err) => {
-            swal(`The email has already been taken.`);
             this.props.handleLoading(false)
+            const status = err.response.status;
+
+            if(status === 400){
+
+              swal(`Please pay the tuition for the previous class before you subscribe one.`);
+
+            } else if(status === 401) {
+
+              swal(`Please Login again to use this feature.`, {
+                icon: "error",
+              })
+
+              .then(value => {
+                if(value){
+                  this.setState({isLog: 'not'})
+                }
+              })
+
+            } else {
+              swal(`There is an error with the server, please try again.`, {
+                icon: "error",
+              })
+            }
           });
-        }else if (USER.STATUS() === 'fakeLog') {
+        } else if (USER.STATUS() === 'fakeLog') {
         //trường hợp đăng nhập tạm (chưa có mật khẩu)
         let data = {
           name: USER.NAME(),
@@ -67,28 +89,31 @@ class index extends Component {
           price: price,
           id_class: id_class,
         };
-        axios
-          .post(
-            "https://quanlikhoahoc.herokuapp.com/api/v1/auth/register",
-            data
-          )
+        this.props.handleLoading(true)
+        axios.post("https://quanlikhoahoc.herokuapp.com/api/v1/auth/register", data)
+
           .then((res) => {
+            this.props.handleLoading(false)
             swal(`Done! You just subscribe this class`, {
               icon: "success",
             });
-            this.props.handleLoading(false)
           })
+
           .catch((err) => {
-            swal(`The email has already been taken.`);
             this.props.handleLoading(false)
+            swal(`Please pay the tuition for the previous class before you subscribe one`);
           });
+
       } else if(!USER.STATUS() && !USER.TOKEN()) {
+
         this.props.handleLoading(false)
         swal({
           text: `Please login before you subscribe this class`,
           buttons: true,
           dangerMode: true,
-        }).then((value) => {
+        })
+        
+        .then((value) => {
           if (value) {
             this.setState({ isLog: "not" });
           }

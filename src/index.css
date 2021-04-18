@@ -1,6 +1,9 @@
 body::-webkit-scrollbar {
   display: none;
 }
+.kQhMIh::webkit-scrollbar{
+  display: none
+}
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

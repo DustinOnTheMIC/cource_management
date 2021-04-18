@@ -10,10 +10,10 @@ class index extends Component {
             theme: {
                 background: '#f1f2f6',
                 fontFamily: this.fontFamily,
-                headerBgColor: '#1EB2A6',
+                headerBgColor: 'linear-gradient(190deg, #1EB2A6, #A6CBD3)',
                 headerFontColor: '#fff',
                 headerFontSize: '15px',
-                botBubbleColor: '#1EB2A6',
+                botBubbleColor: 'linear-gradient(-190deg, #d1d8e0, #1e272e)',
                 botFontColor: '#fff',
                 userBubbleColor: '#fff',
                 userFontColor: '#4a4a4a',

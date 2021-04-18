@@ -5,16 +5,21 @@ import swal from "sweetalert"
 import axios from "axios"
 import Loading from '../../Loading/Loading'
 import * as USER from '../../../constant'
+import { checkValidate } from '../../../validate'
+import { Redirect } from "react-router-dom";
+
 class FormInfo extends Component {
     constructor(props) {
       super(props)
       this.state = {
-        token: ''
+        token: '',
+        returnLogin: false,
       }
     }
 
     handleChange = (e) => {
       this.setState({ token: `Bearer ${ USER.TOKEN() }`})
+
       this.props.onLoading(true)
       e.preventDefault();
       if (this.props.name === "password") {
@@ -22,69 +27,125 @@ class FormInfo extends Component {
           text: `Enter your old password`,
           buttons: true,
           dangerMode: true,
-          content: "input",
-        }).then((value) => {
+          content: {
+            element: "input",
+            attributes: {
+              type: "password",
+            },
+          }
+        })
+        
+        .then((value) => {
+          this.props.onLoading(false)
           if (value) {
+            this.props.onLoading(true)
+
             //call API check old password
             let data = {
               password: value
             }
-            console.log(value);
-            axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/checkPass',data,{
+            axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/checkPass', data, {
               headers: {
                 'Authorization': this.state.token
               }
             })
+
             .then(res => {
-              this.onLoading(false)
+              this.props.onLoading(false)
               swal({
                 text: `Enter your new password`,
                 buttons: true,
                 dangerMode: true,
-                content: "input",
-                type: 'number'
-              }) 
-            .then((value) => {
-                if(value){
-                  this.props.onUpdateValue(this.props.name, value)
-                  swal(`Done! You just change your password but didn't submit to the server`, {
-                    icon: "success",
-                  });
+                content: {
+                  element: "input",
+                  attributes: {
+                    type: "password",
+                  },
                 }
-              });
+              }) 
+
+                .then((value) => {
+                  if(value){
+                    if(checkValidate("password", value) === "") {
+                      this.props.onUpdateValue(this.props.name, value)
+                      swal(`Done! You just change your password but didn't submit to the server`, {
+                        icon: "success",
+                      });
+
+                    } else {
+                      swal(checkValidate("password", value), {
+                        icon: "warning",
+                      });
+                    }
+                  }
+                });
             })
+
             .catch(err => {
+              let status = err.response.status
               this.props.onLoading(false)
-              swal(`Your password is incorrect`, {
-                icon: "warning",
-              });
+              
+              if(status === 400){
+                swal(`Your password is incorrect`, {
+                  icon: "warning",
+                });
+
+              } else if(status === 401) {
+                swal(`Please Login again to use this feature`, {
+                  icon: "error",
+                })
+                .then(value => {
+                  if(value){
+                    this.setState({returnLogin: true})
+                  }
+                })
+              } else {
+                swal(`There is an error with the server, please try again.`, {
+                  icon: "error",
+                })
+              }
+              
             })
           }
         });
-      }else{
-          swal({
-              text: `Enter your new ${this.props.name}`,
-              buttons: true,
-              dangerMode: true,
-              content: "input",
-            })
+
+      } else {
+
+        swal({
+            text: `Enter your new ${this.props.name}`,
+            buttons: true,
+            dangerMode: true,
+            content: "input",
+        })
+
           .then((value) => {
+
+            this.props.onLoading(false)
               if(value){
-                if(this.props.name === 'phone'){
-                  if(isNaN(parseFloat(value))){
-                      swal('Your phone number is invalid')
-                  }else {
-                      this.props.onUpdateValue(this.props.name, value)
-                      swal(`Done! You just change your ${this.props.name} to ${value}`, {
+                if(this.props.name === 'phone') {
+                  if(checkValidate("phone", value) === "") {
+                    this.props.onUpdateValue(this.props.name, value)
+                    swal(`Done! You just change your ${this.props.name} to ${value}`, {
                           icon: "success",
-                      });
+                    });
+
+                  } else {
+                      swal(checkValidate("phone", value), {icon: 'warning'})
                   }
-              }else{
-                  this.props.onUpdateValue(this.props.name, value)
-                  swal(`Done! You just change your ${this.props.name} to ${value} but didn't submit to the server`, {
-                    icon: "success",
-                  });
-                } 
+
+              } else {
+
+                  if(checkValidate("name", value) === "") {
+                    this.props.onUpdateValue(this.props.name, value)
+                    swal(`Done! You just change your ${this.props.name} to ${value} but didn't submit to the server`, {
+                      icon: "success",
+                    });
+
+                  } else {
+                    swal(checkValidate("name", value), {icon: 'warning'})
+                  }
+
+                }
               }
           });
         }
@@ -95,14 +156,15 @@ class FormInfo extends Component {
         const capitalizeName = name.charAt(0).toUpperCase() + name.slice(1)
         return (
             <form className="bio-row row col-12 col-md-6 d-flex justify-content-center">
-              {this.state.isLoading ? <Loading/> : null}
+              { this.state.returnLogin ? <Redirect to="/login" className="nav-link"></Redirect> : null }
+              { this.state.isLoading ? <Loading/> : null }
                 <div className="item-group-info text-center">
                     <span>{capitalizeName}:</span>
                     <span
                         className="text-info">
                         {name === 'password' ? '***********' : content}
                     </span>
-                    {name === 'email' ? '' : <FontAwesomeIcon className="ml-5 p5 custom-hover" icon={faPen} onClick={e => this.handleChange(e)} />}
+                    { name === 'email' ? '' : <FontAwesomeIcon className="ml-5 p5 custom-hover" icon={faPen} onClick={e => this.handleChange(e)} /> }
                 </div>
             </form>
         );

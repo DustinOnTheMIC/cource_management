@@ -40,7 +40,7 @@ class AllSubject extends Component {
                 {notfound ? <p>Sorry, the server is busy now, please come back later</p> : null}
                 {subjects ? subjects.map((item) => 
                     <div
-                        className="col-md-6 text-center d-flex align-items-stretch flex-wrap"
+                        className="col-md-6 text-center d-flex align-items-stretch flex-wrap mb-2"
                         key={item.id}>
                         <Link to={`/subject/${item.id}/class`} className="services-2">
                             <div className="icon">
