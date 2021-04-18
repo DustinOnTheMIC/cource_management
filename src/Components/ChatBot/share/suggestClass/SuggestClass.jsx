@@ -1,24 +1,29 @@
 import React, { Component } from 'react';
 
+
 class SuggestClass extends Component {
 
     constructor(props) {
         super(props);
-        const { steps } = this.props;
-        const {math, askLike } = steps;
-    
-        this.state =  { math, askLike }; 
+        this.state = {
+        }
     }
 
     componentDidMount() {
-        console.log(this.state);
+        const { steps } = this.props;
+        const { math, askLike } = steps;
+        this.setState({ math: math.value, like: askLike.value });
+
+        console.log(this.state.math);
     }
-
-
+    
     render() {
+        const { math, like } = this.state
+        console.log(this.state);
         return (
-            <div>
-
+            <div className="row">
+                <h1>{math}</h1>
+                <h1>{like}</h1>
             </div>
         );
     }

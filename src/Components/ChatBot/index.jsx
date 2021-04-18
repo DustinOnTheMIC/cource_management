@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ChatBot from 'react-simple-chatbot'
 import { config } from './config.js'
 import { ThemeProvider } from 'styled-components';
+import './indexCss.css'
 
 class index extends Component {
     constructor(props) {

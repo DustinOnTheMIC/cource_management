@@ -6,6 +6,7 @@ import axios from 'axios';
 import Loading from '../Components/Loading/Loading'
 import * as USER from '../constant'
 import { checkValidate } from '../validate'
+import '../Assets/Css/customLogin.css'
 
 class Login extends Component {
 
@@ -197,9 +198,12 @@ class Login extends Component {
                     <div className="container">
                         
                         <div className="row">
-                        
+
                             <div className="col-md-6">
-                                <a className="mb-5 display-3" href="#">ACADEMIA</a>
+                                <a className="navbar-brand align-items-center text-logo" href="/">
+                                    Academia
+                                    <span className="text-muted">Online Education &amp; Learning</span>
+                                </a>
                                 <img src={imgLogin} alt="Imag" className="img-fluid mt-1"></img>
                             </div>
                             <div className="col-md-6 contents mt-5">
@@ -233,11 +237,10 @@ class Login extends Component {
                                                 <input type="password" placeholder="Password" name="password" className="form-control mb-5" onChange={e => this.handleInputChange(e)}></input>
                                             </div>
                                             <a href="#forgetpassword" onClick={e => this.handleForgetPassword(e)} className="">forget password?</a>
-                                            <div>
-                                                <input type="submit" value="Turn Back" className="btn btn-block mt-5 btn-outline-primary clearfix" onClick={e => this.handleTurnBack(e)}></input>
-                                                <input type="submit" value="Sign In" className="btn btn-block mt-5 btn-primary clearfix" onClick={e => this.handleSignIn(e)}></input>
-                                            </div>
-
+                                                <div className="d-flex flex-row-reverse">
+                                                    <input type="submit" value="Sign In" className="btn btn-block mt-5 btn-primary clearfix" onClick={e => this.handleSignIn(e)}></input>
+                                                    <input type="submit" value="Turn Back" className="btn btn-block mt-5 btn-outline-primary clearfix" onClick={e => this.handleTurnBack(e)}></input>
+                                                </div>
                                         </form>
                                     </div>
                                 </div>
@@ -257,8 +260,10 @@ class Login extends Component {
                                                 <label>Your Phone Number</label>
                                                 <input type="number" placeholder="Phone number" name="phone" className="form-control mb-5" onChange={e => this.handleInputChange(e)}></input>
                                             </div>
-                                            <input type="submit" value="Turn Back" className="btn btn-block mt-5 btn-outline-primary clearfix" onClick={e => this.handleTurnBack(e)}></input>
-                                            <input type="submit" value="Sign Up" className="btn btn-block mt-5 btn-primary clearfix" onClick={e => this.handleSignUp(e)}></input>
+                                            <div className="d-flex flex-row-reverse">
+                                                <input type="submit" value="Sign Up" className="btn btn-block mt-5 btn-primary clearfix" onClick={e => this.handleSignUp(e)}></input>
+                                                <input type="submit" value="Turn Back" className="btn btn-block mt-5 btn-outline-primary clearfix" onClick={e => this.handleTurnBack(e)}></input>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>

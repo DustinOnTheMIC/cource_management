@@ -4,8 +4,8 @@ import './Rating.css'
 
 class CommentBox extends Component {
 
-  handlePickingStar(e){
-    console.log(e.target.value);
+  handleInputChange(e){
+    console.log(e);
   }
 
     handleRating = e => {
@@ -14,9 +14,10 @@ class CommentBox extends Component {
           text: `How many star do you want to give him?`,
           buttons: true,
           dangerMode: true,
-          content: <div>
+          content: 
+          <div>
             <div className="rating">
-              <input type="radio" name="rating" value="5" id="5" onClick={e => this.handlePickingStar(e)}></input>
+              <input  type="radio" name="rating" value="5" id="ip5" onClick={e => this.handleInputChange(e)}></input>
               <label for="5">☆</label>
               <input type="radio" name="rating" value="4" id="4"></input>
               <label for="4">☆</label>
@@ -28,7 +29,8 @@ class CommentBox extends Component {
               <label for="1">☆</label>
             </div>
           </div>,
-        }).then((value) => {
+        })
+        .then((value) => {
           if(value){
             //Call API comment
             console.log(value);
