@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import bg2 from "../../../Assets/images/bg_2.jpg";
+import './IntroduceCss.css'
 
 class Introduce extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <section
@@ -24,13 +22,15 @@ class Introduce extends Component {
                   </Link>
                 </span>
                 <span>
-                  {this.props.pageTitle} <i className="fa fa-chevron-right"></i>
+                  { this.props.pageTitle } <i className="fa fa-chevron-right"></i>
                 </span>
               </p>
               <h1 className="mb-0 bread">{this.props.pageTitle}</h1>
-              <p className="text-description-subject">
-                {this.props.textDescriptionSubject}
-              </p>
+              { this.props.textDescriptionSubject ?
+                <p className="text-description-subject shadow-lg p-3 mb-5 description-bg rounded text-dark mt-3">
+                  {this.props.textDescriptionSubject}
+                </p>
+              : null }
             </div>
           </div>
         </div>

@@ -25,7 +25,7 @@ const steps = [
         },
             {
                 id: "showSubject",
-                component: <AllSubject/>,
+                component: <AllSubject />,
                 trigger: 'turnBack',
             },
     //suggest by what user like
@@ -78,6 +78,7 @@ const steps = [
             {
                 id: "showResult",
                 component: <SuggestClass/>,
+                asMessage: true,
                 trigger: "turnBack"
             }
 ];

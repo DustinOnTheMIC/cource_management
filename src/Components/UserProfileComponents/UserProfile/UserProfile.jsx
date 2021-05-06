@@ -6,7 +6,9 @@ import swal from "sweetalert"
 import axios from "axios"
 import Loading from '../../Loading/Loading'
 import * as USER from '../../../constant'
-import NextExam from "../NextExam/NextExam"
+import Table from "../Table/Table"
+import { Link, Redirect } from "react-router-dom";
+
 
 class UserProfile extends Component {
   constructor(props) {
@@ -15,27 +17,94 @@ class UserProfile extends Component {
       user:[
         
       ],
-      token: ''
+      token: '',
+      subjects: []
     }
   }
 
   componentDidMount() {
-    let userInfo = { //sau này đổi nó thành cái axios gọi request lên để lấy info về
-      name: 'Dustin On The MIC',
-      email: 'Buiductinwork@gmail.com',
-      phone: '(+84) 999 999 999',
-      password: null,
-    }
+    this.getUserInfo()
+    this.getUserClass()
 
-    // USE VALIDATION => checkValidate.checkValidate('email','thanhson') => true return ''
+  }
 
-    this.setState({userInfo : userInfo})
-    this.setState({token: `Bearer ${USER.TOKEN()}`})
-    let user = []
-    for (const [key, value] of Object.entries(userInfo)) {
-      user.push({name: key, content: value})
-    }
-    this.setState({user})
+  getUserClass() {
+    this.onLoading(true);
+
+    axios.get("https://quanlikhoahoc.herokuapp.com/api/v1/userprofile/class", {
+      headers: {
+        'Authorization': "Bearer "+ USER.TOKEN()
+      }
+    })
+    
+    .then( res => {
+      const response = res.data.data
+      let classes = []
+      let subjects = []
+
+      response.map( item => {
+        subjects.push(item.class.subject.name)
+        classes.push({
+          className: item.class.name,
+          dateStart: item.class.course.day_start,
+          dateEnd: item.class.course.day_end,
+          teacher: item.class.teacher.name
+        })
+      })
+      this.setState({ classes: classes })
+      this.setState({ subjects: subjects })
+    })
+  }
+
+  getUserInfo() {
+    let userInfo = {}
+    this.onLoading(true)
+    axios.get("https://quanlikhoahoc.herokuapp.com/api/v1/userprofile/infor",
+      { headers: {
+        'Authorization': "Bearer "+ USER.TOKEN()
+      }}
+    )
+    
+    .then(res => {
+      this.onLoading(false)
+
+      userInfo = {
+        name: res.data.data.name,
+        email: res.data.data.email,
+        phone: res.data.data.phone,
+        password: null
+      }
+      this.setState({userInfo : userInfo})
+      let user = []
+      for (const [key, value] of Object.entries(userInfo)) {
+        user.push({name: key, content: value})
+      }
+      this.setState({user})
+    })
+
+    .catch(err => {
+      this.onLoading(false)
+      const status = err.response.status;
+      if(status === 400) {
+
+        swal(`Not found`);
+
+      } else if(status === 401) {
+
+        swal(`Please Login again to use this feature.`, {
+          icon: "error",
+        })
+
+        .then(value => {
+            this.setState({isLog: 'not'})
+        })
+
+      } else {
+        swal(`There is an error with the server, please try again.`, {
+          icon: "error",
+        })
+      }
+    })
   }
 
   onLoading = (status) => {
@@ -83,7 +152,7 @@ class UserProfile extends Component {
         let data = this.checkInfo()
         axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/updateUser', data, {
           headers: {
-            'Authorization': this.state.token
+            'Authorization': USER.TOKEN()
           }
         })
 
@@ -115,8 +184,19 @@ class UserProfile extends Component {
   
 
   render() {
+
+    const { classes, subjects } = this.state;
+
     return (
       <div className="mb-5">
+
+        {/* check to go back login page */}
+        {this.state.isLog ? (
+          this.state.isLog === "not" ? (
+            <Redirect to="/login" className="nav-link"></Redirect>
+          ) : null
+        ) : null}
+
         {this.state.isLoading ? <Loading/> : null}
         <div
           className="page-header header-filter"
@@ -172,9 +252,9 @@ class UserProfile extends Component {
                     </div>
                   </div>
                 </div>
-                {/* next exam */}
-                <NextExam/>
 
+                {/* user classes */}
+                { classes ? <Table classes={ classes } subjects={ subjects } title="Your Classes"/> : null }
 
                 {/* {this.state.examDone ? this.state.examDone.map((key, item) => {}) : null} */}
 
