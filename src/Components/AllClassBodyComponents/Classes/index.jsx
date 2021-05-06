@@ -58,9 +58,11 @@ class index extends Component {
             this.props.handleLoading(false)
             const status = err.response.status;
 
-            if(status === 400){
+            if(status === 500){
 
-              swal(`Please pay the tuition for the previous class before you subscribe one.`);
+              swal(`Please pay the tuition for the previous class before you subscribe one.`, {
+                icon: "warning"
+              });
 
             } else if(status === 401) {
 
@@ -136,6 +138,7 @@ class index extends Component {
 
     return (
       <div data-aos="flip-left" data-aos-delay="100" data-aos-duration="1000">
+
         {/* chưa có tài khoản sẽ ra chạy về login */}
         {this.state.isLog ? (
           this.state.isLog === "not" ? (
