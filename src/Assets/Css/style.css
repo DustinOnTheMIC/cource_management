@@ -388,7 +388,9 @@ button:not(:disabled),
 [type="submit"]:not(:disabled) {
   cursor: pointer;
 }
-
+.lgksPe {
+  display: none;
+}
 ::-moz-focus-inner {
   padding: 0;
   border-style: none;
