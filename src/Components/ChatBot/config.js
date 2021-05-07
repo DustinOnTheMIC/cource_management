@@ -1,5 +1,6 @@
 import AllSubject from './share/allSubject/AllSubject'
 import SuggestClass from './share/suggestClass/SuggestClass'
+import axios from 'axios';
 
 const botAvatar = "https://i.pinimg.com/564x/07/65/a6/0765a691dbfa90d99821e88cdf8e71dd.jpg";
 
@@ -14,7 +15,7 @@ const steps = [
         options:[
             {value: "suggestSubject", label:'Suggest subject', trigger: 'suggestSubject'},
             {value: "suggestWhatUserLike", label:'Suggest by what you like', trigger: 'suggestWhatUserLike'},
-            {value: "suggestByScore", label:'Suggest By Score', trigger: 'askMath'}
+            {value: "suggestByScore", label:"You don't know what to learn?", text: "ok", trigger: 'askMath'}
         ],
     },
     //suggest the subject for user
@@ -60,7 +61,7 @@ const steps = [
     //suggest by scores
         {
             id: "askMath", 
-            message: 'What is your math scores?',
+            message: 'So, what is your math scores?',
             trigger: 'math'
         },
         {
@@ -70,9 +71,14 @@ const steps = [
         },
         {
             id: "askLike",
+            message: "And what do you like?",
+            trigger: 'optionsLike'
+        },
+        {
+            id: "optionsLike",
             options: [
-                {value: "webDev", label: "Web development", trigger: "showResult"},
-                {value: "design", label: "Design", trigger: "showResult"}
+                {value: "web", label: "Web development", trigger: "showResult"},
+                {value: "app", label: "Application development", trigger: "showResult"}
             ]
         },
             {
@@ -91,6 +97,7 @@ export const config ={
     botAvatar: botAvatar,
     headerTitle: 'AI run by rice',
     botDelay:0,
+    enableSmoothScroll: true,
     handleEnd: (value)=> {
         // window.location.href = value.values.pop()
     },

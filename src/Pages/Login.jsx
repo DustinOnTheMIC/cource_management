@@ -78,6 +78,10 @@ class Login extends Component {
                     if(err.response.status === 400 ){
                         this.isEmail(false)
                         this.setState({ isEmail:false })
+                    } else {
+                        swal(`There is an error with the server, please try again.`, {
+                            icon: "error",
+                        })
                     }
                 })
             } else {
@@ -127,16 +131,16 @@ class Login extends Component {
 
         .catch(err => {
             this.setState({isLoading: false})
-            const status = err.response.status;
+            const status = err.response.status;            
 
             if(status === 400) {
                 swal({
                     text: `Your password is incorrect`,
                     icon: 'warning'
                 })
-            }else {
+            } else {
                 swal(`There is an error with the server, please try again.`, {
-                icon: "error",
+                    icon: "error",
                 })
             }
         })

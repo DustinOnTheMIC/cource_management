@@ -11,7 +11,7 @@ class index extends Component {
             theme: {
                 background: '#f1f2f6',
                 fontFamily: this.fontFamily,
-                headerBgColor: 'linear-gradient(190deg, #1EB2A6, #A6CBD3)',
+                headerBgColor: '#89ABE3FF',
                 headerFontColor: '#fff',
                 headerFontSize: '15px',
                 botBubbleColor: 'linear-gradient(-190deg, #d1d8e0, #1e272e)',
@@ -28,7 +28,7 @@ class index extends Component {
         'Arial', '"Noto Sans"', ' "Liberation Sans"', 
         'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', 
         '"Segoe UI Symbol"', 
-    ].join(',')
+    ].join(',');
 
     render() {
         const { theme } = this.state
