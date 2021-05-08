@@ -77,7 +77,6 @@ class UserProfile extends Component {
     
     .then( res => {
       const response = res.data.data;
-
       if(response[0]){
         let exam = []
         let subjects = []
@@ -85,7 +84,7 @@ class UserProfile extends Component {
         response.map( item => {
           subjects.push(item.id_exams.class.subject.name);
           exam.push({
-            id: item.id_exams.id,
+            id: item.id,
             className: item.id_exams.class.name,
             dateStart: item.id_exams.date_begin,
             timeStart: item.id_exams.time_begin,

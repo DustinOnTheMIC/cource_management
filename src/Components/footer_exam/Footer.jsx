@@ -1,0 +1,59 @@
+import React, { Component } from "react";
+
+class Footer extends Component {
+  render() {
+    return (
+      <footer className="footer">
+        <div className="container">
+          <div className="footer-inner">
+            <div className="social-network">
+              <h4>Copyright by Academia 2021</h4>
+              <div className="icon">
+                <a href="#" className="fab fa-facebook"></a>
+              </div>
+              <div className="icon">
+                <a href="#" className="fab fa-twitter"></a>
+              </div>
+              <div className="icon">
+                <a href="#" className="fab fa-instagram"></a>
+              </div>
+            </div>
+            <div className="support">
+              <h4>Support</h4>
+              <ul>
+                <li>
+                  <a href="#">
+Introduce</a>
+                </li>
+                <li>
+                  <a href="#">Rules</a>
+                </li>
+                <li>
+                  <a href="#">Policy</a>
+                </li>
+              </ul>
+            </div>
+            <div className="contact-me">
+              <h4>Contact us</h4>
+              <ul>
+                <li>
+                  <i className="fas fa-globe-asia item-footer"></i><span className="item-footer"> Website:</span>  academia.com
+                </li>
+                <li>
+                  <i className="fas fa-map-marked item-footer"></i><span className="item-footer"> Address:</span> 245 Nguyễn Văn Linh,
+                  Hải Châu, Đà Nẵng
+                </li>
+                <li>
+                  <i className="fas fa-envelope-open-text item-footer"></i><span className="item-footer"> Email:</span> Email:
+                  academia@gmail.com
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    );
+  }
+}
+
+export default Footer;

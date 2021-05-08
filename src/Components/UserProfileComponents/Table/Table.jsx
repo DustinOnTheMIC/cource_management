@@ -71,7 +71,8 @@ class NextExam extends Component {
 
                                             userExam.exam.map( item =>
                                                 <tr className="row100 body">
-                                                    <td className="cell100 column2"><a href="https://" title={item.id}>{ item.className }</a></td>
+                                                    {/* id của exam t đang để trong cái title kìa, lấy làm gì thì làm */}
+                                                    <td className="cell100 column2"><a href={`/${item.id}/detail_test`} target="_blank" title={item.id}>{ item.className }</a></td>
                                                     <td className="cell100 column3">{ item.dateStart }</td>
                                                     <td className="cell100 column4">{ item.timeStart }</td>
                                                     <td className="cell100 column6">{ item.duration }</td>
