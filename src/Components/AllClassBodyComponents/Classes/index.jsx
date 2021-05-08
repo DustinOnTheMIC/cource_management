@@ -33,6 +33,8 @@ class index extends Component {
       buttons: true,
       dangerMode: true,
     }).then((value) => {
+      this.props.handleLoading(false)
+
       if (value) {
         if (USER.TOKEN()) {
         let data = {
@@ -103,7 +105,9 @@ class index extends Component {
 
           .catch((err) => {
             this.props.handleLoading(false)
-            swal(`Please pay the tuition for the previous class before you subscribe one`);
+            swal(`Please pay the tuition for the previous class before you subscribe one.`, {
+              icon: "warning"
+            });
           });
 
       } else if(!USER.STATUS() && !USER.TOKEN()) {
@@ -116,6 +120,8 @@ class index extends Component {
         })
         
         .then((value) => {
+          this.props.handleLoading(false)
+
           if (value) {
             this.setState({ isLog: "not" });
           }

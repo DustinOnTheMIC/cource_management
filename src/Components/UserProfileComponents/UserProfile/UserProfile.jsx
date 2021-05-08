@@ -7,7 +7,7 @@ import axios from "axios"
 import Loading from '../../Loading/Loading'
 import * as USER from '../../../constant'
 import Table from "../Table/Table"
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 
 class UserProfile extends Component {
@@ -18,20 +18,23 @@ class UserProfile extends Component {
         
       ],
       token: '',
-      subjects: []
+      subjects: [],
+      userClasses: null,
+      userExam: null
     }
   }
 
   componentDidMount() {
-    this.getUserInfo()
-    this.getUserClass()
-
+    this.getUserInfo();
+    this.getUserClass();
+    this.getUserNextExam();
+    this.getUserDoneExam();
   }
 
   getUserClass() {
     this.onLoading(true);
 
-    axios.get("https://quanlikhoahoc.herokuapp.com/api/v1/userprofile/class", {
+    axios.get("https://quanlikhoahoc.herokuapp.com/api/v1/userprofile/classes", {
       headers: {
         'Authorization': "Bearer "+ USER.TOKEN()
       }
@@ -39,20 +42,103 @@ class UserProfile extends Component {
     
     .then( res => {
       const response = res.data.data
-      let classes = []
-      let subjects = []
 
-      response.map( item => {
-        subjects.push(item.class.subject.name)
-        classes.push({
-          className: item.class.name,
-          dateStart: item.class.course.day_start,
-          dateEnd: item.class.course.day_end,
-          teacher: item.class.teacher.name
-        })
+      if(response[0]){
+          let classes = []
+          let subjects = []
+
+    
+          response.map( item => {
+            subjects.push(item.class.subject.name)
+            classes.push({
+              className: item.class.name,
+              dateStart: item.class.course.day_start,
+              dateEnd: item.class.course.day_end,
+              teacher: item.class.teacher.name
+            })
+          })
+
+          this.setState({ 
+            userClasses: {
+              classes: classes,
+              subjects: subjects
+            }
+          })
+        }
       })
-      this.setState({ classes: classes })
-      this.setState({ subjects: subjects })
+  }
+
+  getUserNextExam() {
+    this.onLoading(true);
+    
+    axios.get("https://quanlikhoahoc.herokuapp.com/api/v1/exams/userprofile/next_exams", {
+      headers: {
+        'Authorization': "Bearer "+ USER.TOKEN()
+      }
+    })
+    
+    .then( res => {
+      const response = res.data.data;
+
+      if(response[0]){
+        let exam = []
+        let subjects = []
+
+        response.map( item => {
+          subjects.push(item.id_exams.class.subject.name);
+          exam.push({
+            id: item.id_exams.id,
+            className: item.id_exams.class.name,
+            dateStart: item.id_exams.date_begin,
+            timeStart: item.id_exams.time_begin,
+            duration: item.duration
+          });
+        });
+
+        this.setState({
+          userExam:{
+            exam: exam,
+            subjectsExam: subjects
+          }
+        })
+      }
+    })
+  }
+
+  getUserDoneExam() {
+    this.onLoading(true);
+    
+    axios.get("https://quanlikhoahoc.herokuapp.com/api/v1/exams/userprofile/done_exams", {
+      headers: {
+        'Authorization': "Bearer "+ USER.TOKEN()
+      }
+    })
+    
+    .then( res => {
+      console.log(res);
+      // const response = res.data.data;
+
+      // if(response[0]){
+      //   let exam = []
+      //   let subjects = []
+
+      //   response.map( item => {
+      //     subjects.push(item.id_exams.class.subject.name);
+      //     exam.push({
+      //       className: item.id_exams.class.name,
+      //       dateStart: item.id_exams.date_begin,
+      //       timeStart: item.id_exams.time_begin,
+      //       duration: item.duration
+      //     });
+      //   });
+
+      //   this.setState({
+      //     userExam:{
+      //       exam: exam,
+      //       subjectsExam: subjects
+      //     }
+      //   })
+      // }
     })
   }
 
@@ -185,7 +271,7 @@ class UserProfile extends Component {
 
   render() {
 
-    const { classes, subjects } = this.state;
+    const { userClasses, userExam } = this.state;
 
     return (
       <div className="mb-5">
@@ -232,6 +318,7 @@ class UserProfile extends Component {
                   <div className="panel col-md-10 col-12 d-flex justify-content-center flex-column mb-5">
                     <h1 className="title">Bio Graph</h1>
                     <div className="panel-body bio-graph-info">
+
                       {this.state.user.map(item => {
                         return <FormInfo
                           key={item.name}
@@ -240,6 +327,7 @@ class UserProfile extends Component {
                           onUpdateValue={this.onUpdateValue}
                           onLoading={this.onLoading}/>
                       })}
+
                     </div>
                     <div className="item-submit-info">
                       <button
@@ -254,8 +342,11 @@ class UserProfile extends Component {
                 </div>
 
                 {/* user classes */}
-                { classes ? <Table classes={ classes } subjects={ subjects } title="Your Classes"/> : null }
+                { userClasses ? <Table userClasses={userClasses} title="Your Classes"/> : null }
+                {/* {this.state.examDone ? this.state.examDone.map((key, item) => {}) : null} */}
 
+                {/* user exam */}
+                { userExam ? <Table userExam={userExam} title="Next Exam"/> : null }
                 {/* {this.state.examDone ? this.state.examDone.map((key, item) => {}) : null} */}
 
                 <h1 className="title col-12 text-center">Your Exam</h1>
