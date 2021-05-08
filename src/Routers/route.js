@@ -11,6 +11,10 @@ import UserProfile from '../Pages/UserProfile';
 import Error404 from '../Pages/Error404/Error404';
 import Login from '../Pages/Login'
 import TeacherProfile from '../Pages/TeacherProfile'
+// EXAM
+import TestDetail from '../Pages/TestDetail';
+import DoTest from '../Pages/DoTest';
+import ResultTest from '../Pages/ResultTest';
 
 const routes = [
     {
@@ -91,12 +95,32 @@ const routes = [
         exact : true,
         main: ({match}) => <AllClass match={match}/>
     },
+     // EXAM
+     {
+        path : '/:idExam/detail_test',
+        name : 'TestDetail',
+        exact : true,
+        main : ({match}) => <TestDetail match={match} />
+    },
+    {
+        path : '/do_test/:idTest/to_do',
+        name : 'DoTest',
+        exact : true,
+        main : ({ match,history}) => <DoTest match={ match} history={history} />
+    },
+    {
+        path : '/result_test',
+        name : 'ResultTest',
+        exact : true,
+        main : () => <ResultTest  />
+    },
     {
         path : '*',
         name: 'NotFound',
         exact : true,
         main: ({history}) => <Error404 history={history}/>
     },
+   
 ];
 
 
