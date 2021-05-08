@@ -27,6 +27,7 @@ class App extends React.Component {
   );
 }
 showRouter = (routes) =>{
+  console.log(routes);
   let result = null;
   if(routes.length > 0){
     result = routes.map((route,index) => {
