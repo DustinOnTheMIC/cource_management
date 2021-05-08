@@ -160,11 +160,11 @@ class FormInfo extends Component {
               { this.state.isLoading ? <Loading/> : null }
                 <div className="item-group-info text-center">
                     <span>{capitalizeName}:</span>
-                    <span
+                    <label
                         className="text-info">
                         {name === 'password' ? '***********' : content}
-                    </span>
-                    { name === 'email' ? '' : <FontAwesomeIcon className="ml-5 p5 custom-hover" icon={faPen} onClick={e => this.handleChange(e)} /> }
+                    </label>
+                    { name === 'email' ? <p></p> : <FontAwesomeIcon className="ml-5 p5 custom-hover" icon={faPen} onClick={e => this.handleChange(e)} /> }
                 </div>
             </form>
         );

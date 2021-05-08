@@ -18,30 +18,51 @@ class index extends Component {
     this.setState({ isLoading: status})
   }
 
+  setInfoClass(res) {
+    this.setState({
+      isLoading: false,
+      infoClass: res.data.data,
+      pageTitle: res.data.data[0].subject.name,
+      textDescriptionSubject: res.data.data[0].subject.description,
+    });
+  }
+
   componentDidMount() {
-    const { id_subject } = this.props;
+    const { id_subject, level } = this.props;
     this.handleLoading(true) //mount loading component
+
     if (id_subject) {
       // get all class of subject 
-      axios
+      if(!level) {
+        axios
         .get(API.API_CLASS + `/${id_subject}`)
         .then((res) => {
-          this.setState({
-            isLoading: false,
-            infoClass: res.data.data,
-            pageTitle: res.data.data[0].subject.name,
-            textDescriptionSubject: res.data.data[0].subject.description,
-          });
+          this.handleLoading(false)
+          this.setInfoClass(res)
         })
         .catch((err) => {
           this.handleLoading(false) //un mount loading component
           console.log(err)
         });
+      } else {
+        axios
+        .get(API.API_CURRENT + `class/chatbot/${id_subject}/${level}`)
+        .then((res) => {
+          this.handleLoading(false)
+          this.setInfoClass(res)
+        })
+        .catch((err) => {
+          this.handleLoading(false) //un mount loading component
+          console.log(err)
+        });
+      }
     } else {
       // get all class of system
-      axios
+      if(!level) {
+        axios
         .get(API.API_CLASS)
         .then((res) => {
+          this.handleLoading(false)
           this.setState({
             isLoading: false,
             infoClass: res.data.data,
@@ -51,6 +72,19 @@ class index extends Component {
           this.handleLoading(false) //un mount loading component
           console.log(err)
         });
+      } else {
+        axios
+        .get(API.API_CURRENT + `class/chatbot/all/${level}`)
+        .then((res) => {
+          this.handleLoading(false)
+          this.setInfoClass(res)
+
+        })
+        .catch((err) => {
+          this.handleLoading(false) //un mount loading component
+          console.log(err)
+        });
+      }
     }
   }
 

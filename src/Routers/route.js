@@ -80,6 +80,18 @@ const routes = [
         main: ({match}) => <AllClass match={match}/>
     },
     {
+        path : '/class/chatbot/:id_subject/:level',
+        name : 'ClassOfSubject',
+        exact : true,
+        main: ({match}) => <AllClass match={match}/>
+    },
+    {
+        path : '/class/chatbot/all/:level',
+        name : 'ClassOfSubject',
+        exact : true,
+        main: ({match}) => <AllClass match={match}/>
+    },
+    {
         path : '*',
         name: 'NotFound',
         exact : true,
