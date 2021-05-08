@@ -5,7 +5,7 @@ import about from '../../../Assets/images/about.jpg'
 class Center extends Component {
     render() {
         return (
-            <div>
+            <div className="none-scroll-bar">
                 <section className="hero-wrap" style={{ backgroundImage: `url(${bg1})` }}>
                     <div className="overlay"></div>
                     <div className="container">
