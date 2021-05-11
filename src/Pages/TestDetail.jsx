@@ -58,7 +58,7 @@ class TestDetail extends Component {
               <div className="exam-detail-panel">
                 <div className="exam-detail-item">
                   <div className="title">
-                    <i className="far fa-file-alt"></i>Number of question
+                    <i className="fa fa-info-circle"></i><i> Number of question</i>
                   </div>
                   <div className="description">
                     {dataExam.number_of_question} questions
@@ -66,14 +66,14 @@ class TestDetail extends Component {
                 </div>
                 <div className="exam-detail-item">
                   <div className="title">
-                    <i className="far fa-file-alt"></i>Duration
+                    <i className="fa fa-info-circle"></i><i> Duration</i>
                   </div>
                   <div className="description">{dataExam.duration} minutes</div>
                 </div>
               </div>
               <div className="test-now">
                 <Link to={`/do_test/${dataExam.id}/to_do`}>
-                  <i className="fas fa-play"></i>Do Test
+                  <i className="fa fa-play"></i>Do Test
                 </Link>
               </div>
             </div>

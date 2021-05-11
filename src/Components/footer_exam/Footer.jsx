@@ -9,13 +9,13 @@ class Footer extends Component {
             <div className="social-network">
               <h4>Copyright by Academia 2021</h4>
               <div className="icon">
-                <a href="#" className="fab fa-facebook"></a>
+                <a href="#" className="fa fa-facebook"></a>
               </div>
               <div className="icon">
-                <a href="#" className="fab fa-twitter"></a>
+                <a href="#" className="fa fa-twitter"></a>
               </div>
               <div className="icon">
-                <a href="#" className="fab fa-instagram"></a>
+                <a href="#" className="fa fa-instagram"></a>
               </div>
             </div>
             <div className="support">
