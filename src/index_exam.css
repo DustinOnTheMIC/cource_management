@@ -68,11 +68,6 @@ button, input, textarea, select {
     font-size: 14px;
 }
 
-::before, ::after {
-    box-sizing: border-box;
-    font-family: 'Roboto Slab', serif;
-}
-
 .bg-primary {
     background: var(--primary-color);
 }
@@ -650,6 +645,11 @@ main#in-test, main#history .container, main#result-test .container, #forgot-pass
     cursor: pointer;
     color: #ffffff;
 }
+
+.social-network .icon .fa {
+    color: #fff;
+}
+
 
 .social-network .icon:hover {
     transform: scale(1.08);

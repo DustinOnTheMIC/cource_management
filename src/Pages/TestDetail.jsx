@@ -17,9 +17,8 @@ class TestDetail extends Component {
   }
 
   componentDidMount() {
-    let idExam = "2";
+    let {idExam} =  this.props.match.params;
     let token = localStorage.getItem("token");
-    console.log(token);
     axios
       .get(`${API.API_EXAM_DETAIL}/${idExam}`, {
         headers: {
@@ -54,20 +53,12 @@ class TestDetail extends Component {
             <div className="container">
               <h3 className="title"> {dataExam.name}</h3>
               <p className="description">
-                {/* {dataExam.description} */}
-                JavaScript là một ngôn ngữ lập trình hoặc ngôn ngữ kịch bản cho
-                phép triển khai những chức năng phức tạp trên trang web như hiển
-                thị các cập nhật nội dung kịp thời, tương tác với bản đồ, hoạt
-                cảnh 2D/3D vv...
-                JavaScript là một ngôn ngữ lập trình hoặc ngôn ngữ kịch bản cho
-                phép triển khai những chức năng phức tạp trên trang web như hiển
-                thị các cập nhật nội dung kịp thời, tương tác với bản đồ, hoạt
-                cảnh 2D/3D vv...
+                {dataExam.description}
               </p>
               <div className="exam-detail-panel">
                 <div className="exam-detail-item">
                   <div className="title">
-                    <i className="far fa-file-alt"></i>Number of question
+                  <i className="fa fa-info-circle"></i><i> Number of question</i>
                   </div>
                   <div className="description">
                     {dataExam.number_of_question} questions
@@ -75,14 +66,14 @@ class TestDetail extends Component {
                 </div>
                 <div className="exam-detail-item">
                   <div className="title">
-                    <i className="far fa-file-alt"></i>Duration
+                  <i className="fa fa-info-circle"></i><i> Duration</i>
                   </div>
                   <div className="description">{dataExam.duration} minutes</div>
                 </div>
               </div>
               <div className="test-now">
                 <Link to={`/do_test/${dataExam.id}/to_do`}>
-                  <i className="fas fa-play"></i>Do Test
+                <i className="fa fa-play"></i>Do Test
                 </Link>
               </div>
             </div>

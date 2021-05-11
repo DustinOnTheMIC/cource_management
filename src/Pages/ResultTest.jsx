@@ -1,9 +1,6 @@
-import axios from "axios";
 import React, { Component } from "react";
 import Footer from "../Components/footer_exam/Footer";
 import Header from "../Components/header_exam/Header";
-import Loading from '../Components/Loading/Loading'
-import * as API from "../env";
 import '../index_exam.css';
 
 
@@ -12,25 +9,15 @@ class ResultTest extends Component {
     super(props);
     this.state = {
       dataResult: "",
-      loading: true,
     };
   }
   componentDidMount() {
     let resultTest = JSON.parse(localStorage.getItem("resultTest"));
-    let token = localStorage.getItem("token");
-    axios
-      .post(`${API.API_CHECK_TEST}/${resultTest.idTest}`, resultTest.answer, {
-        headers: {
-          Authorization: "Bearer " + token,
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => {
-        this.setState({
-          dataResult: res.data,
-          loading: false,
-        });
+    if (resultTest) {
+      this.setState({
+        dataResult: resultTest,
       });
+    }
   }
 
   render() {
@@ -38,9 +25,6 @@ class ResultTest extends Component {
     return (
       <div>
         <Header />
-        {dataResult.length === 0 ? (
-          <div>{this.state.loading ? <Loading /> : null}</div>
-        ) : (
           <div id="result-test">
           <div className="container">
             <h2 className="title">Result Of Test</h2>
@@ -67,8 +51,6 @@ class ResultTest extends Component {
             </div>
           </div>
         </div>
-        )}
-        
         <Footer />
       </div>
     );
