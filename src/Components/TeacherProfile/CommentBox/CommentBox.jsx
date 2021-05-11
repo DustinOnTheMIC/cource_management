@@ -22,7 +22,7 @@ class CommentBox extends Component {
     // LINK CHECK ISCMT COMMON 
     // ${API.API_CHECK_SHOW_SUB_CMT}/${USER.IDUSER()}
     axios
-      .get(`https://quanlikhoahoc.herokuapp.com/api/v1/rated/checkValidate/1`, {
+      .get(`${API.API_CHECK_SHOW_SUB_CMT}/${USER.IDUSER()}`, {
         headers: {
           Authorization: `Bearer ${USER.TOKEN()}`,
         },
@@ -170,7 +170,6 @@ class CommentBox extends Component {
         </div>
         {/* END CARD RATING */}
         <div>
-          {isCmt ? (
             <div className="input-group mb-3 d-flex">
               <input
                 type="text"
@@ -185,19 +184,12 @@ class CommentBox extends Component {
                   className="btn btn-submit-cmt py-2"
                   onClick={(e) => this.openPopup(e)}
                   type="button"
+                  disabled={isCmt ?  false : "disabled"}
                 >
                   Submit
                 </button>
               </div>
             </div>
-          ) : (
-            <p>
-              <i>
-                You must be complete the course before commenting and evaluating
-                this instructor
-              </i>
-            </p>
-          )}
         </div>
       </div>
     );
