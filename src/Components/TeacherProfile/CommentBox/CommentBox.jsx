@@ -22,7 +22,7 @@ class CommentBox extends Component {
     // LINK CHECK ISCMT COMMON 
     // ${API.API_CHECK_SHOW_SUB_CMT}/${USER.IDUSER()}
     axios
-      .get(`${API.API_CHECK_SHOW_SUB_CMT}/${USER.IDUSER()}`, {
+    .get(`${API.API_CHECK_SHOW_SUB_CMT}/${USER.IDUSER()}`, {
         headers: {
           Authorization: `Bearer ${USER.TOKEN()}`,
         },

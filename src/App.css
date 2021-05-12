@@ -41,3 +41,7 @@
 .text-logo{
   color: rgba(45, 52, 54,1.0) !important
 }
+
+.none-scroll-bar ::-webkit-scrollbar{
+  display: none;
+}

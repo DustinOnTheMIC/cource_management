@@ -28,7 +28,7 @@ class DoTest extends Component {
     let { idTest } = this.props.match.params;
     let infoTest = JSON.parse(localStorage.getItem("infoTest"));
     if (idTest && infoTest) {
-      let t_begin = "14:54:00"; //SET TIME BEGIN TEMP
+      let t_begin = infoTest.timeBegin //SET TIME BEGIN TEMP
       let checkTime = parseInt(t_begin.split(":")[1]) + 60;
       let date = new Date();
       if (Math.ceil(checkTime / 60) > 0) {
@@ -40,7 +40,6 @@ class DoTest extends Component {
         this.secondsRemaining = t_sub * 60;
       }
       let token = localStorage.getItem("token");
-      // CHECK DONE TEST
       axios
         .get(`${API.API_CHECK_DO_TEST}`, {
           headers: {
@@ -49,10 +48,9 @@ class DoTest extends Component {
         })
         .then((res) => {
           if (res.data.data) {
-            console.log(res.data.data);
-            let index = -1;
-            index = res.data.data.findIndex((x) => x.exams.id === idTest);
-            if (index !== -1) {
+            let index ;
+            index = res.data.data.findIndex((x) => x.id === parseInt(idTest));
+            if (index === -1) {
               this.setState({
                 isDone: true,
                 loading: false,
@@ -171,54 +169,64 @@ class DoTest extends Component {
       <div>
         <Header />
         <div>{this.state.loading ? <Loading /> : null}</div>
-        <div id="in-test">
-          <div className="container content">
-            <div className="question-sheet">
-              <div className="title-sheet-answer">
-                EXAM: {JSON.parse(localStorage.getItem("infoTest")).name}{" "}
+          <div id="in-test">
+            <div className="container content">
+              <div className="question-sheet">
+                <div className="title-sheet-answer">
+                  EXAM: {JSON.parse(localStorage.getItem("infoTest")).name}{" "}
+                </div>
+                <form
+                  action=""
+                  method="POST"
+                  name="answer-form"
+                  id="answer-form"
+                >
+                  <div className="show-question">
+                    {this.showQuestion(dataTest)}
+                  </div>
+                  <div className="number-order">
+                    <button
+                      id="btn-submit"
+                      onClick={() => this.handleSubmitResult()}
+                    >
+                      SUBMIT
+                    </button>
+                  </div>
+                </form>
               </div>
-              <form action="" method="POST" name="answer-form" id="answer-form">
-                <div className="show-question">
-                  {this.showQuestion(dataTest)}
-                </div>
-                <div className="number-order">
-                  <button
-                    id="btn-submit"
-                    onClick={() => this.handleSubmitResult()}
-                  >
-                    SUBMIT
-                  </button>
-                </div>
-              </form>
-            </div>
-            <div className="answer-sheet">
-              <div className="answer-sheet-inner">
-                <div className="header-sheet">
-                  {dataTest.length > 0 ? (
-                    <div className="time" id="timeCount">
-                      {/* {min} : {sec} */}
-                      TIME: {min >= 0 ? `${min} : ${sec}` : "00 : 00"}
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                  <h4 className="title-sheet-answer" style={{ color: "#fff" }}>
-                    List answer
-                  </h4>
-                </div>
-                <div className="content">{this.showChooseAnswer(dataTest)}</div>
-                <div className="footer-sheet">
-                  <button
-                    id="btn-submit"
-                    onClick={() => this.handleSubmitResult()}
-                  >
-                    SUBMIT
-                  </button>
+              <div className="answer-sheet">
+                <div className="answer-sheet-inner">
+                  <div className="header-sheet">
+                    {dataTest.length > 0 ? (
+                      <div className="time" id="timeCount">
+                        {/* {min} : {sec} */}
+                        TIME: {min >= 0 ? `${min} : ${sec}` : "00 : 00"}
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                    <h4
+                      className="title-sheet-answer"
+                      style={{ color: "#fff" }}
+                    >
+                      List answer
+                    </h4>
+                  </div>
+                  <div className="content">
+                    {this.showChooseAnswer(dataTest)}
+                  </div>
+                  <div className="footer-sheet">
+                    <button
+                      id="btn-submit"
+                      onClick={() => this.handleSubmitResult()}
+                    >
+                      SUBMIT
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
         <Footer />
       </div>
     );

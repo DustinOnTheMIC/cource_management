@@ -20,7 +20,8 @@ class UserProfile extends Component {
       token: '',
       subjects: [],
       userClasses: null,
-      userExam: null
+      userExam: null,
+      doneExam: null,
     }
   }
 
@@ -32,7 +33,6 @@ class UserProfile extends Component {
   }
 
   getUserClass() {
-    this.onLoading(true);
 
     axios.get("https://quanlikhoahoc.herokuapp.com/api/v1/userprofile/classes", {
       headers: {
@@ -41,13 +41,12 @@ class UserProfile extends Component {
     })
     
     .then( res => {
-      const response = res.data.data
+      const response = res.data.data;
 
       if(response[0]){
-          let classes = []
-          let subjects = []
+          let classes = [];
+          let subjects = [];
 
-    
           response.map( item => {
             subjects.push(item.class.subject.name)
             classes.push({
@@ -69,7 +68,6 @@ class UserProfile extends Component {
   }
 
   getUserNextExam() {
-    this.onLoading(true);
     
     axios.get("https://quanlikhoahoc.herokuapp.com/api/v1/exams/userprofile/next_exams", {
       headers: {
@@ -105,7 +103,6 @@ class UserProfile extends Component {
   }
 
   getUserDoneExam() {
-    this.onLoading(true);
     
     axios.get("https://quanlikhoahoc.herokuapp.com/api/v1/exams/userprofile/done_exams", {
       headers: {
@@ -115,29 +112,30 @@ class UserProfile extends Component {
     
     .then( res => {
       console.log(res);
-      // const response = res.data.data;
+      const response = res.data.data;
+      console.log({response});
 
-      // if(response[0]){
-      //   let exam = []
-      //   let subjects = []
+      if(response[0]){
+        let doneExam = []
 
-      //   response.map( item => {
-      //     subjects.push(item.id_exams.class.subject.name);
-      //     exam.push({
-      //       className: item.id_exams.class.name,
-      //       dateStart: item.id_exams.date_begin,
-      //       timeStart: item.id_exams.time_begin,
-      //       duration: item.duration
-      //     });
-      //   });
+        response.map( item => 
+          doneExam.push({
+            id: item.exams.id,
+            className: item.class.name,
+            subjectImage: item.class.subject.avatar,
+            subjectName: item.class.subject.name,
+            rightAns: item.right_ans,
+            wrongAns: item.wrong_ans,
+            scores: item.scores,
+            examDate: item.exams.date_begin,
+            examTime: item.exams.time_begin
+          })
+        );
 
-      //   this.setState({
-      //     userExam:{
-      //       exam: exam,
-      //       subjectsExam: subjects
-      //     }
-      //   })
-      // }
+        this.setState({
+          doneExam: doneExam
+        })
+      }
     })
   }
 
@@ -159,16 +157,16 @@ class UserProfile extends Component {
         phone: res.data.data.phone,
         password: null
       }
-      this.setState({userInfo : userInfo})
-      let user = []
+      this.setState({userInfo : userInfo});
+      let user = [];
       for (const [key, value] of Object.entries(userInfo)) {
         user.push({name: key, content: value})
       }
-      this.setState({user})
+      this.setState({ user });
     })
 
     .catch(err => {
-      this.onLoading(false)
+      this.onLoading(false);
       const status = err.response.status;
       if(status === 400) {
 
@@ -193,30 +191,30 @@ class UserProfile extends Component {
   }
 
   onLoading = (status) => {
-    this.setState({isLoading: status})
+    this.setState({isLoading: status});
   }
   
   onUpdateValue = (a,arg) => {
-    let index = this.state.user.findIndex(item => item.name === a)
-    let user = this.state.user.filter(item => item.name !== a)
-    user.splice(index, 0, {name: a, content: arg})
-    this.setState({user:user})
-    document.getElementById('btnSave').classList.remove('d-none')
-    this.onLoading(false)
+    let index = this.state.user.findIndex(item => item.name === a);
+    let user = this.state.user.filter(item => item.name !== a);
+    user.splice(index, 0, {name: a, content: arg});
+    this.setState({user:user});
+    document.getElementById('btnSave').classList.remove('d-none');
+    this.onLoading(false);
   }
 
   checkInfo(){
-      const nameChanged = this.state.user[0].content
-      const phoneChanged = this.state.user[2].content
-      const passwordChanged = this.state.user[3].content
-      const {name, phone, password} = this.state.userInfo
-      if(nameChanged !== name && phoneChanged !== phone && passwordChanged !== password){
-        return {name: nameChanged, phone: phoneChanged, password: passwordChanged}
-      }else if(nameChanged !== name && phoneChanged !== phone){
-        return {name: nameChanged, phone: phoneChanged}
-      }else if(nameChanged !== name){
-        return {name: nameChanged}
-      }
+    const nameChanged = this.state.user[0].content
+    const phoneChanged = this.state.user[2].content
+    const passwordChanged = this.state.user[3].content
+    const {name, phone, password} = this.state.userInfo
+    if(nameChanged !== name && phoneChanged !== phone && passwordChanged !== password){
+      return {name: nameChanged, phone: phoneChanged, password: passwordChanged}
+    }else if(nameChanged !== name && phoneChanged !== phone){
+      return {name: nameChanged, phone: phoneChanged}
+    }else if(nameChanged !== name){
+      return {name: nameChanged}
+    }
   }
 
   handleSaveUserInfo = e => {
@@ -232,9 +230,9 @@ class UserProfile extends Component {
     .then((value) => {
       if(value){
 
-        this.onLoading(true)
+        this.onLoading(true);
 
-        let data = this.checkInfo()
+        let data = this.checkInfo();
         axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/updateUser', data, {
           headers: {
             'Authorization': USER.TOKEN()
@@ -242,7 +240,7 @@ class UserProfile extends Component {
         })
 
         .then(res => {
-          this.onLoading(false)
+          this.onLoading(false);
           swal(`Done! You just changed your information`, {
             icon: "success",
           });
@@ -250,7 +248,7 @@ class UserProfile extends Component {
 
         .catch(err => {
 
-          this.onLoading(false)
+          this.onLoading(false);
 
           const status = err.response.status;
           if(status === 401) {
@@ -320,11 +318,11 @@ class UserProfile extends Component {
 
                       {this.state.user.map(item => {
                         return <FormInfo
-                          key={item.name}
-                          name={item.name} 
-                          content={item.content} 
-                          onUpdateValue={this.onUpdateValue}
-                          onLoading={this.onLoading}/>
+                          key={ item.name }
+                          name={ item.name } 
+                          content={ item.content } 
+                          onUpdateValue={ this.onUpdateValue }
+                          onLoading={ this.onLoading }/>
                       })}
 
                     </div>
@@ -347,25 +345,17 @@ class UserProfile extends Component {
                 {/* user exam */}
                 { userExam ? <Table userExam={userExam} title="Next Exam"/> : null }
                 {/* {this.state.examDone ? this.state.examDone.map((key, item) => {}) : null} */}
-
-                <h1 className="title col-12 text-center">Your Exam</h1>
-                <div className="d-flex flex-wrap justify-content-center">
-
-                  {this.state.examDone ? this.state.examDone.map((key,example) => <CardExam />)  : null}
-
-                  <CardExam
-                    subject="Javascript"
-                    img="https://tinhocaz.com/wp-content/uploads/2020/10/validate-js.png"
-                  />
-                  <CardExam
-                    subject="Java"
-                    img="https://www.techtalkthai.com/wp-content/uploads/2015/12/java_banner.jpg"
-                  />
-                  <CardExam
-                    subject="PHP"
-                    img="http://dotnetguru.org/wp-content/uploads/2019/08/php.jpg"
-                  />
-                </div>
+                
+                { this.state.doneExam ? 
+                  <div>
+                    <h1 className="title col-12 text-center">Your Exam</h1>
+                    <div className="d-flex flex-wrap justify-content-center">
+                      {this.state.doneExam.map(item => <CardExam doneExam={ item }/>)}
+                    </div>
+                  </div>
+                  : ""
+                }
+                
               </div>
             </div>
           </div>

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Footer from "../Components/footer_exam/Footer";
 import Header from "../Components/header_exam/Header";
-import Loading from '../Components/Loading/Loading'
 import '../index_exam.css';
 
 
@@ -10,7 +9,6 @@ class ResultTest extends Component {
     super(props);
     this.state = {
       dataResult: "",
-      loading: true,
     };
   }
   componentDidMount() {
@@ -18,7 +16,6 @@ class ResultTest extends Component {
     if (resultTest) {
       this.setState({
         dataResult: resultTest,
-        loading : false
       });
     }
   }
@@ -28,9 +25,6 @@ class ResultTest extends Component {
     return (
       <div>
         <Header />
-        {dataResult.length === 0 ? (
-          <div>{this.state.loading ? <Loading /> : null}</div>
-        ) : (
           <div id="result-test">
           <div className="container">
             <h2 className="title">Result Of Test</h2>
@@ -57,8 +51,6 @@ class ResultTest extends Component {
             </div>
           </div>
         </div>
-        )}
-        
         <Footer />
       </div>
     );

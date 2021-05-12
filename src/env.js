@@ -12,4 +12,4 @@ export const API_AUTHENTICATION = 'Bearer ' + localStorage.getItem('token')
 export const API_EXAM_DETAIL = 'https://quanlikhoahoc.herokuapp.com/api/v1/exams'
 export const API_TEST_DETAIL = 'https://quanlikhoahoc.herokuapp.com/api/v1/exams/test'
 export const API_CHECK_TEST = 'https://quanlikhoahoc.herokuapp.com/api/v1/exams/checkans'
-export const API_CHECK_DO_TEST = 'https://quanlikhoahoc.herokuapp.com/api/v1/exams/userprofile/done_exams'
+export const API_CHECK_DO_TEST = 'https://quanlikhoahoc.herokuapp.com/api/v1/exams/userprofile/next_exams'
