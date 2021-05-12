@@ -48,10 +48,9 @@ class DoTest extends Component {
         })
         .then((res) => {
           if (res.data.data) {
-            console.log(res.data.data);
-            let index = -1;
-            index = res.data.data.findIndex((x) => x.exams.id === idTest);
-            if (index !== -1) {
+            let index ;
+            index = res.data.data.findIndex((x) => x.id === parseInt(idTest));
+            if (index === -1) {
               this.setState({
                 isDone: true,
                 loading: false,
