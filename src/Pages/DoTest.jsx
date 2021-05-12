@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import Header from "../Components/header_exam/Header";
 import Loading from "../Components/Loading/Loading";
-import '../index_exam.css';
+import "../index_exam.css";
 import * as API from "../env";
 import Footer from "../Components/footer_exam/Footer";
 
@@ -28,63 +28,51 @@ class DoTest extends Component {
     let { idTest } = this.props.match.params;
     let infoTest = JSON.parse(localStorage.getItem("infoTest"));
     if (idTest && infoTest) {
-      let t_begin = "14:54:00"; //SET TIME BEGIN TEMP
+      let t_begin = infoTest.timeBegin //SET TIME BEGIN TEMP
       let checkTime = parseInt(t_begin.split(":")[1]) + 60;
       let date = new Date();
       if (Math.ceil(checkTime / 60) > 0) {
-        let t_end = `${
-          parseInt(t_begin.split(":")[0]) + Math.floor(checkTime / 60)
-        } :${checkTime % 60}`;
+        let t_end = `${parseInt(t_begin.split(":")[0]) +
+          Math.floor(checkTime / 60)} :${checkTime % 60}`;
         let t_sub =
           (parseInt(t_end.split(":")[0]) - date.getHours()) * 60 +
           (parseInt(t_end.split(":")[1]) - date.getMinutes());
         this.secondsRemaining = t_sub * 60;
       }
       let token = localStorage.getItem("token");
-            axios
-              .get(`${API.API_TEST_DETAIL}/${idTest}`, {
-                headers: {
-                  Authorization: "Bearer " + token,
-                },
-              })
-              .then((res) => {
-                this.setState({
-                  dataTest: res.data.data,
-                  loading: false,
-                });
-              })
-              .catch((err) => console.log(err));
-      
-      // CHECK DONE TEST
-      // axios
-      //   .get(`${API.API_CHECK_DO_TEST}`, {
-      //     headers: {
-      //       Authorization: "Bearer " + token,
-      //     },
-      //   })
-      //   .then((res) => {
-      //     if (res.data.data) {
-      //       this.setState({
-      //         isDone: true,
-      //         loading: false,
-      //       });
-      //       this.props.history.push("/result_test");
-      //     } else {
-      //       axios
-      //         .get(`${API.API_TEST_DETAIL}/${idTest}`, {
-      //           headers: {
-      //             Authorization: "Bearer " + token,
-      //           },
-      //         })
-      //         .then((res) => {
-      //           this.setState({
-      //             dataTest: res.data.data,
-      //             loading: false,
-      //           });
-      //         })
-      //         .catch((err) => console.log(err));
-      //     }
-      //   });
+      axios
+        .get(`${API.API_CHECK_DO_TEST}`, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
+        .then((res) => {
+          if (res.data.data) {
+            let index ;
+            index = res.data.data.findIndex((x) => x.id === parseInt(idTest));
+            if (index === -1) {
+              this.setState({
+                isDone: true,
+                loading: false,
+              });
+              this.props.history.push("/result_test");
+            } else {
+              axios
+                .get(`${API.API_TEST_DETAIL}/${idTest}`, {
+                  headers: {
+                    Authorization: "Bearer " + token,
+                  },
+                })
+                .then((res) => {
+                  this.setState({
+                    dataTest: res.data.data,
+                    loading: false,
+                  });
+                })
+                .catch((err) => console.log(err));
+            }
+          }
+        });
       this.tc = setInterval(() => this.currentTime(), 1000);
     }
   }
@@ -113,7 +101,7 @@ class DoTest extends Component {
         min: "0" + min,
       });
     }
-    
+
     this.secondsRemaining--;
     if (this.secondsRemaining === 0) {
       this.handleSubmitResult();
@@ -150,28 +138,37 @@ class DoTest extends Component {
   handleSubmitResult() {
     let { idTest } = this.props.match.params;
     let answerClear = [];
+    this.setState({
+      loading: true,
+    });
     this.state.answers.forEach((item) => {
       answerClear.push(
         [item].reduce((acc, cur) => ({ ...acc, [cur.id]: cur.answer }), {})
       );
     });
-    let resultTest = {
-      idTest: idTest,
-      answer: answerClear,
-    };
-    localStorage.setItem("resultTest", JSON.stringify(resultTest));
-    this.props.history.push("/result_test");
+    let token = localStorage.getItem("token");
+    axios
+      .post(`${API.API_CHECK_TEST}/${idTest}`, answerClear, {
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        this.setState({
+          loading: false,
+        });
+        localStorage.setItem("resultTest", JSON.stringify(res.data));
+        this.props.history.push("/result_test");
+      });
   }
 
   render() {
-    let { dataTest, isDone, min, sec } = this.state;
+    let { dataTest, min, sec } = this.state;
     return (
       <div>
         <Header />
         <div>{this.state.loading ? <Loading /> : null}</div>
-        {isDone === true && dataTest.length === 0 ? (
-          <div className="title">Sorry, you have completed the test!!!</div>
-        ) : (
           <div id="in-test">
             <div className="container content">
               <div className="question-sheet">
@@ -202,13 +199,18 @@ class DoTest extends Component {
                   <div className="header-sheet">
                     {dataTest.length > 0 ? (
                       <div className="time" id="timeCount">
-                         {/* {min} : {sec} */}
-                        TIME: { min >= 0 ? `${min} : ${sec}` : "00 : 00"}
+                        {/* {min} : {sec} */}
+                        TIME: {min >= 0 ? `${min} : ${sec}` : "00 : 00"}
                       </div>
                     ) : (
                       ""
                     )}
-                    <h4 className="title-sheet-answer" style={{"color" : '#fff'}}>List answer</h4>
+                    <h4
+                      className="title-sheet-answer"
+                      style={{ color: "#fff" }}
+                    >
+                      List answer
+                    </h4>
                   </div>
                   <div className="content">
                     {this.showChooseAnswer(dataTest)}
@@ -225,7 +227,6 @@ class DoTest extends Component {
               </div>
             </div>
           </div>
-        )}
         <Footer />
       </div>
     );
