@@ -41,7 +41,8 @@ class index extends Component {
                 <div className="social-media">
                   <p className="mb-0 d-flex">
                     <a
-                      href="#this"
+                      href="http://www.fb.com/"
+                      target="_blank"
                       className="d-flex align-items-center justify-content-center"
                     >
                       <span className="fa fa-facebook">
@@ -49,7 +50,8 @@ class index extends Component {
                       </span>
                     </a>
                     <a
-                      href="#this"
+                      href="http://www.twitter.com/"
+                      target="_blank"
                       className="d-flex align-items-center justify-content-center"
                     >
                       <span className="fa fa-twitter">
@@ -57,7 +59,8 @@ class index extends Component {
                       </span>
                     </a>
                     <a
-                      href="#this"
+                      href="http://www.instagram.com/"
+                      target="_blank"
                       className="d-flex align-items-center justify-content-center"
                     >
                       <span className="fa fa-instagram">
@@ -65,11 +68,12 @@ class index extends Component {
                       </span>
                     </a>
                     <a
-                      href="#this"
+                      href="http://www.googleplus.com/"
+                      target="_blank"
                       className="d-flex align-items-center justify-content-center"
                     >
-                      <span className="fa fa-dribbble">
-                        <i className="sr-only">Dribbble</i>
+                      <span className="fa fa-google-plus">
+                        <i className="sr-only">Google plus</i>
                       </span>
                     </a>
                   </p>
