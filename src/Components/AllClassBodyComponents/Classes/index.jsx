@@ -13,6 +13,11 @@ class index extends Component {
       token: USER.TOKEN()
     };
   }
+
+  componentDidMount() {
+    console.log(this.props.match);
+  }
+  
   
 
   handleSubscribe = (e) => {

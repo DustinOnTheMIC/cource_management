@@ -1,6 +1,6 @@
-import AllSubject from './share/allSubject/AllSubject'
-import SuggestClass from './share/suggestClass/SuggestClass'
-import axios from 'axios';
+import Subject from './share/allSubject/Subject';
+import SuggestClass from './share/suggestClass/SuggestClass';
+import Teacher from './share/TopTeacher/Teacher';
 
 const botAvatar = "https://i.pinimg.com/564x/07/65/a6/0765a691dbfa90d99821e88cdf8e71dd.jpg";
 
@@ -13,9 +13,12 @@ const steps = [
     {
         id: 'showOrder',
         options:[
-            {value: "suggestSubject", label:'Suggest subject', trigger: 'suggestSubject'},
-            {value: "suggestWhatUserLike", label:'Suggest by what you like', trigger: 'suggestWhatUserLike'},
-            {value: "suggestByScore", label:"You don't know what to learn?", text: "ok", trigger: 'askMath'}
+            {value: "suggestSubject", label:'I want to know all subject', trigger: 'suggestSubject'},
+            {value: "suggestTopSubjects", label:'Show hot subject', trigger: 'topSubjects'},
+            {value: "suggestTopTeacher", label:'Top teacher', trigger: 'topTeachers'},
+            {value: "suggestByScore", label:"I don't know what to learn", trigger: 'askMath'},
+            {value: "searchTeacher", label:"I want to find teacher name", trigger: 'searchTeacher'},
+            {value: "searchSubject", label:"I want to find subject name", trigger: 'searchSubject'},
         ],
     },
     //suggest the subject for user
@@ -26,22 +29,26 @@ const steps = [
         },
             {
                 id: "showSubject",
-                component: <AllSubject />,
+                component: <Subject />,
                 trigger: 'turnBack',
             },
-    //suggest by what user like
+    //suggest top subject
         {
-            id:"suggestWhatUserLike",
-            message: 'Ok, so what do you like below',
-            trigger: 'showHobby'
+            id:"topSubjects",
+            message: 'some message ',
+            trigger: 'top3Subjects'
         },
-            {
-                id: "showHobby",
-                options:[
-                    {value: "webDevelopment", label:'Web development', trigger: 'webDevelopment'},
-                    {value: "webDesign", label:'Web Design', trigger: 'webDesign'},
-                ],
-            },
+        {
+            id: "top3Subjects",
+            component: <Subject isGetTop={true} />,
+            trigger: 'turnBack'
+        },
+    //Suggest top teacher
+        {
+            id: "topTeachers",
+            component: <Teacher isGetTop={true}/>,
+            trigger: 'turnBack'
+        },
     //suggest if user like web dev or design
                 {
                     id: "webDevelopment",
@@ -67,24 +74,57 @@ const steps = [
         {
             id: "math",
             user: true,
-            trigger: 'askLike'
+            trigger: 'showResult'
         },
-        {
-            id: "askLike",
-            message: "And what do you like?",
-            trigger: 'optionsLike'
-        },
-        {
-            id: "optionsLike",
-            options: [
-                {value: "web", label: "Web development", trigger: "showResult"},
-                {value: "app", label: "Application development", trigger: "showResult"}
-            ]
-        },
+        // {
+        //     id: "askLike",
+        //     message: "And what do you like?",
+        //     trigger: 'optionsLike'
+        // },
+        // {
+        //     id: "optionsLike",
+        //     options: [
+        //         {value: "web", label: "Web development", trigger: "showResult"},
+        //         {value: "app", label: "Application development", trigger: "showResult"}
+        //     ]
+        // },
             {
                 id: "showResult",
-                component: <SuggestClass/>,
+                component: <SuggestClass point={"previousValue"}/>,
                 asMessage: true,
+                trigger: "turnBack"
+            },
+        
+        // search teacher
+        {
+            id: "searchTeacher",
+            message: "What is the teacher name?",
+            trigger: "inputTeacherName",
+        },
+            {
+                id: "inputTeacherName",
+                user: true,
+                trigger: "findTeacher"
+            },
+            {
+                id: "findTeacher",
+                component: <Teacher />,
+                trigger: "turnBack"
+            },
+        // search subject
+        {
+            id: "searchSubject",
+            message: "What is the subject name?",
+            trigger: "inputSubjectName"
+        },
+            {
+                id: "inputSubjectName",
+                user: true,
+                trigger: "findSubject"
+            },
+            {
+                id: "findSubject",
+                component: <Subject />,
                 trigger: "turnBack"
             }
 ];
