@@ -33,7 +33,7 @@ class index extends Component {
                   </div>
                   <div className="text">
                     <span>Call Us</span>
-                    <strong>+2 392 3929 210</strong>
+                    <strong>+236 123 456</strong>
                   </div>
                 </div>
               </div>
