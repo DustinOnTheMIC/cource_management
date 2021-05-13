@@ -42,11 +42,6 @@ class Navbar extends Component {
                                     About
                                 </NavLink>
                             </li>
-                            <li className="nav-item">
-                                <NavLink to="/contact" className="nav-link">
-                                    Contact
-                                </NavLink>
-                            </li>
                             {
                                 isLogin === 'fakeLog' ? <li className="nav-item"><NavLink className="nav-link" to='/login'>Change Account</NavLink></li> : 
                                     isLogin === 'log' ? <li className="nav-item"><NavLink className="nav-link" to='/profile'>Profile</NavLink></li>
