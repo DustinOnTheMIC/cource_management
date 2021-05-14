@@ -19,12 +19,21 @@ class index extends Component {
   }
 
   setInfoClass(res) {
-    this.setState({
-      isLoading: false,
-      infoClass: res.data.data,
-      pageTitle: res.data.data[0].subject.name,
-      textDescriptionSubject: res.data.data[0].subject.description,
-    });
+    const { level } = this.props    
+
+    level ? this.state({
+        pageTitle: `Classes level ${level}`,
+        textDescriptionSubject: `Those classes are being suggested by the chat bot, 
+                                here is some classes level ${level} that available.`
+      })
+    : 
+      this.setState({
+        isLoading: false,
+        infoClass: res.data.data,
+        pageTitle: res.data.data[0].subject.name,
+        textDescriptionSubject: res.data.data[0].subject.description,
+      });
+
   }
 
   componentDidMount() {
@@ -62,7 +71,7 @@ class index extends Component {
         });
       } else {
       axios
-      .get(API.API_CURRENT + `class/chatbot/all/${level}`)
+      .get(API.API_CURRENT + `api/v1/class/chatbot/all/${level}`)
       .then((res) => {
         this.handleLoading(false)
         this.setInfoClass(res)
