@@ -59,12 +59,12 @@ class ShowInfoTeacher extends Component {
             <InfoTeacher
               key={index}
               name={item.name}
-              description={"Full Stack Developer"}
+              description={item.description}
               img={item.image}
               address={item.address}
               phone={item.phone}
               email={item.email}
-              rating={5}
+              rating={item.rate}
             />
           ))
         )}
