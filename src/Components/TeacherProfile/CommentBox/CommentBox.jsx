@@ -17,10 +17,6 @@ class CommentBox extends Component {
   }
 
   componentDidMount() {
-    // LINK CHECK ISCMT FAKE
-    // https://quanlikhoahoc.herokuapp.com/api/v1/rated/checkValidate/1
-    // LINK CHECK ISCMT COMMON
-    // ${API.API_CHECK_SHOW_SUB_CMT}/${USER.IDUSER()}
     if (USER.IDUSER()) {
       axios
         .get(`${API.API_CHECK_SHOW_SUB_CMT}/${USER.IDUSER()}`, {
@@ -28,9 +24,9 @@ class CommentBox extends Component {
             Authorization: `Bearer ${USER.TOKEN()}`,
           },
         })
-        .then((res) => {
+        .then(() => {
           this.setState({
-            isCmt: res.data.message,
+            isCmt: true,
           });
         })
         .catch(() => console.log("you are not qualified yet>>>>>>>>>>>>>>>>>>"));
@@ -58,12 +54,12 @@ class CommentBox extends Component {
         this.setState({
           teacher_rating: e.target.value,
         });
-        let { teacher_cmt, teacher_rating } = this.state;
+        let { teacher_cmt, teacher_rating  } = this.state;
         axios
           .post(
             `${API.API_POST_CMT}`,
             {
-              content: teacher_cmt,
+              content: teacher_cmt ? teacher_cmt : 'There are no comments from this person',
               rate: teacher_rating,
               id_teacher: this.props.id_teacher,
             },

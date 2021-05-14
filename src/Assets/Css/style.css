@@ -12903,6 +12903,7 @@ textarea.form-control {
 .courses .text p.lec {
   font-weight: 500;
   font-size: 13px;
+  text-align: left;
 }
 .courses .course-price {
   color: #1eb2a6;

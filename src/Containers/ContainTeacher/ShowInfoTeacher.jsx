@@ -93,11 +93,11 @@ class ShowInfoTeacher extends Component {
         return (
           <Classes
             key={index}
-            nameClass={"HTML, CSS, and Javascript for Web Developers"}
+            nameClass={item.name}
             teacherName={item.teacher.name}
             teacherPic={item.teacher.image}
             priceClass={item.price}
-            descriptionClass={item.subject.description}
+            descriptionClass={item.description}
             classPic={item.subject.image}
             id_class={item.id}
             id_teacher={item.teacher.id_teacher}
