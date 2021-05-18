@@ -1,62 +1,79 @@
-import React, { Component } from 'react';
-import bg3 from '../../Assets/images/bg_3.jpg'
+import axios from "axios";
+import React, { Component } from "react";
+import * as API from "../../env";
+import bg3 from "../../Assets/images/bg_3.jpg";
 
 class index extends Component {
-    render() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataStatistic: "",
+    };
+    this.arrImg = [
+      { img: "flaticon-scientist" },
+      { img: "flaticon-certificate" },
+      { img: "flaticon-calendar" },
+      { img: "flaticon-graduation" },
+      { img: "flaticon-online-learning" },
+    ];
+  }
+  componentDidMount() {
+    // GET DATA STATISTIC DEFAULT
+    axios
+      .get(`${API.API_STATICTIS}`)
+      .then((res) => {
+        this.setState({
+          dataStatistic: res.data,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
+  render() {
+    let { dataStatistic } = this.state;
+    return (
+      <section
+        className="ftco-section-counter img"
+        style={{ backgroundImage: `url(${bg3})` }}
+      >
+        <div className="overlay"></div>
+        <div className="container">
+          <div className="row section-counter justify-content-center">
+            {this.itemStatistic(dataStatistic, this.arrImg)}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  itemStatistic = (content, img) => {
+    let result = null;
+    if (content) {
+      result = Object.entries(content).map((item,index) => {
         return (
-            <section className="ftco-section-counter img" style={{ backgroundImage: `url(${bg3})`}}>
-                <div className="overlay"></div>
-                <div className="container">
-                    <div className="row section-counter">
-                        <div className="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
-                            <div className="counter-wrap-2 d-flex" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000"> {/**/}
-                                <div className="icon">
-                                    <span className="flaticon-graduation"></span>
-                                </div>
-                                <div className="text">
-                                    <h2 className="number"><span className="countup">3000</span></h2>
-                                    <span className="caption">Success Stories</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
-                            <div className="counter-wrap-2 d-flex" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" > {/**/}
-                                <div className="icon">
-                                    <span className="flaticon-scientist"></span>
-                                </div>
-                                <div className="text">
-                                    <h2 className="number"><span className="countup">320</span></h2>
-                                    <span className="caption">Trusted Tutors</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
-                            <div className="counter-wrap-2 d-flex"  data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">  
-                                <div className="icon">
-                                    <span className="flaticon-calendar"></span>
-                                </div>
-                                <div className="text">
-                                    <h2 className="number"><span className="countup">1000</span></h2>
-                                    <span className="caption">Schedules</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
-                            <div className="counter-wrap-2 d-flex" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000"> 
-                                <div className="icon">
-                                    <span className="flaticon-learning"></span>
-                                </div>
-                                <div className="text">
-                                    <h2 className="number"><span className="countup">587</span></h2>
-                                    <span className="caption">Courses</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+          <div className="col-md-3 col-xl-2 d-flex align-items-stretch" key={index}>
+            <div
+              className="counter-wrap-2 d-flex"
+              data-aos="fade-up"
+              data-aos-delay="100"
+              data-aos-duration="1000"
+            >
+              <div className="icon">
+                <span className={`${img[index].img}`}></span>
+              </div>
+              <div className="text">
+                <h2 className="number">
+                  <span className="countup"> {item[1]} </span>
+                </h2>
+                <span className="caption">{item[0]}</span>
+              </div>
+            </div>
+          </div>
         );
+      });
     }
+    return result;
+  };
 }
 
 export default index;
