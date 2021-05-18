@@ -16,6 +16,14 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.cJeRRR {
+  background-color : rgb(30 178 166) !important;
+  box-shadow : 0 0 1px 3px rgb(30 178 166) !important;
+}
+
+.lgksPe:hover:enabled, .lgksPe:focus:enabled {
+  background-color : rgb(30 178 166) !important;
+}
 
 .validate{
   color: red;
