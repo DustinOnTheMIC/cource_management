@@ -41,7 +41,15 @@ class TestDetail extends Component {
         // let time = new Date();
         // let h_exam = parseInt(infoExam.timeBegin.split(":")[0]);
         // let m_exam = parseInt(infoExam.timeBegin.split(":")[1]);
-        // if (time.getHours() < h_exam && time.getMinutes() < m_exam) {
+        // let d_exam = parseInt(infoExam.date.split("-")[2]);
+        // let mon_exam = parseInt(infoExam.date.split("2")[1]);
+        // if (
+        //   time.getHours() < h_exam &&
+        //   time.getMinutes() < m_exam &&
+        //   time.getDate() !== d_exam &&
+        //   time.getMonth() !== mon_exam ||
+        //   (time.getMinutes() - m_exam) * -1 >=30
+        // ) {
         //   this.setState({
         //     isDo: false,
         //   });
@@ -76,13 +84,16 @@ class TestDetail extends Component {
                 <div className="exam-detail-item">
                   <div className="title">
                     <i className="fa fa-info-circle"></i>
-                    <i> Duration</i>  
+                    <i> Duration</i>
                   </div>
                   <div className="description">{dataExam.duration} minutes</div>
                 </div>
               </div>
               <div className="test-now">
-                <Link to={`/do_test/${dataExam.id}/to_do`} className={ isDo ? '' : 'disabled-link'}>
+                <Link
+                  to={`/do_test/${dataExam.id}/to_do`}
+                  className={isDo ? "" : "disabled-link"}
+                >
                   <i className="fa fa-play"></i>Do Test
                 </Link>
               </div>
