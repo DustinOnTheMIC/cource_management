@@ -27,7 +27,7 @@ const routes = [
         path : '/all_class',
         name : 'AllClass',
         exact : true,
-        main: () => <AllClass />
+        main: (history) => <AllClass history={history} />
     },
     {
         path : '/team',
@@ -95,7 +95,7 @@ const routes = [
         path : '/:idExam/detail_test',
         name : 'TestDetail',
         exact : true,
-        main : ({match}) => <TestDetail match={match} />
+        main : ({match,history}) => <TestDetail match={match} history={history} />
     },
     {
         path : '/do_test/:idTest/to_do',

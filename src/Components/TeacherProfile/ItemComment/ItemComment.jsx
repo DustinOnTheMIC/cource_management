@@ -8,9 +8,9 @@ class ItemComment extends Component {
       <div>
         <div className="item-comment">
           <div className="user-comment">
-            <span>{name}</span>
+            <b>{name}</b>
             <br />
-            <span>{content}</span>
+            <i>{content}</i>
             <br />
           </div>
           <div className="star-rating-comment">

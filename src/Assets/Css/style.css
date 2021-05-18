@@ -12241,7 +12241,7 @@ textarea.form-control {
 }
 
 .ftco-section {
-  padding: 8em 0;
+  padding: 2em 0;
   position: relative;
   width: 100%;
   overflow-x: hidden;
@@ -12844,6 +12844,7 @@ textarea.form-control {
   -webkit-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
   transition: all 0.3s ease;
+  max-height: 500px;
 }
 @media (max-width: 1199.98px) {
   .courses {
@@ -12903,6 +12904,7 @@ textarea.form-control {
 .courses .text p.lec {
   font-weight: 500;
   font-size: 13px;
+  text-align: left;
 }
 .courses .course-price {
   color: #1eb2a6;

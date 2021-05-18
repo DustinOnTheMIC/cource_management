@@ -17,22 +17,20 @@ class CommentBox extends Component {
   }
 
   componentDidMount() {
-    // LINK CHECK ISCMT FAKE 
-    // https://quanlikhoahoc.herokuapp.com/api/v1/rated/checkValidate/1
-    // LINK CHECK ISCMT COMMON 
-    // ${API.API_CHECK_SHOW_SUB_CMT}/${USER.IDUSER()}
-    axios
-    .get(`${API.API_CHECK_SHOW_SUB_CMT}/${USER.IDUSER()}`, {
-        headers: {
-          Authorization: `Bearer ${USER.TOKEN()}`,
-        },
-      })
-      .then((res) => {
-        this.setState({
-          isCmt: res.data.message,
-        });
-      })
-      .catch((err) => console.log(err));
+    if (USER.IDUSER()) {
+      axios
+        .get(`${API.API_CHECK_SHOW_SUB_CMT}/${USER.IDUSER()}`, {
+          headers: {
+            Authorization: `Bearer ${USER.TOKEN()}`,
+          },
+        })
+        .then(() => {
+          this.setState({
+            isCmt: true,
+          });
+        })
+        .catch(() => console.log("you are not qualified yet>>>>>>>>>>>>>>>>>>"));
+    }
   }
 
   handleChange = (e) => {
@@ -56,12 +54,12 @@ class CommentBox extends Component {
         this.setState({
           teacher_rating: e.target.value,
         });
-        let { teacher_cmt, teacher_rating } = this.state;
+        let { teacher_cmt, teacher_rating  } = this.state;
         axios
           .post(
             `${API.API_POST_CMT}`,
             {
-              content: teacher_cmt,
+              content: teacher_cmt ? teacher_cmt : 'There are no comments from this person',
               rate: teacher_rating,
               id_teacher: this.props.id_teacher,
             },
@@ -77,7 +75,7 @@ class CommentBox extends Component {
               teacher_rating: "",
               isCardRating: false,
             });
-            window.location.reload()
+            window.location.reload();
           })
           .catch((err) => console.log(err));
       } else {
@@ -170,26 +168,26 @@ class CommentBox extends Component {
         </div>
         {/* END CARD RATING */}
         <div>
-            <div className="input-group mb-3 d-flex">
-              <input
-                type="text"
-                name="teacher_cmt"
-                value={this.state.teacher_cmt}
-                onChange={this.handleChange}
-                className="form-control py-0 my-0 text-box-custom"
-                placeholder="What do you think about the teacher?"
-              ></input>
-              <div className="input-group-append">
-                <button
-                  className="btn btn-submit-cmt py-2"
-                  onClick={(e) => this.openPopup(e)}
-                  type="button"
-                  disabled={isCmt ?  false : "disabled"}
-                >
-                  Submit
-                </button>
-              </div>
+          <div className="input-group mb-3 d-flex">
+            <input
+              type="text"
+              name="teacher_cmt"
+              value={this.state.teacher_cmt}
+              onChange={this.handleChange}
+              className="form-control py-0 my-0 text-box-custom"
+              placeholder="What do you think about the teacher?"
+            ></input>
+            <div className="input-group-append">
+              <button
+                className="btn btn-submit-cmt py-2"
+                onClick={(e) => this.openPopup(e)}
+                type="button"
+                disabled={isCmt ? false : "disabled"}
+              >
+                Submit
+              </button>
             </div>
+          </div>
         </div>
       </div>
     );

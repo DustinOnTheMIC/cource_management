@@ -114,12 +114,12 @@ class index extends Component {
         return (
           <div className="col-md-6 col-lg-4" key={index}>
             <Classes
-              nameClass={'HTML, CSS, and Javascript for Web Developers'} //item.name
+              nameClass={item.name} //item.name
               teacherName={item.teacher.name}
               id_teacher={item.teacher.id_teacher}
               teacherPic={item.teacher.image}
               priceClass={item.price}
-              descriptionClass={item.subject.description}
+              descriptionClass={item.description}
               classPic={item.subject.image}
               id_class={item.id}
               handleLoading={this.handleLoading}
