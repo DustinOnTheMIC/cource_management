@@ -114,7 +114,6 @@ class index extends Component {
   dataClass = (dataClass) => {
     let result = null;
     if (dataClass) {
-      console.log(dataClass);
       result = dataClass.map((item, index) => {
         return (
           <div className="col-md-6 col-lg-4" key={index}>
