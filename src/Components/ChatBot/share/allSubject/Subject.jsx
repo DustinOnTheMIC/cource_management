@@ -19,7 +19,7 @@ class Subject extends Component {
         const { isGetTop, previousStep } = this.props;
         console.log(this.props);
         let URL = isGetTop ? 
-                this.setURL("/subject/chatbot/popular")
+                this.setURL("/chatbot/top/subject")
             : previousStep.value ?
                 this.setURL(`/chatbot/subject/search/${previousStep.value}`) 
             : this.setURL("/auth/home");
