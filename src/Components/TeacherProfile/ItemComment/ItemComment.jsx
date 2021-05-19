@@ -53,7 +53,7 @@ class ItemComment extends Component {
             <br />
           </div>
           <div className="star-rating-comment">
-            { rate ? rate.map(item => item) : null}
+            { rate ? rate.map(item => item) : null }
           </div>
         </div>
       </div>
