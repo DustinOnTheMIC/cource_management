@@ -45,17 +45,15 @@ class index extends Component {
                       target="_blank"
                       className="d-flex align-items-center justify-content-center"
                     >
-                      <span className="fa fa-facebook">
-                        <i className="sr-only">Facebook</i>
-                      </span>
+                      <i className="fab fa-facebook">
+                      </i>
                     </a>
                     <a
                       href="http://www.twitter.com/"
                       target="_blank"
                       className="d-flex align-items-center justify-content-center"
                     >
-                      <span className="fa fa-twitter">
-                        <i className="sr-only">Twitter</i>
+                      <span className="fab fa-twitter">
                       </span>
                     </a>
                     <a
@@ -63,8 +61,7 @@ class index extends Component {
                       target="_blank"
                       className="d-flex align-items-center justify-content-center"
                     >
-                      <span className="fa fa-instagram">
-                        <i className="sr-only">Instagram</i>
+                      <span className="fab fa-instagram">
                       </span>
                     </a>
                     <a
@@ -72,8 +69,7 @@ class index extends Component {
                       target="_blank"
                       className="d-flex align-items-center justify-content-center"
                     >
-                      <span className="fa fa-google-plus">
-                        <i className="sr-only">Google plus</i>
+                      <span className="fab fa-google-plus-g">
                       </span>
                     </a>
                   </p>

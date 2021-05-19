@@ -33,22 +33,22 @@ class index extends Component {
                   <ul className="ftco-footer-social list-unstyled mt-2">
                     <li>
                       <a href="http://www.twitter.com/" target="_blank">
-                        <span className="fa fa-twitter"></span>
+                        <span className="fab fa-twitter"></span>
                       </a>
                     </li>
                     <li>
                       <a href="http://www.fb.com/" target="_blank">
-                        <span className="fa fa-facebook"></span>
+                        <span className="fab fa-facebook"></span>
                       </a>
                     </li>
                     <li>
                       <a href="http://www.instagram.com/" target="_blank">
-                        <span className="fa fa-instagram"></span>
+                        <span className="fab fa-instagram"></span>
                       </a>
                     </li>
                     <li>
                       <a href="http://www.googleplus.com/" target="_blank">
-                        <span className="fa fa-google-plus"></span>
+                        <span className="fab fa-google-plus-g"></span>
                       </a>
                     </li>
                   </ul>

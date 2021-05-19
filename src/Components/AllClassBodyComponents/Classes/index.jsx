@@ -119,7 +119,7 @@ class index extends Component {
         if(rateStart < 5) {
             let temp = 5 - rateStart;
             for(let i = 1; i <= temp; i ++) {
-              rate.push(<span className="fa fa-star-o"></span>);
+              rate.push(<span className="far fa-star"></span>);
             }
         }
     }
@@ -151,9 +151,15 @@ class index extends Component {
         
         <div className="courses">
           <div className="d-flex">
-            <div className="icon">
-              <span className={classPic}></span>
-            </div>
+            {
+              classPic !== "." ? 
+                <div className="icon" style={{backgroundColor: "#FFFFFF"}}>
+                  <i className={classPic}></i>
+                </div>
+              :
+                null
+            }
+            
             <div className="text">
               <h2>{nameClass}</h2>
               <div className="author-wrap d-flex align-items-center">
