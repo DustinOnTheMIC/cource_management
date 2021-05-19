@@ -175,7 +175,7 @@ class index extends Component {
                 <span className="fa fa-star"></span>
                 <span className="fa fa-star"></span>
               </p>
-              <p className="lec">{descriptionClass}</p>
+              <p className="lec">{descriptionClass.length > 100 ? `${descriptionClass.slice(0,100)}...`  : descriptionClass  }</p>
             </div>
           </div>
           <div className="text-center bg-light rounded py-2 my-3">

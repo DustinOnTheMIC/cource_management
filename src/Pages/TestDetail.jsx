@@ -48,7 +48,8 @@ class TestDetail extends Component {
         //   time.getMinutes() < m_exam &&
         //   time.getDate() !== d_exam &&
         //   time.getMonth() !== mon_exam ||
-        //   (time.getMinutes() - m_exam) * -1 >=30
+        //   (time.getMinutes() - m_exam) * -1 >=30 ||
+        //   (time.getHours() - h_exam) !== 0
         // ) {
         //   this.setState({
         //     isDo: false,

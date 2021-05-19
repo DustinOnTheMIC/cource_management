@@ -8,6 +8,7 @@ export const API_CHECK_SHOW_SUB_CMT = 'https://quanlikhoahoc.herokuapp.com/api/v
 export const API_POST_CMT = 'https://quanlikhoahoc.herokuapp.com/api/v1/rated/add'
 export const API_STATICTIS = 'https://quanlikhoahoc.herokuapp.com/api/v1/auth/statistics'
 export const API_TOP_CLASS = 'https://quanlikhoahoc.herokuapp.com/api/v1/class/top'
+export const API_DONE_EXAM = 'https://quanlikhoahoc.herokuapp.com/api/v1/exams/userprofile/done_exams'
 export const API_AUTHENTICATION = 'Bearer ' + localStorage.getItem('token')
 
 // EXAM
