@@ -91,6 +91,9 @@ class index extends Component {
         }
       });
 
+    } else if(status === 422) {
+      messageServices.showMessage('You can not subscribe this class again, find another class please.');
+      
     } else {
       messageServices.showMessage('There is an error with the server, please try again.', "error");
     }

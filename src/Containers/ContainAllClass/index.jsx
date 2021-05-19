@@ -19,21 +19,32 @@ class index extends Component {
   }
 
   setInfoClass(res) {
-    const { level } = this.props    
+    const { level } = this.props
+    const response = res.data.data;
 
-    level ? this.state({
-        pageTitle: `Classes level ${level}`,
-        textDescriptionSubject: `Those classes are being suggested by the chat bot, 
-                                here is some classes level ${level} that available.`
-      })
-    : 
+    if(response && response[0]) {
+      if(level) {
+        this.setState({
+          pageTitle: `Classes level ${level}`,
+          textDescriptionSubject: `Those classes are being suggested by the chat bot, 
+                                  here is some classes level ${level} that available.`,
+          isLoading: false,
+          infoClass: res.data.data,
+        });
+      } else {
+        this.setState({
+          isLoading: false,
+          infoClass: res.data.data,
+          pageTitle: res.data.data[0].subject.name,
+          textDescriptionSubject: res.data.data[0].subject.description,
+        });
+      }
+    } else {
       this.setState({
-        isLoading: false,
-        infoClass: res.data.data,
-        pageTitle: res.data.data[0].subject.name,
-        textDescriptionSubject: res.data.data[0].subject.description,
-      });
-
+        pageTitle: `Classes level ${level}`,
+        textDescriptionSubject: `Sorry, from now, we don't have any class level ${level}`
+      })
+    }
   }
 
   componentDidMount() {
@@ -71,8 +82,9 @@ class index extends Component {
         });
       } else {
       axios
-      .get(API.API_CURRENT + `api/v1/class/chatbot/all/${level}`)
+      .get(API.API_CURRENT + `api/v1/classes/chatbot/all/${level}`)
       .then((res) => {
+        console.log(res);
         this.handleLoading(false)
         this.setInfoClass(res)
 
