@@ -172,16 +172,14 @@ class index extends Component {
                 </Link>
               </div>
               <div className="rate">
-                
                 {
-                  isNotRated ? "" :
-                    <span className="rate">
-                      { rate ? rate.map(item => item) : null}
+                  isNotRated ? <i>No rating...</i> :
+                    <span className="rate" >
+                      { rate ? rate.map((item) => item) : null}
                     </span> 
                 }
-
               </div>
-              <p className="lec">{descriptionClass}</p>
+              <p className="lec">{descriptionClass.length >= 70 ? `${descriptionClass.slice(0,70)}...`  : descriptionClass  }</p>
             </div>
           </div>
           <div className="text-center bg-light rounded py-2 my-3">

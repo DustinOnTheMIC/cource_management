@@ -104,10 +104,10 @@ const routes = [
         main : ({ match, history}) => <DoTest match={ match} history={history} />
     },
     {
-        path : '/result_test',
+        path : '/:idTest/result_test',
         name : 'ResultTest',
         exact : true,
-        main : () => <ResultTest  />
+        main : ({match}) => <ResultTest match={ match}  />
     },
     {
         path : '*',
