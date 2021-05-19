@@ -3,7 +3,10 @@ import { Link, Redirect } from "react-router-dom";
 import swal from "sweetalert";
 import axios from "axios";
 import * as API from "../../../env";
-import * as USER from '../../../constant'
+import * as USER from '../../../constant';
+import { axiosService } from '../../../Services/axiosServices';
+import { URL } from '../../../env';
+import { messageServices } from '../../../Services/messageService';
 
 class index extends Component {
   constructor(props) {
@@ -14,122 +17,87 @@ class index extends Component {
     };
   }
   
+  handleSubscribe(e) {
 
-  handleSubscribe = (e) => {
     e.preventDefault();
-    // this.setState({ isLog: null });
-    this.setState({ isLog: USER.STATUS()})
 
+    this.setState({ isLog: USER.STATUS()});
+    this.setState({token:`Bearer ${ USER.TOKEN() }`});
     let id_class = this.props.id_class;
-    let price = this.props.priceClass; //this.props.id khi map xong lấy price bỏ vô đây
+    let price = this.props.priceClass;
 
-    this.setState({token:`Bearer ${ USER.TOKEN() }`})
+    this.props.handleLoading(true);
 
-    this.props.handleLoading(true)
-      //trường hợp đã đăng nhập => có token
-      // let authorization = "bearer " + localStorage.getItem('token') //token đây
-    swal({
-      text: `Do you want to subscribe to this class?`,
-      buttons: true,
-      dangerMode: true,
-    }).then((value) => {
-      this.props.handleLoading(false)
+      messageServices.showConfirmMessage('Do you want to subscribe to this class?')
+      .then(
+        value => {
+          if(value) {
+            this.props.handleLoading(true);
 
-      if (value) {
-        if (USER.TOKEN()) {
-        let data = {
-          price: price,
-          id_class: id_class,
-        };
-          axios.post(
-            "https://quanlikhoahoc.herokuapp.com/api/v1/newRegister",
-            data,
-            {
-              headers: {
-                Authorization: this.state.token,
-              },
+          if(!USER.STATUS() && !USER.TOKEN()) {
+              this.handleMoveToLogin();
+
+          } else {
+            const info = {
+              token: this.state.token,
+              data: {
+                price: price,
+                id_class: id_class,
+                name: USER.NAME(),
+                email: USER.EMAIL(),
+                phone: USER.PHONE(),
+              }
             }
-          )
-          .then((res) => {
-            swal(`Done! You just subscribe this class.`, {
-              icon: "success",
-            });
-            this.props.handleLoading(false)
-          })
-          .catch((err) => {
-            this.props.handleLoading(false)
-            const status = err.response.status;
 
-            if(status === 500){
-
-              swal(`Please pay the tuition for the previous class before you subscribe one.`, {
-                icon: "warning"
-              });
-
-            } else if(status === 401) {
-
-              swal(`Please Login again to use this feature.`, {
-                icon: "error",
-              })
-
-              .then(value => {
-                if(value){
-                  this.setState({isLog: 'not'})
-                }
-              })
-
-            } else {
-              swal(`There is an error with the server, please try again.`, {
-                icon: "error",
-              })
-            }
-          });
-        } else if (USER.STATUS() === 'fakeLog') {
-        //trường hợp đăng nhập tạm (chưa có mật khẩu)
-        let data = {
-          name: USER.NAME(),
-          email: USER.EMAIL(),
-          phone: USER.PHONE(),
-          price: price,
-          id_class: id_class,
-        };
-        this.props.handleLoading(true)
-        axios.post("https://quanlikhoahoc.herokuapp.com/api/v1/auth/register", data)
-
-          .then((res) => {
-            this.props.handleLoading(false)
-            swal(`Done! You just subscribe this class`, {
-              icon: "success",
-            });
-          })
-
-          .catch((err) => {
-            this.props.handleLoading(false)
-            swal(`Please pay the tuition for the previous class before you subscribe one.`, {
-              icon: "warning"
-            });
-          });
-
-      } else if(!USER.STATUS() && !USER.TOKEN()) {
-
-        this.props.handleLoading(false)
-        swal({
-          text: `Please login before you subscribe this class`,
-          buttons: true,
-          dangerMode: true,
-        })
-        
-        .then((value) => {
-          this.props.handleLoading(false)
-
-          if (value) {
-            this.setState({ isLog: "not" });
+            axiosService.subscribeClass(info)
+            .then( () => this.handleSubscribeSuccess())
+            .catch( err => this.handleSubscribeFailed(err));
           }
-        });
+        }
       }
-    }
+    );
+  }
+
+  handleMoveToLogin() {
+    this.props.handleLoading(false);
+    messageServices.showConfirmMessage(`Please login before you subscribe this class`)
+    
+    .then((value) => {
+      if (value) {
+        this.setState({ isLog: "not" });
+      }
     });
-  };
+  }
+
+  handleSubscribeSuccess() {
+    this.props.handleLoading(false);
+    return messageServices.showMessage('Done! You just subscribe this class', "success");
+  }
+
+  handleSubscribeFailed(err) {
+
+    this.props.handleLoading(false);
+    const status = err.response.status;
+
+    if(status === 500){
+      messageServices.showMessage(`Please pay the tuition for the previous class before you subscribe one.`, "warning");
+
+    } else if(status === 401) {
+
+      messageServices.showMessage('Please Login again to use this feature.', "error")
+      .then(value => {
+        if(value) {
+          this.setState({ isLog: 'not' })
+        }
+      });
+
+    } else if(status === 422) {
+      messageServices.showMessage('You can not subscribe this class again, find another class please.');
+      
+    } else {
+      messageServices.showMessage('There is an error with the server, please try again.', "error");
+    }
+  }
 
   render() {
     const {

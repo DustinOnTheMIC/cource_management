@@ -67,7 +67,7 @@ class FormInfo extends Component {
                 .then((value) => {
                   if(value){
                     if(checkValidate("password", value) === "") {
-                      this.props.onUpdateValue(this.props.name, value)
+                      this.props.onUpdateValue("password", value)
                       swal(`Done! You just change your password but didn't submit to the server`, {
                         icon: "success",
                       });

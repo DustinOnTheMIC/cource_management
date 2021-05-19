@@ -6,11 +6,12 @@ import Header from '../Components/Header/Index'
 class AllClass extends Component {
     
     render() {
-        let {id_subject} = this.props.match ? this.props.match.params : ''
+        let {id_subject, level} = this.props.match ? this.props.match.params : ''
+        console.log(level);
         return (
             <div>
                 <Header/>
-                <ContainAllClass id_subject={id_subject}/>
+                <ContainAllClass id_subject={id_subject} level={level}/>
                 {/* <MoveToTop/> */}
                 <Footer/>
             </div>
