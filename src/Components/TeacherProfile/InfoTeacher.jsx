@@ -19,9 +19,7 @@ class InfoTeacher extends Component {
     let rate = [];
 
     if(rateStart < 1) {
-        for(let i = 1; i <= 5; i++) {
-          rate.push(<span className="fa fa-star-o"></span>);
-        }
+        return this.setState({isNotRated: true});
 
     } else {
         
@@ -32,17 +30,17 @@ class InfoTeacher extends Component {
         if(rateStart < 5) {
             let temp = 5 - rateStart;
             for(let i = 1; i <= temp; i ++) {
-              rate.push(<span className="fa fa-star-o"></span>)
+              rate.push(<span className="fa fa-star-o"></span>);
             }
         }
     }
 
-    this.setState({ rate })
+    this.setState({ rate });
   }
 
   render() {
     const { name, description, img, address, phone, email } = this.props;
-    const { rate } = this.state;
+    const { rate, isNotRated } = this.state;
     return (
       <div className="mb-5">
         <div
@@ -68,9 +66,14 @@ class InfoTeacher extends Component {
                       <div className="mt-3">
                         <h4>{name}</h4>
                         <p className="text-secondary mb-1">{description}</p>
-                          <p className="rate">
-                            { rate ? rate.map(item => item) : null}
-                          </p>
+
+                        {
+                          isNotRated ? "" :
+                            <p className="rate">
+                              { rate ? rate.map(item => item) : null}
+                            </p> 
+                        }
+                          
                       </div>
                     </div>
                   </div>

@@ -108,9 +108,7 @@ class index extends Component {
     let rate = [];
 
     if(rateStart < 1) {
-        for(let i = 1; i <= 5; i++) {
-          rate.push(<span className="fa fa-star-o"></span>);
-        }
+        return this.setState({isNotRated: true});
 
     } else {
         
@@ -121,12 +119,12 @@ class index extends Component {
         if(rateStart < 5) {
             let temp = 5 - rateStart;
             for(let i = 1; i <= temp; i ++) {
-              rate.push(<span className="fa fa-star-o"></span>)
+              rate.push(<span className="fa fa-star-o"></span>);
             }
         }
     }
 
-    this.setState({ rate })
+    this.setState({ rate });
   }
 
   render() {
@@ -140,7 +138,7 @@ class index extends Component {
       id_teacher,
     } = this.props;
 
-    const { rate } = this.state;
+    const { rate, isNotRated } = this.state;
 
     return (
       <div data-aos="flip-left" data-aos-delay="100" data-aos-duration="1000">
@@ -168,7 +166,14 @@ class index extends Component {
                 </Link>
               </div>
               <div className="rate">
-                { rate ? rate.map(item => item) : null}
+                
+                {
+                  isNotRated ? "" :
+                    <span className="rate">
+                      { rate ? rate.map(item => item) : null}
+                    </span> 
+                }
+
               </div>
               <p className="lec">{descriptionClass}</p>
             </div>
