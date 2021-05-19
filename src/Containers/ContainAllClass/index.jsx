@@ -29,14 +29,14 @@ class index extends Component {
           textDescriptionSubject: `Those classes are being suggested by the chat bot, 
                                   here is some classes level ${level} that available.`,
           isLoading: false,
-          infoClass: res.data.data,
+          infoClass: response,
         });
       } else {
         this.setState({
           isLoading: false,
-          infoClass: res.data.data,
-          pageTitle: res.data.data[0].subject.name,
-          textDescriptionSubject: res.data.data[0].subject.description,
+          infoClass: response,
+          pageTitle: response[0].subject.name,
+          textDescriptionSubject: response[0].subject.description
         });
       }
     } else {
@@ -58,6 +58,7 @@ class index extends Component {
         axios
         .get(API.API_CLASS + `/${id_subject}`)
         .then((res) => {
+          console.log(res);
           this.handleLoading(false)
           this.setInfoClass(res)
         })
@@ -135,6 +136,7 @@ class index extends Component {
               classPic={item.subject.image}
               id_class={item.id}
               handleLoading={this.handleLoading}
+              teacher_rate={item.teacher.rate}
             />
           </div>
         );

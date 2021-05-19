@@ -306,7 +306,7 @@ class UserProfile extends Component {
           <div className="container introduce">
             <div className="text-center row ">
               <div className="col-12">
-                <h1 className="text-light">Hi Dustin On The MIC</h1>
+                <h1 className="text-light">Hello {this.state.user[0] ? this.state.user[0].content : ""}</h1>
               </div>
             </div>
           </div>

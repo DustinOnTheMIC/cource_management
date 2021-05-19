@@ -16,6 +16,11 @@ class index extends Component {
       token: USER.TOKEN()
     };
   }
+
+  componentDidMount() {
+    this.handleDrawStart(this.props.teacher_rate);
+  }
+  
   
   handleSubscribe(e) {
 
@@ -93,10 +98,35 @@ class index extends Component {
 
     } else if(status === 422) {
       messageServices.showMessage('You can not subscribe this class again, find another class please.');
-      
+
     } else {
       messageServices.showMessage('There is an error with the server, please try again.', "error");
     }
+  }
+
+  handleDrawStart(rateStart) {
+    let rate = [];
+
+    if(rateStart < 1) {
+        for(let i = 1; i <= 5; i++) {
+          rate.push(<span className="fa fa-star-o"></span>);
+        }
+
+    } else {
+        
+        for(let i = 1; i <= rateStart; i++) {
+          rate.push(<span className="fa fa-star"></span>);
+        }
+
+        if(rateStart < 5) {
+            let temp = 5 - rateStart;
+            for(let i = 1; i <= temp; i ++) {
+              rate.push(<span className="fa fa-star-o"></span>)
+            }
+        }
+    }
+
+    this.setState({ rate })
   }
 
   render() {
@@ -110,10 +140,11 @@ class index extends Component {
       id_teacher,
     } = this.props;
 
+    const { rate } = this.state;
+
     return (
       <div data-aos="flip-left" data-aos-delay="100" data-aos-duration="1000">
 
-        {/* chưa có tài khoản sẽ ra chạy về login */}
         {this.state.isLog ? (
           this.state.isLog === "not" ? (
             <Redirect to="/login" className="nav-link"></Redirect>
@@ -136,13 +167,9 @@ class index extends Component {
                   <span className="author">{teacherName}</span>
                 </Link>
               </div>
-              <p className="rate">
-                <span className="fa fa-star"></span>
-                <span className="fa fa-star"></span>
-                <span className="fa fa-star"></span>
-                <span className="fa fa-star"></span>
-                <span className="fa fa-star"></span>
-              </p>
+              <div className="rate">
+                { rate ? rate.map(item => item) : null}
+              </div>
               <p className="lec">{descriptionClass}</p>
             </div>
           </div>
