@@ -12844,7 +12844,7 @@ textarea.form-control {
   -webkit-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  max-height: 500px;
+  min-height: 400px;
 }
 @media (max-width: 1199.98px) {
   .courses {
@@ -12881,7 +12881,7 @@ textarea.form-control {
 }
 .courses .text h2,
 .courses .text .h2 {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 500;
   margin-bottom: 5px;
 }

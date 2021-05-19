@@ -19,24 +19,46 @@ class index extends Component {
   }
 
   setInfoClass(res) {
-    this.setState({
-      isLoading: false,
-      infoClass: res.data.data,
-      pageTitle: res.data.data[0].subject.name,
-      textDescriptionSubject: res.data.data[0].subject.description,
-    });
+    const { level } = this.props
+    const response = res.data.data;
+
+    if(response && response[0]) {
+      if(level) {
+        this.setState({
+          pageTitle: `Classes level ${level}`,
+          textDescriptionSubject: `Those classes are being suggested by the chat bot, 
+                                  here is some classes level ${level} that available.`,
+          isLoading: false,
+          infoClass: response,
+        });
+      } else {
+        this.setState({
+          isLoading: false,
+          infoClass: response,
+          pageTitle: response[0].subject.name,
+          textDescriptionSubject: response[0].subject.description
+        });
+      }
+    } else {
+      this.setState({
+        pageTitle: `Classes level ${level}`,
+        textDescriptionSubject: `Sorry, from now, we don't have any class level ${level}`
+      })
+    }
   }
 
   componentDidMount() {
     const { id_subject, level } = this.props;
     this.handleLoading(true) //mount loading component
 
+    console.log(this.props.match);
+    
     if (id_subject) {
       // get all class of subject 
-      if(!level) {
         axios
         .get(API.API_CLASS + `/${id_subject}`)
         .then((res) => {
+          console.log(res);
           this.handleLoading(false)
           this.setInfoClass(res)
         })
@@ -44,21 +66,8 @@ class index extends Component {
           this.handleLoading(false) //un mount loading component
           console.log(err)
         });
-      } else {
-        axios
-        .get(API.API_CURRENT + `class/chatbot/${id_subject}/${level}`)
-        .then((res) => {
-          this.handleLoading(false)
-          this.setInfoClass(res)
-        })
-        .catch((err) => {
-          this.handleLoading(false) //un mount loading component
-          console.log(err)
-        });
-      }
-    } else {
+    } else if(!level) {
       // get all class of system
-      if(!level) {
         axios
         .get(API.API_CLASS)
         .then((res) => {
@@ -73,18 +82,18 @@ class index extends Component {
           console.log(err)
         });
       } else {
-        axios
-        .get(API.API_CURRENT + `class/chatbot/all/${level}`)
-        .then((res) => {
-          this.handleLoading(false)
-          this.setInfoClass(res)
+      axios
+      .get(API.API_CURRENT + `api/v1/classes/chatbot/all/${level}`)
+      .then((res) => {
+        console.log(res);
+        this.handleLoading(false)
+        this.setInfoClass(res)
 
-        })
-        .catch((err) => {
-          this.handleLoading(false) //un mount loading component
-          console.log(err)
-        });
-      }
+      })
+      .catch((err) => {
+        this.handleLoading(false) //un mount loading component
+        console.log(err)
+      });
     }
   }
 
@@ -127,6 +136,7 @@ class index extends Component {
               classPic={item.subject.image}
               id_class={item.id}
               handleLoading={this.handleLoading}
+              teacher_rate={item.teacher.rate}
             />
           </div>
         );

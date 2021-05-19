@@ -16,7 +16,7 @@ class ItemSubject extends Component {
       >
         <Link to={`/subject/${idSubject}/class`} className="services-2">
           <div className="icon">
-            <span className={`${imgSubject}`}></span>
+            <i className={`${imgSubject}`}></i>
           </div>
           <div className="text d-flex flex-column-reverse justify-content-between align-items-center">
             <h2>{`${nameSubject}`}</h2>

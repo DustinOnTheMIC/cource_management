@@ -17,7 +17,7 @@ class UserProfile extends Component {
       user:[
         
       ],
-      token: '',
+      token: `Bearer ${USER.TOKEN()}`,
       subjects: [],
       userClasses: null,
       userExam: null,
@@ -115,7 +115,7 @@ class UserProfile extends Component {
       const response = res.data.data;
       console.log({response});
 
-      if(response[0]){
+      if(response && response[0]){
         let doneExam = []
 
         response.map( item => 
@@ -204,16 +204,31 @@ class UserProfile extends Component {
   }
 
   checkInfo(){
-    const nameChanged = this.state.user[0].content
-    const phoneChanged = this.state.user[2].content
-    const passwordChanged = this.state.user[3].content
-    const {name, phone, password} = this.state.userInfo
-    if(nameChanged !== name && phoneChanged !== phone && passwordChanged !== password){
+    const nameChanged = this.state.user[0].content;
+    const phoneChanged = this.state.user[2].content;
+    const passwordChanged = this.state.user[3].content;
+    const {name, phone, password} = this.state.userInfo;
+
+    if(nameChanged !== name && phoneChanged !== phone && passwordChanged !== password) {
       return {name: nameChanged, phone: phoneChanged, password: passwordChanged}
-    }else if(nameChanged !== name && phoneChanged !== phone){
+    }
+    else if(nameChanged !== name && phoneChanged !== phone) {
       return {name: nameChanged, phone: phoneChanged}
-    }else if(nameChanged !== name){
+    }
+    else if(nameChanged !== name && passwordChanged !== password) {
+      return {name: nameChanged, password: passwordChanged}
+    }
+    else if(phoneChanged !== phone && passwordChanged !== password) {
+      return {phone: phoneChanged, password: passwordChanged}
+    }
+    else if(nameChanged !== name) {
       return {name: nameChanged}
+    }
+    else if(phoneChanged !== phone) {
+      return {phone: phoneChanged}
+    }
+    else if(passwordChanged !== password) {
+      return {password: passwordChanged}
     }
   }
 
@@ -235,7 +250,7 @@ class UserProfile extends Component {
         let data = this.checkInfo();
         axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/updateUser', data, {
           headers: {
-            'Authorization': USER.TOKEN()
+            Authorization: this.state.token
           }
         })
 
@@ -291,7 +306,7 @@ class UserProfile extends Component {
           <div className="container introduce">
             <div className="text-center row ">
               <div className="col-12">
-                <h1 className="text-light">Hi Dustin On The MIC</h1>
+                <h1 className="text-light">Hello {this.state.user[0] ? this.state.user[0].content : ""}</h1>
               </div>
             </div>
           </div>

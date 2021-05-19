@@ -7,7 +7,7 @@ export function checkValidate(name, value) {
                 err = "Invalid information!!";
             } else {
                 if (value.search(/[!#$%^&*()]/) !== -1 ||
-                    value.search("@gmail.com") === -1
+                    !value.includes("@") || !value.includes(".com")
                 ) {
                     err = "Invalid email (abc@gmail.com)";
 

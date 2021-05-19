@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import * as API from '../../env'
 import "../UserProfileComponents/UserProfile/UserProfileCss.css";
 
-class InforTea extends Component {
+class InfoTeacher extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,8 +10,37 @@ class InforTea extends Component {
     };
   }
 
+  componentDidMount() {
+    this.handleDrawStart(this.props.rating);
+  }
+  
+
+  handleDrawStart(rateStart) {
+    let rate = [];
+
+    if(rateStart < 1) {
+        return this.setState({isNotRated: true});
+
+    } else {
+        
+        for(let i = 1; i <= rateStart; i++) {
+          rate.push(<span className="fa fa-star"></span>);
+        }
+
+        if(rateStart < 5) {
+            let temp = 5 - rateStart;
+            for(let i = 1; i <= temp; i ++) {
+              rate.push(<span className="far fa-star"></span>);
+            }
+        }
+    }
+
+    this.setState({ rate });
+  }
+
   render() {
-    let { name, description, img, address, phone, email, rating } = this.props;
+    const { name, description, img, address, phone, email } = this.props;
+    const { rate, isNotRated } = this.state;
     return (
       <div className="mb-5">
         <div
@@ -37,13 +66,14 @@ class InforTea extends Component {
                       <div className="mt-3">
                         <h4>{name}</h4>
                         <p className="text-secondary mb-1">{description}</p>
-                          <p className="rate">
-                            {Array((rating))
-                              .fill()
-                              .map((item,index) => (
-                                <span key={index} className="fa fa-star"></span>
-                              ))}
-                          </p>
+
+                        {
+                          isNotRated ? "" :
+                            <p className="rate">
+                              { rate ? rate.map(item => item) : null}
+                            </p> 
+                        }
+                          
                       </div>
                     </div>
                   </div>
@@ -90,4 +120,4 @@ class InforTea extends Component {
   }
 }
 
-export default InforTea;
+export default InfoTeacher;
