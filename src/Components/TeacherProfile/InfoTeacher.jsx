@@ -30,7 +30,7 @@ class InfoTeacher extends Component {
         if(rateStart < 5) {
             let temp = 5 - rateStart;
             for(let i = 1; i <= temp; i ++) {
-              rate.push(<span className="fa fa-star-o"></span>);
+              rate.push(<span className="far fa-star"></span>);
             }
         }
     }
