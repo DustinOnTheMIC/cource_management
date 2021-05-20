@@ -92,12 +92,15 @@ class index extends Component {
       messageServices.showMessage('Please Login again to use this feature.', "error")
       .then(value => {
         if(value) {
-          this.setState({ isLog: 'not' })
+          this.setState({ isLog: 'not' });
         }
       });
 
     } else if(status === 422) {
       messageServices.showMessage('You can not subscribe this class again, find another class please.');
+
+    } else if(status === 400) {
+      messageServices.showMessage('Sorry this class was full.');
 
     } else {
       messageServices.showMessage('There is an error with the server, please try again.', "error");
