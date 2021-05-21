@@ -19,22 +19,22 @@ class index extends Component {
             <ul className="ftco-social">
               <li>
                 <a href="https://twitter.com/?lang=en">
-                  <span className="fa fa-twitter"></span>
+                  <span className="fab fa-twitter"></span>
                 </a>
               </li>
               <li>
                 <a href="https://www.facebook.com/">
-                  <span className="fa fa-facebook"></span>
+                  <span className="fab fa-facebook"></span>
                 </a>
               </li>
               <li>
                 <a href="https://www.instagram.com/">
-                  <span className="fa fa-instagram"></span>
+                  <span className="fab fa-instagram"></span>
                 </a>
               </li>
               <li>
                 <a href="https://www.google.com/intl/vi/account/about/">
-                  <span className="fa fa-google-plus"></span>
+                  <span className="fab fa-google-plus-g"></span>
                 </a>
               </li>
             </ul>

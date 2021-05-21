@@ -27,7 +27,7 @@ const routes = [
         path : '/all_class',
         name : 'AllClass',
         exact : true,
-        main: () => <AllClass />
+        main: (history) => <AllClass history={history} />
     },
     {
         path : '/team',
@@ -78,40 +78,35 @@ const routes = [
         main: () => <Login />
     },
     {
+        path : '/class/chatbot/all/:level',
+        name : 'ClassOfSubject1',
+        exact : true,
+        main: ({match}) => <AllClass match={match}/>
+    },
+    {
         path : '/subject/:id_subject/class',
         name : 'ClassOfSubject',
         exact : true,
         main: ({match}) => <AllClass match={match}/>
     },
-    {
-        path : '/class/chatbot/:id_subject/:level',
-        name : 'ClassOfSubject',
-        exact : true,
-        main: ({match}) => <AllClass match={match}/>
-    },
-    {
-        path : '/class/chatbot/all/:level',
-        name : 'ClassOfSubject',
-        exact : true,
-        main: ({match}) => <AllClass match={match}/>
-    },
+     // EXAM
      {
         path : '/test/:idExam/detail',
         name : 'TestDetail',
         exact : true,
-        main : ({match}) => <TestDetail match={match} />
+        main : ({match,history}) => <TestDetail match={match} history={history} />
     },
     {
         path : '/do_test/:idTest/to_do',
         name : 'DoTest',
         exact : true,
-        main : ({ match,history}) => <DoTest match={ match} history={history} />
+        main : ({ match, history}) => <DoTest match={ match} history={history} />
     },
     {
-        path : '/result_test',
+        path : '/:idTest/result_test',
         name : 'ResultTest',
         exact : true,
-        main : () => <ResultTest  />
+        main : ({match}) => <ResultTest match={ match}  />
     },
     {
         path : '*',

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Introduce from '../Components/Common/Introduce/Introduce';
 import ShowBenifit from '../Containers/ContainAbout/ShowBenifit';
-import ShowDataContact from '../Containers/ContainAbout/ShowDataContact';
 import ShowSuccessStu from '../Containers/ContainAbout/ShowSuccessStu';
 import Footer from '../Components/Footer'
 import Header from '../Components/Header/Index'
+import IntroduceInfo from "../Components/MainIntroduce";
 
 class About extends Component {
     render() {
@@ -13,7 +13,7 @@ class About extends Component {
                 <Header/>
                 <Introduce pageTitle="About" />
                 <ShowBenifit />
-                <ShowDataContact />
+                <IntroduceInfo />
                 <ShowSuccessStu />
                 <Footer/>
             </div>

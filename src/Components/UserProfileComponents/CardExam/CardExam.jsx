@@ -56,12 +56,12 @@ class CardExam extends Component {
             if(percent < 5) {
                 let temp = 5 - percent;
                 for(let i = 1; i <= temp; i ++) {
-                    statusBar.push(<li></li>)
+                    statusBar.push(<li></li>);
                 }
             }
         }
 
-        this.setState({ statusBar })
+        this.setState({ statusBar });
     }
 
     render() {
