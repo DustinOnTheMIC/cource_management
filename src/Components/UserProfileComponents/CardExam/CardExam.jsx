@@ -87,11 +87,11 @@ class CardExam extends Component {
                     <div className="bg-c-green counter-block m-t-10 p-20 rounded">
                         <div className="row justify-content-center">
                             <div className="col-4">
-                                <i className="fa fa-check-circle-o fa-lg"></i>
+                                <i className="far fa-check-circle fa-lg"></i>
                                 <p>{ rightAns }</p>
                             </div>
                             <div className="col-4">
-                                <i className="fa fa-times-circle-o fa-lg"></i>
+                                <i className="far fa-times-circle fa-lg"></i>
                                 <p>{ wrongAns }</p>
                             </div>
                             <div className="col-4">
