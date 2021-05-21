@@ -63,11 +63,9 @@ class Center extends Component {
                 data-aos-delay="200"
                 data-aos-duration="1000"
               >
-                <div className="mt-0 my-lg-5 py-5">
+                <div className="mt-0 my-lg-5">
                   <span className="subheading">Learn Anything</span>
-                  <h2 className="mb-2">
-                    Benefits About Online Learning Expertise
-                  </h2>
+                  <h2 className="mb-2">Benefits About Our System</h2>
                   <div className="row mt-4 g-lg-2">
                     <div className="col-lg-12 d-flex align-items-stretch services-wrap">
                       <div className="services d-flex">
@@ -75,26 +73,11 @@ class Center extends Component {
                           <span className="flaticon-online-learning"></span>
                         </div>
                         <div className="text">
-                          <h2>Online Courses</h2>
-                          <p className="mb-0">
-                            Far far away, behind the word mountains, far from
-                            the countries Vokalia and Consonantia, there live
-                            the blind texts.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-lg-12 d-flex align-items-stretch services-wrap">
-                      <div className="services d-flex">
-                        <div className="icon">
-                          <span className="flaticon-certificate"></span>
-                        </div>
-                        <div className="text">
-                          <h2>Earn A Certificates</h2>
-                          <p className="mb-0">
-                            Far far away, behind the word mountains, far from
-                            the countries Vokalia and Consonantia, there live
-                            the blind texts.
+                          <h2>Register Online</h2>
+                          <p className="mb-0 text-left">
+                            You can save time in the registration process,
+                            registration becomes easier. Moreover, you also get
+                            10% off each course by registering online
                           </p>
                         </div>
                       </div>
@@ -105,11 +88,25 @@ class Center extends Component {
                           <span className="flaticon-scientist"></span>
                         </div>
                         <div className="text">
-                          <h2>Learn with Expert</h2>
-                          <p className="mb-0">
-                            Far far away, behind the word mountains, far from
-                            the countries Vokalia and Consonantia, there live
-                            the blind texts.
+                          <h2>Teacher Information</h2>
+                          <p className="mb-0 text-left">
+                            The most complete information on instructors and
+                            reviews from other students
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-12 d-flex align-items-stretch services-wrap">
+                      <div className="services d-flex">
+                        <div className="icon">
+                          <span className="flaticon-certificate"></span>
+                        </div>
+                        <div className="text">
+                          <h2>Subject</h2>
+                          <p className="mb-0 text-left">
+                            The system is committed to the most solid training
+                            in theoretical knowledge as well as practice with
+                            all the subjects that our system provides.
                           </p>
                         </div>
                       </div>
