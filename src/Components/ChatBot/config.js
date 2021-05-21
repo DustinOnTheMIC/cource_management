@@ -7,8 +7,26 @@ const botAvatar = "https://i.pinimg.com/564x/07/65/a6/0765a691dbfa90d99821e88cdf
 const steps = [
     {
         id: 'hello',
-        message: 'Welcome to react chatbot! what do you want me to help?',
-        trigger: 'showOrder',
+        message: 'Do you want me to help?',
+        trigger: 'isNeedHelp',
+    },
+    {
+        id: 'isNeedHelp',
+        options:[{value: "yes", label: "Yes, show me things", trigger: 'intro'}]
+    },
+    {
+        id:"intro",
+        message: "Which one is what you want me to help?",
+        trigger: 'showOrder'
+    },
+    {
+        id:"isTurnBack",
+        message:"Do you want to suggest something else?",
+        trigger: "optionTurnBack"
+    },
+    {
+        id: "optionTurnBack",
+        options: [{value: "yes", label: "Yes, show me things", trigger: 'intro'}]
     },
     {
         id: 'showOrder',
@@ -21,6 +39,7 @@ const steps = [
             {value: "searchSubject", label:"I want to find subject name", trigger: 'searchSubject'},
         ],
     },
+
     //suggest the subject for user
         {
             id: "suggestSubject",
@@ -30,69 +49,54 @@ const steps = [
             {
                 id: "showSubject",
                 component: <Subject />,
-                trigger: 'turnBack',
+                trigger: 'isTurnBack',
             },
+
     //suggest top subject
         {
             id:"topSubjects",
-            message: 'some message ',
+            message: 'Here is our trending subject that you can consider.',
             trigger: 'top3Subjects'
         },
         {
             id: "top3Subjects",
             component: <Subject isGetTop={true} />,
-            trigger: 'turnBack'
+            trigger: 'isTurnBack'
         },
+
     //Suggest top teacher
         {
             id: "topTeachers",
             component: <Teacher isGetTop={true}/>,
-            trigger: 'turnBack'
+            trigger: 'isTurnBack'
         },
-    //suggest if user like web dev or design
-                {
-                    id: "webDevelopment",
-                    message: 'web dev',
-                    trigger: 'turnBack'
-                },
-                {
-                    id: "webDesign",
-                    message: 'web design',
-                    trigger: 'turnBack'
-                },
-        {
-            id: "turnBack",
-            message: "again",
-            trigger: 'showOrder'
-        },
+
     //suggest by scores
         {
             id: "askMath", 
             message: 'So, what is your math scores?',
             trigger: 'math'
         },
-        {
-            id: "math",
-            user: true,
-            trigger: 'showResult'
-        },
-        // {
-        //     id: "askLike",
-        //     message: "And what do you like?",
-        //     trigger: 'optionsLike'
-        // },
-        // {
-        //     id: "optionsLike",
-        //     options: [
-        //         {value: "web", label: "Web development", trigger: "showResult"},
-        //         {value: "app", label: "Application development", trigger: "showResult"}
-        //     ]
-        // },
+            {
+                id: "math",
+                user: true,
+                validator: (value) => {
+                    if (isNaN(value)) {
+                      return 'Your scores should be a number';
+                    } else if(value > 10) {
+                        return 'Should be smaller or equal 10';
+                    } else if(value < 0) {
+                        return 'Should be greater than 0';
+                    }
+                    return true;
+                },
+                trigger: 'showResult'
+            },
             {
                 id: "showResult",
                 component: <SuggestClass point={"previousValue"}/>,
                 asMessage: true,
-                trigger: "turnBack"
+                trigger: "isTurnBack"
             },
         
         // search teacher
@@ -109,7 +113,7 @@ const steps = [
             {
                 id: "findTeacher",
                 component: <Teacher />,
-                trigger: "turnBack"
+                trigger: "isTurnBack"
             },
         // search subject
         {
@@ -125,7 +129,7 @@ const steps = [
             {
                 id: "findSubject",
                 component: <Subject />,
-                trigger: "turnBack"
+                trigger: "isTurnBack"
             }
 ];
 
