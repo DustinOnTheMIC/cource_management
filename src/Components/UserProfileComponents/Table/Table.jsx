@@ -30,7 +30,7 @@ class NextExam extends Component {
                                     :
                                         userExam.subjectsExam.map(item =>
                                             <tr className="row100 body">
-                                                <td className="cell100 column1">{ item }</td>
+                                                <td className="cell100 column6">{ item }</td>
                                             </tr>
                                         )
                                     }
@@ -44,7 +44,7 @@ class NextExam extends Component {
                                     <thead>
                                         
                                         <tr className="row100 head">
-                                            <th className="cell100 column2">Class</th>
+                                            <th className="cell100 column4">Class</th>
                                             <th className="cell100 column3">Date Start</th>
                                             { title === "Your Classes" ? <th className="cell100 column4">Date end</th> : <th className="cell100 column4">Start Time</th> }
                                             { title === "Your Classes" ? <th className="cell100 column4">Teacher</th> : <th className="cell100 column6">Time (minutes)</th> }
@@ -57,7 +57,7 @@ class NextExam extends Component {
 
                                             userClasses.classes.map( item =>
                                                 <tr className="row100 body">
-                                                    <td className="cell100 column2"><a href="">{ item.className }</a></td>
+                                                    <td className="cell100 column4">{ item.className }</td>
                                                     <td className="cell100 column3">{ item.dateStart }</td>
                                                     <td className="cell100 column4">{ item.dateEnd }</td>
                                                     <td className="cell100 column6">{ item.teacher }</td>

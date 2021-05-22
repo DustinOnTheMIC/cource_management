@@ -12076,8 +12076,7 @@ textarea.form-control {
 .services-2 .icon {
   margin-bottom: 8px;
 }
-.services-2 .icon span {
-  font-size: 70px;
+.services-2 .icon i {
   line-height: 1.2;
   color: #1eb2a6;
 }
@@ -12092,7 +12091,7 @@ textarea.form-control {
   margin-bottom: 2px;
   font-family: "Roboto", Arial, sans-serif;
 }
-.services-2 .text span {
+.services-2 .text i {
   font-size: 13px;
   font-weight: 500;
   background: #f8f8f8;
@@ -12106,8 +12105,8 @@ textarea.form-control {
   -moz-box-shadow: 0px 5px 25px -2px rgba(0, 0, 0, 0.18);
   box-shadow: 0px 5px 25px -2px rgba(0, 0, 0, 0.18);
 }
-.services-2:hover .icon span,
-.services-2.active .icon span {
+.services-2:hover .icon i,
+.services-2.active .icon i {
   color: #fff;
 }
 .services-2:hover .text h2,

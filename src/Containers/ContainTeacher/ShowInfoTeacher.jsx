@@ -101,6 +101,8 @@ class ShowInfoTeacher extends Component {
             classPic={item.subject.image}
             id_class={item.id}
             id_teacher={item.teacher.id_teacher}
+            current_user={item.current_user ? item.current_user : 0}
+            limit={item.limit}
           />
         );
       });

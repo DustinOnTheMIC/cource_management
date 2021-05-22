@@ -137,6 +137,8 @@ class index extends Component {
               id_class={item.id}
               handleLoading={this.handleLoading}
               teacher_rate={item.teacher.rate}
+              current_user={item.current_user ? item.current_user : 0}
+              limit={item.limit}
             />
           </div>
         );

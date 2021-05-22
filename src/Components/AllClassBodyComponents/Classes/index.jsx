@@ -13,7 +13,8 @@ class index extends Component {
     super(props);
     this.state = {
       isLog: false,
-      token: USER.TOKEN()
+      token: USER.TOKEN(),
+      isCollab: true
     };
   }
 
@@ -46,13 +47,15 @@ class index extends Component {
             const info = {
               token: this.state.token,
               data: {
-                price: price,
+                price: price - price*10/100,
                 id_class: id_class,
                 name: USER.NAME(),
                 email: USER.EMAIL(),
                 phone: USER.PHONE(),
               }
             }
+
+            console.log(info);
 
             axiosService.subscribeClass(info)
             .then( () => this.handleSubscribeSuccess())
@@ -130,6 +133,12 @@ class index extends Component {
     this.setState({ rate });
   }
 
+  handleCollab(e) {
+    e.preventDefault();
+
+    this.setState({isCollab: false})
+  }
+
   render() {
     const {
       nameClass,
@@ -139,9 +148,11 @@ class index extends Component {
       descriptionClass,
       classPic,
       id_teacher,
+      current_user,
+      limit
     } = this.props;
 
-    const { rate, isNotRated } = this.state;
+    const { rate, isNotRated, isCollab } = this.state;
 
     return (
       <div data-aos="flip-left" data-aos-delay="100" data-aos-duration="1000">
@@ -157,7 +168,7 @@ class index extends Component {
             {
               classPic !== "." ? 
                 <div className="icon" style={{backgroundColor: "#FFFFFF"}}>
-                  <i className={classPic}></i>
+                  <i className={`${classPic} fa-4x`}></i>
                 </div>
               :
                 null
@@ -182,9 +193,24 @@ class index extends Component {
                     </span> 
                 }
               </div>
-              <p className="lec">{descriptionClass.length >= 70 ? `${descriptionClass.slice(0,70)}...`  : descriptionClass  }</p>
+              <p className="lec">
+                {
+                  descriptionClass.length>= 70 && isCollab ? 
+                    <div>
+                      {descriptionClass.slice(0,70)}...
+                      <br></br>
+                      <i className="row justify-content-end" onClick={e => this.handleCollab(e)} style={{color:"#1eb2a6", cursor:"pointer"}}>Show More</i>
+                    </div>
+                  : descriptionClass  
+                }
+              </p>
             </div>
           </div>
+
+          <div >
+            <p className="row justify-content-end">{`${current_user}/${limit}`}</p>
+          </div>
+          
           <div className="text-center bg-light rounded py-2 my-3">
             <p className="course-price mb-0">
               <span>$ {priceClass} </span> / <span>course</span>
