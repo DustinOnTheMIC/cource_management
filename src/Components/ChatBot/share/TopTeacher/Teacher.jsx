@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import React, { Component } from 'react';
-
+import './TeacherCss.css';
 class Teacher extends Component {
 
     constructor(props) {
@@ -56,11 +56,15 @@ class Teacher extends Component {
                     className="col-12 text-center d-flex align-items-stretch flex-wrap mb-2"
                     key={item.id}>
                     <Link to={`/teacher/${item.id_teacher}/profile`} className="services-2">
+                        <div className="icon">
+                            <img className="img-teacher" src={`https://quanlikhoahoc.herokuapp.com${item.image}`}></img>
+                            </div>
                         <div className="text d-flex flex-column-reverse justify-content-between align-items-center">
                             <h2>{`${item.name}`}</h2>
                         </div>
                     </Link>
-                </div>);
+                </div>
+            );
         } else if (!!previousValue) {
             toRen = <p>There is no teacher name: {previousValue}, please try again</p>
         } else {
