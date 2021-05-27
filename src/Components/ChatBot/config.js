@@ -12,12 +12,7 @@ const steps = [
     },
     {
         id: 'isNeedHelp',
-        options:[{value: "yes", label: "Yes, show me things", trigger: 'intro'}]
-    },
-    {
-        id:"intro",
-        message: "Which one is what you want me to help?",
-        trigger: 'showOrder'
+        options:[{value: "yes", label: "Yes, show me things", trigger: 'showOrder'}]
     },
     {
         id:"isTurnBack",
@@ -26,7 +21,7 @@ const steps = [
     },
     {
         id: "optionTurnBack",
-        options: [{value: "yes", label: "Yes, show me things", trigger: 'intro'}]
+        options: [{value: "yes", label: "Yes, show me things", trigger: 'showOrder'}]
     },
     {
         id: 'showOrder',

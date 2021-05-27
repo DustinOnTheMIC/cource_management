@@ -22,13 +22,10 @@ export function checkValidate(name, value) {
                 err = "Invalid information!!";
 
             } else {
-                if (value.search(/[!@#$%^&*()]/) !== -1 ||
-                    value.search(/[a-zA-Z]/) === -1 ||
-                    value.search(" ") !== -1
-                ) {
-                    err = "Does not contain special characters and spaces"
-                } else {
+                if (/^[A-Za-z ]+$/.test(value)) {
                     err = "";
+                } else {
+                    err = "Name does not contain special characters"
                 }
             }
 

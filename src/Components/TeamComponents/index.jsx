@@ -6,10 +6,11 @@ class index extends Component {
     const { name, position, img, id_teacher } = this.props;
     return (
       <div
-        className="col-md-6 col-lg-3 "
+        className="col-md-6 col-lg-3 class-shadow my-3 mx-3 rounded"
         data-aos="fade-up"
         data-aos-duration="1000"
         data-aos-delay="100"
+        style={{padding:"0", margin: "0 !important"}}
       >
         <div className="staff">
           <div

@@ -8,7 +8,9 @@ import Loading from '../../Loading/Loading'
 import * as USER from '../../../constant'
 import Table from "../Table/Table"
 import { Redirect } from "react-router-dom";
-
+import { axiosService } from '../../../Services/axiosServices';
+import { API_CURRENT, API_URL, BASE_URL } from "../../../env"
+import { messageServices } from "../../../Services/messageService"
 
 class UserProfile extends Component {
   constructor(props) {
@@ -150,14 +152,16 @@ class UserProfile extends Component {
     
     .then(res => {
       this.onLoading(false)
-
       userInfo = {
         name: res.data.data.name,
         email: res.data.data.email,
         phone: res.data.data.phone,
         password: null
       }
-      this.setState({userInfo : userInfo});
+
+      this.setState({ userInfo : userInfo });
+      this.setState({ avatar: res.data.data.avatar });
+
       let user = [];
       for (const [key, value] of Object.entries(userInfo)) {
         user.push({name: key, content: value})
@@ -237,7 +241,7 @@ class UserProfile extends Component {
     e.preventDefault()
 
     swal({
-      text: `Are you sure to change this value?`,
+      text: `Are you sure to change this info?`,
       buttons: true,
       dangerMode: true,
     })
@@ -279,11 +283,42 @@ class UserProfile extends Component {
       }
     })
   }
+
   
+  handleClickInput() {
+    document.getElementById('choose_img').click();
+  }
+
+  handleUploadImage(file) {
+
+    this.onLoading(true);
+
+    let formData = new FormData();
+
+    formData.append("file", file);
+
+    let info = {
+      url: API_URL.CHANGE_AVATAR,
+      data: formData,
+      token: this.state.token
+    }
+
+    axiosService.postService(info)
+    .then( () => {
+      this.onLoading(false);
+
+      let src = URL.createObjectURL(file);
+      document.getElementById('avatar').src = src;
+
+      messageServices.showMessage('Done, you changed your avatar', messageServices.ICON.SUCCESS);
+    })
+    .catch( () => this.onLoading(false) );
+
+  }
 
   render() {
 
-    const { userClasses, userExam } = this.state;
+    const { userClasses, userExam, avatar } = this.state;
 
     return (
       <div className="mb-5">
@@ -317,12 +352,14 @@ class UserProfile extends Component {
               <div className="row">
                 <div className="col-md-6 ml-auto mr-auto">
                   <div className="profile">
-                    <div className="avatar col-5 col-xl-4 col-lg-5 col-md-6">
+                    <div className="avatar col-5 col-xl-4 col-lg-5 col-md-6 img-div" onClick={this.handleClickInput}>
                       <img
-                        src="https://i.pinimg.com/564x/fc/8f/4b/fc8f4bf12fdaa964f267e79d83324ab3.jpg"
+                        id="avatar"
+                        src={`${API_CURRENT}${avatar}`}
                         alt="Circle"
                         className="img-raised rounded-circle img-fluid"
                       ></img>
+                      <input id="choose_img" type="file" className="d-none" accept="image/*" onChange={e => this.handleUploadImage(e.target.files[0])} excludeAcceptAllOption={true}></input>
                     </div>
                   </div>
                 </div>

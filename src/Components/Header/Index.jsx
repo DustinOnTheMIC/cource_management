@@ -45,8 +45,8 @@ class index extends Component {
                       target="_blank"
                       className="d-flex align-items-center justify-content-center"
                     >
-                      <i className="fab fa-facebook">
-                      </i>
+                      <span className="fab fa-facebook">
+                      </span>
                     </a>
                     <a
                       href="http://www.twitter.com/"

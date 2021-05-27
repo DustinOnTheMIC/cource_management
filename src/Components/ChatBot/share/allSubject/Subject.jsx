@@ -77,7 +77,7 @@ class Subject extends Component {
     }
     
     render() {
-        const { notfound, subjects, previousValue, toRen } = this.state
+        const { notfound, toRen } = this.state
         return (
             <div className="row">
 

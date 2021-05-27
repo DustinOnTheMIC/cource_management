@@ -20,6 +20,8 @@ class index extends Component {
 
   componentDidMount() {
     this.handleDrawStart(this.props.teacher_rate);
+
+    this.props.isCarousel ? this.setState({padding: "27px 15px 29px -28px"}) : this.setState({padding: "0"});
   }
   
   
@@ -32,13 +34,12 @@ class index extends Component {
     let id_class = this.props.id_class;
     let price = this.props.priceClass;
 
-    this.props.handleLoading(true);
-
       messageServices.showConfirmMessage('Do you want to subscribe to this class?')
       .then(
         value => {
           if(value) {
-            this.props.handleLoading(true);
+
+            
 
           if(!USER.STATUS() && !USER.TOKEN()) {
               this.handleMoveToLogin();
@@ -87,7 +88,7 @@ class index extends Component {
     this.props.handleLoading(false);
     const status = err.response.status;
 
-    if(status === 500){
+    if(status === 422){
       messageServices.showMessage(`Please pay the tuition for the previous class before you subscribe one.`, "warning");
 
     } else if(status === 401) {
@@ -99,7 +100,7 @@ class index extends Component {
         }
       });
 
-    } else if(status === 422) {
+    } else if(status === 500) {
       messageServices.showMessage('You can not subscribe this class again, find another class please.');
 
     } else if(status === 400) {
@@ -155,7 +156,7 @@ class index extends Component {
     const { rate, isNotRated, isCollab } = this.state;
 
     return (
-      <div data-aos="flip-left" data-aos-delay="100" data-aos-duration="1000">
+      <div data-aos="flip-left" data-aos-delay="100" data-aos-duration="1000" className="class-shadow" style={{margin: this.state.padding}}>
 
         {this.state.isLog ? (
           this.state.isLog === "not" ? (
@@ -197,9 +198,12 @@ class index extends Component {
                 {
                   descriptionClass.length>= 70 && isCollab ? 
                     <div>
-                      {descriptionClass.slice(0,70)}...
-                      <br></br>
-                      <i className="row justify-content-end" onClick={e => this.handleCollab(e)} style={{color:"#1eb2a6", cursor:"pointer"}}>Show More</i>
+                      {descriptionClass.slice(0,60)}
+                      <i
+                        onClick={e => this.handleCollab(e)} 
+                        style={{color:"#1eb2a6", cursor:"pointer"}}>
+                         ...Show More
+                      </i>
                     </div>
                   : descriptionClass  
                 }

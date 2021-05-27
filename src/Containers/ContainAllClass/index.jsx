@@ -114,7 +114,7 @@ class index extends Component {
         />
         <section className="ftco-section courses-section">
           <div className="container">
-            <div className="row">{this.dataClass(infoClass)}</div>
+            <div className="row justify-content-center">{this.dataClass(infoClass)}</div>
           </div>
         </section>
       </div>
@@ -125,7 +125,7 @@ class index extends Component {
     if (dataClass) {
       result = dataClass.map((item, index) => {
         return (
-          <div className="col-md-6 col-lg-4" key={index}>
+          <div className="col-9 col-md-6 col-lg-4 my-2" key={index}>
             <Classes
               nameClass={item.name} //item.name
               teacherName={item.teacher.name}
@@ -137,7 +137,7 @@ class index extends Component {
               id_class={item.id}
               handleLoading={this.handleLoading}
               teacher_rate={item.teacher.rate}
-              current_user={item.current_user ? item.current_user : 0}
+              current_user={item.curent_user ? item.curent_user : 0}
               limit={item.limit}
             />
           </div>

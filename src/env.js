@@ -28,4 +28,5 @@ export const API_URL = {
     NEXT_EXAM: BASE_URL + "exams/userprofile/next_exams",
     CHECK_PASS: BASE_URL + "checkPass",
     CHECK_EMAIL_LOGIN: BASE_URL + "auth/name",
+    CHANGE_AVATAR: BASE_URL + "images/upload"
 }
