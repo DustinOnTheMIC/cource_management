@@ -3,6 +3,7 @@ import SuccessStuItem from "../../Components/About/SuccessStuItem";
 import "../../Components/Common/custom.css";
 
 import son from '../../Assets/images/son.jpg';
+import son1 from '../../Assets/images/son1.jpg';
 
 import duy from '../../Assets/images/duy.jpg';
 import duy1 from "../../Assets/images/duy1.jpg";
@@ -23,7 +24,7 @@ class ShowSuccessStu extends Component {
       {
         name : "Thanh Son",
         role : "Frontend developer",
-        img : [son],
+        img : [son, son1],
         des : ["Student at Duy Tan University", "Class K23-TPM1", "Student code : 2321117978", "GMO Employee"],
       },
       {
