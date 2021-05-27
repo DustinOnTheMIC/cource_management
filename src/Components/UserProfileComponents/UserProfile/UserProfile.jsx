@@ -363,9 +363,9 @@ class UserProfile extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="name d-flex flex-wrap mt-4 justify-content-center">
+                <div className="name d-flex flex-wrap justify-content-center">
                   <div className="panel col-md-10 col-12 d-flex justify-content-center flex-column mb-5">
-                    <h1 className="title">Bio Graph</h1>
+                    <h1 className="title" style={{marginTop: "0"}}>Bio Graph</h1>
                     <div className="panel-body bio-graph-info">
 
                       {this.state.user.map(item => {

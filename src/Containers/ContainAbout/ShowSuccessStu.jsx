@@ -29,7 +29,7 @@ class ShowSuccessStu extends Component {
       {
         name : "Duc Tin",
         role : "Frontend developer",
-        img : [tin, tin1, tin2],
+        img : [tin2, tin, tin1],
         des : ["Student at Duy Tan University", "Class K23-TPM1", "Student code : 2321122981", "Hitachi Employee"],
       },
       {

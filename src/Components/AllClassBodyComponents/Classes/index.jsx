@@ -14,7 +14,8 @@ class index extends Component {
     this.state = {
       isLog: false,
       token: USER.TOKEN(),
-      isCollab: true
+      isCollab: true,
+      iconBg: ""
     };
   }
 
@@ -22,6 +23,9 @@ class index extends Component {
     this.handleDrawStart(this.props.teacher_rate);
 
     this.props.isCarousel ? this.setState({padding: "27px 15px 29px -28px"}) : this.setState({padding: "0"});
+
+    
+    this.props.changeBg ?  this.setState({iconBg: "#FFFF"}) : this.setState({iconBg: "#f8f8f8"});
   }
   
   
@@ -168,7 +172,7 @@ class index extends Component {
           <div className="d-flex">
             {
               classPic !== "." ? 
-                <div className="icon" style={{backgroundColor: "#FFFFFF"}}>
+                <div className="icon" style={{backgroundColor: this.state.iconBg}}>
                   <i className={`${classPic} fa-4x`}></i>
                 </div>
               :

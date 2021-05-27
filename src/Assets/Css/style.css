@@ -12262,6 +12262,7 @@ textarea.form-control {
   position: relative;
   width: 100%;
   overflow-x: hidden;
+  background: #f8f8f8;
 }
 @media (max-width: 575.98px) {
   .ftco-section {
@@ -12852,7 +12853,7 @@ textarea.form-control {
 }
 
 .courses {
-  max-width: 400px;
+  max-width: 100%;
   padding: 30px 30px 40px 30px;
   margin-bottom: 20px;
   -moz-transition: all 0.3s ease;
@@ -13481,9 +13482,13 @@ textarea.form-control {
 }
 
 .class-shadow{
-  box-shadow: 5px 9px 12px #888888;
+  box-shadow: 5px 9px 12px rgba(0,0,0,.1);
 }
 
 .wrap-classes{
   max-width: 425px;
+}
+
+.bg-custom{
+  background: #f8f8f8;
 }

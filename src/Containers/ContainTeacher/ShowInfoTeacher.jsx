@@ -47,15 +47,16 @@ class ShowInfoTeacher extends Component {
  
   render() {
     const breakPoints = [
-      { width: 550, itemsToShow: 1 },
+      { width: 550, itemsToShow: 1},
       { width: 550, itemsToShow: 2, itemsToScroll: 2 },
       { width: 768, itemsToShow: 3 },
-      { width: 1200, itemsToShow: 3 },
+      { width: 1200, itemsToShow: 3},
     ];
+
     let { dataTeacher, dataClass, isLoading } = this.state;
 
     return (
-      <div>
+      <div className="">
 
         { isLoading ? <Loading/> : null }
 
@@ -71,6 +72,7 @@ class ShowInfoTeacher extends Component {
                 phone={item.phone}
                 email={item.email}
                 rating={item.rate}
+
               />
             ) 
           :
@@ -85,7 +87,7 @@ class ShowInfoTeacher extends Component {
                 <p>Oopp! There aren't any classes</p>
               </div>
             ) : (
-              <Carousel breakPoints={breakPoints}>
+              <Carousel breakPoints={breakPoints} >
                 {this.dataClass(dataClass)}
               </Carousel>
             )}
@@ -115,6 +117,7 @@ class ShowInfoTeacher extends Component {
             limit={item.limit}
             handleLoading = {status => this.handleLoading(status)}
             isCarousel={true}
+            changeBg={true}
           />
         );
       });

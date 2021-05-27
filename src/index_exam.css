@@ -59,7 +59,7 @@ body::-webkit-scrollbar-track-piece:end {
     outline: none;
     box-sizing: border-box;
     text-decoration: none;
-    transition: all ease 0.3s;
+    transition: all ease 0.1s;
 }
 
 button, input, textarea, select {
