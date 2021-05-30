@@ -11,7 +11,7 @@ class index extends Component {
             theme: {
                 background: '#f1f2f6',
                 fontFamily: this.fontFamily,
-                headerBgColor: 'rgb(30,178,166)',
+                headerBgColor: '#2f3640',
                 headerFontColor: '#fff',
                 headerFontSize: '15px',
                 botBubbleColor: 'linear-gradient(-190deg, #d1d8e0, #1e272e)',

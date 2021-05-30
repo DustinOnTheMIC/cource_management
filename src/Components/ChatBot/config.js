@@ -1,8 +1,9 @@
 import Subject from './share/allSubject/Subject';
 import SuggestClass from './share/suggestClass/SuggestClass';
 import Teacher from './share/TopTeacher/Teacher';
-
-const botAvatar = "https://i.pinimg.com/564x/07/65/a6/0765a691dbfa90d99821e88cdf8e71dd.jpg";
+import logo from '../../Assets/images/logo.png'
+import botAvatar from "../../Assets/images/img5.jpg";
+import userAvatar from '../../Assets/images/img2.jpg'
 
 const steps = [
     {
@@ -134,7 +135,12 @@ export const config ={
     floating: true,
     steps: steps,
     botAvatar: botAvatar,
-    headerTitle: 'AI run by rice',
+    userAvatar: userAvatar,
+    headerTitle: 
+        <div>
+            <img src={logo} alt="logo" style={{width: "38%"}}></img>
+            <i style={{color:"#b2bec3"}}>AI-401-21</i>
+        </div>,
     botDelay:0,
     enableSmoothScroll: true,
     handleEnd: (value)=> {

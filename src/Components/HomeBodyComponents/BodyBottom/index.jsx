@@ -28,7 +28,7 @@ class index extends Component {
     let { dataSubject } = this.state;
     return (
       <section className="ftco-section">
-        <div className="container-xl custom-class" id="showsubject">
+        <div className="container-xl custom-class" id="showSubject">
           <div className="row justify-content-center">
             <div
               className="col-md-8 heading-section text-center mb-5"
