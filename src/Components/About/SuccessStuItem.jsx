@@ -36,11 +36,11 @@ class SuccessStuItem extends Component {
     render() {
         let { name, role, des } = this.props;
         return (
-            <div class="card-custom col-3 mx-3 my-3" style={{ backgroundImage: `url(${this.state.image})`}}>
-                <div class="card-body-custom">
-                    <h2 class="card-title-custom">{ name }</h2>
+            <div className="card-custom col-12 col-lg-3 mx-3 my-3" style={{ backgroundImage: `url(${this.state.image})`}}>
+                <div className="card-body-custom">
+                    <h2 className="card-title-custom">{ name }</h2>
                     <p>{ role }</p>
-                    { des.map( (index, item) => <p key={index} className="msg text-left" style={{marginBottom:"0"}}>{ item }</p> ) }
+                    { des.map( (item) => <p key={item} className="msg text-left" style={{marginBottom:"0"}}>{ item }</p> ) }
                 </div>
             </div>
         );

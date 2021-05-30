@@ -10,9 +10,9 @@ class index extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md col-xl-5 d-flex align-items-center">
-                <Link className="navbar-brand align-items-center" to={'/'}>
+                <Link className="navbar-brand align-items-center" to='/'>
                   Academia
-                  <span>Online Education &amp; Learning</span>
+                  <span>Best Courses &amp; Online Testing</span>
                 </Link>
               </div>
               <div className="col-md d-flex align-items-center">

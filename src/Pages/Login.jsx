@@ -229,7 +229,7 @@ class Login extends Component {
                             <div className="col-md-6">
                                 <a className="navbar-brand align-items-center text-logo" href="/">
                                     Academia
-                                    <span className="text-muted">Online Education &amp; Learning</span>
+                                    <span className="text-muted">Best Courses &amp; Online Testing</span>
                                 </a>
                                 <img src={imgLogin} alt="Imag" className="img-fluid mt-1"></img>
                             </div>

@@ -113,7 +113,7 @@ class index extends Component {
         />
         <section className="ftco-section courses-section">
           <div className="container">
-            <div className="row">{this.dataClass(infoClass)}</div>
+            <div className="row justify-content-center justify-content-md-start">{this.dataClass(infoClass)}</div>
           </div>
         </section>
       </div>

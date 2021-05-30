@@ -23,7 +23,7 @@ class index extends Component {
                   <h2 className="ftco-heading-2 logo d-flex">
                     <Link to="/" className="navbar-brand align-items-center">
                       Academia
-                      <span>Online Education &amp; Learning</span>
+                      <span>Best Courses &amp; Online Testing</span>
                     </Link>
                   </h2>
                   <p>
