@@ -29,14 +29,14 @@ class Center extends Component {
                     texts.
                   </p>
                   <p>
-                    <Link to="/login" className="btn btn-primary p-4 py-3">
+                    <Link to="/all_class" className="btn btn-primary p-4 py-3">
                       Get Started Now!
                       <span className="ion-ios-arrow-round-forward"></span>
                     </Link>
-                    <Link to="/all_class" className="btn btn-white p-4 py-3">
+                    <a href="#showSubject" className="btn btn-white p-4 py-3">
                       View Course
                       <span className="ion-ios-arrow-round-forward"></span>
-                    </Link>
+                    </a>
                   </p>
                 </div>
               </div>
