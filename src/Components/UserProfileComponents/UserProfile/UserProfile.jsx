@@ -9,10 +9,9 @@ import * as USER from '../../../constant';
 import Table from "../Table/Table"
 import { Redirect } from "react-router-dom";
 import { axiosService } from '../../../Services/axiosServices';
-import { API_CURRENT, API_URL, BASE_URL } from "../../../env";
+import { API_CURRENT, API_URL } from "../../../env";
 import { messageServices } from "../../../Services/messageService";
-import defaultAvatar from '../../../Assets/images/img6.jpg'
-
+import defaultAvatar from '../../../Assets/images/img6.jpg';
 class UserProfile extends Component {
   constructor(props) {
     super(props)
@@ -59,6 +58,7 @@ class UserProfile extends Component {
               dateEnd: item.class.course.day_end,
               teacher: item.class.teacher.name
             })
+            return 0;
           })
 
           this.setState({ 
@@ -94,6 +94,8 @@ class UserProfile extends Component {
             timeStart: item.id_exams.time_begin,
             duration: item.duration
           });
+          
+          return 0;
         });
 
         this.setState({

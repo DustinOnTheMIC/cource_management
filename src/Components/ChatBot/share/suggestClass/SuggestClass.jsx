@@ -33,14 +33,19 @@ class SuggestClass extends Component {
                 break;
         }
 
-        this.setState({ redirect: true })
+        this.setState({ redirect: true }, () => window.location.reload() );
     }
 
     render() {
         const { math } = this.state
         return (
             <div className="row">
-                { this.state.redirect ? (<Redirect push to={this.state.goTo} />) : null }
+                { this.state.redirect ? (
+                    <div>
+                        <Redirect push to="/" />
+                        <Redirect push to={this.state.goTo} />
+                    </div>
+                ) : null }
                 
   
                 { math >= 8 ? 

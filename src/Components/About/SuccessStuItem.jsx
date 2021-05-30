@@ -40,7 +40,7 @@ class SuccessStuItem extends Component {
                 <div class="card-body-custom">
                     <h2 class="card-title-custom">{ name }</h2>
                     <p>{ role }</p>
-                    { des.map( item => <p className="msg text-left" style={{marginBottom:"0"}}>{ item }</p> ) }
+                    { des.map( (index, item) => <p key={index} className="msg text-left" style={{marginBottom:"0"}}>{ item }</p> ) }
                 </div>
             </div>
         );

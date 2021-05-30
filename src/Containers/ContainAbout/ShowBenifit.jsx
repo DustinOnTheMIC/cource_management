@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import BenifitItem from "../../Components/About/BenifitItem";
 import imgAbout from "../../Assets/images/about.jpg";
 
 class ShowBenifit extends Component {

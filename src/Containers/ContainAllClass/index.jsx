@@ -50,9 +50,7 @@ class index extends Component {
   componentDidMount() {
     const { id_subject, level } = this.props;
     this.handleLoading(true) //mount loading component
-
-    console.log(this.props.match);
-    
+        
     if (id_subject) {
       // get all class of subject 
         axios
@@ -82,12 +80,13 @@ class index extends Component {
           console.log(err)
         });
       } else {
+
       axios
       .get(API.API_CURRENT + `api/v1/classes/chatbot/all/${level}`)
       .then((res) => {
         console.log(res);
-        this.handleLoading(false)
-        this.setInfoClass(res)
+        this.handleLoading(false);
+        this.setInfoClass(res);
 
       })
       .catch((err) => {
@@ -114,7 +113,7 @@ class index extends Component {
         />
         <section className="ftco-section courses-section">
           <div className="container">
-            <div className="row justify-content-center">{this.dataClass(infoClass)}</div>
+            <div className="row">{this.dataClass(infoClass)}</div>
           </div>
         </section>
       </div>

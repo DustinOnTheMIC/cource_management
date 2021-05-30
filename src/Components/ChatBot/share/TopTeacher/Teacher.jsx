@@ -57,7 +57,7 @@ class Teacher extends Component {
                     key={item.id}>
                     <Link to={`/teacher/${item.id_teacher}/profile`} className="services-2">
                         <div className="icon">
-                            <img className="img-teacher" src={`https://quanlikhoahoc.herokuapp.com${item.image}`}></img>
+                            <img alt="teacher" className="img-teacher" src={`https://quanlikhoahoc.herokuapp.com${item.image}`}></img>
                             </div>
                         <div className="text d-flex flex-column-reverse justify-content-between align-items-center">
                             <h2>{`${item.name}`}</h2>

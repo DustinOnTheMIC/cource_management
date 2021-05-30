@@ -26,6 +26,7 @@ class App extends React.Component {
       </Router>
   );
 }
+
 showRouter = (routes) =>{
   let result = null;
   if(routes.length > 0){

@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
-import swal from "sweetalert";
-import axios from "axios";
 import * as API from "../../../env";
 import * as USER from '../../../constant';
 import { axiosService } from '../../../Services/axiosServices';
-import { URL } from '../../../env';
 import { messageServices } from '../../../Services/messageService';
-
 class index extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +23,6 @@ class index extends Component {
     
     this.props.changeBg ?  this.setState({iconBg: "#FFFF"}) : this.setState({iconBg: "#f8f8f8"});
   }
-  
   
   handleSubscribe(e) {
 

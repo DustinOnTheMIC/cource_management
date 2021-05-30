@@ -43,6 +43,7 @@ class index extends Component {
                     <a
                       href="http://www.fb.com/"
                       target="_blank"
+                      rel="noreferrer"
                       className="d-flex align-items-center justify-content-center"
                     >
                       <span className="fab fa-facebook">
@@ -51,6 +52,7 @@ class index extends Component {
                     <a
                       href="http://www.twitter.com/"
                       target="_blank"
+                      rel="noreferrer"
                       className="d-flex align-items-center justify-content-center"
                     >
                       <span className="fab fa-twitter">
@@ -59,6 +61,7 @@ class index extends Component {
                     <a
                       href="http://www.instagram.com/"
                       target="_blank"
+                      rel="noreferrer"
                       className="d-flex align-items-center justify-content-center"
                     >
                       <span className="fab fa-instagram">
@@ -67,6 +70,7 @@ class index extends Component {
                     <a
                       href="http://www.googleplus.com/"
                       target="_blank"
+                      rel="noreferrer"
                       className="d-flex align-items-center justify-content-center"
                     >
                       <span className="fab fa-google-plus-g">

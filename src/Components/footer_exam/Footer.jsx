@@ -12,35 +12,38 @@ class Footer extends Component {
                 <a
                   href="http://www.facebook.com"
                   target="_blank"
+                  rel="noreferrer"
                   className="fa fa-facebook"
-                ></a>
+                > </a>
               </div>
               <div className="icon">
                 <a
                   href="http://www.twitter.com"
                   target="_blank"
+                  rel="noreferrer"
                   className="fa fa-twitter"
-                ></a>
+                > </a>
               </div>
               <div className="icon">
                 <a
                   href="http://www.instagram.com"
                   target="_blank"
+                  rel="noreferrer"
                   className="fa fa-instagram"
-                ></a>
+                > </a>
               </div>
             </div>
             <div className="support">
               <h4>Support</h4>
               <ul>
                 <li>
-                  <a href="#">Introduce</a>
+                  <a href="#this">Introduce</a>
                 </li>
                 <li>
-                  <a href="#">Rules</a>
+                  <a href="#this">Rules</a>
                 </li>
                 <li>
-                  <a href="#">Policy</a>
+                  <a href="#this">Policy</a>
                 </li>
               </ul>
             </div>

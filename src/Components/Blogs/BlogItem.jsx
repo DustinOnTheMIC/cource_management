@@ -13,9 +13,9 @@ class BlogItem extends Component {
                     </Link>
                     <div className="text">
                         <p className="meta"><span><i className="fa fa-user me-1"></i>Admin</span> <span><i
-                            className="fa fa-calendar me-1"></i>Jan. 18, 2021</span> <span><a href="#"><i
+                            className="fa fa-calendar me-1"></i>Jan. 18, 2021</span> <span><a href="#this"><i
                                 className="fa fa-comment me-1"></i> 3 Comments</a></span></p>
-                        <h3 className="heading mb-3"><a href="#">Build your Dream Software &amp; Engineering Career</a></h3>
+                        <h3 className="heading mb-3"><a href="#this">Build your Dream Software &amp; Engineering Career</a></h3>
                         <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
                     </div>
                 </div>

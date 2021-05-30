@@ -12,7 +12,7 @@ class PriceCourseItem extends Component {
                             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
                   the blind texts.</p>
                         </div>
-                        <a href="#" className="btn btn-primary btn-outline-primary d-block px-2 py-3">Get Started</a>
+                        <a href="#this" className="btn btn-primary btn-outline-primary d-block px-2 py-3">Get Started</a>
                     </div>
                 </div>
             </div>

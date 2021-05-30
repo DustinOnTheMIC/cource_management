@@ -32,22 +32,22 @@ class index extends Component {
                   </p>
                   <ul className="ftco-footer-social list-unstyled mt-2">
                     <li>
-                      <a href="http://www.twitter.com/" target="_blank">
+                      <a href="http://www.twitter.com/" target="_blank" rel="noreferrer">
                         <span className="fab fa-twitter"></span>
                       </a>
                     </li>
                     <li>
-                      <a href="http://www.fb.com/" target="_blank">
+                      <a href="http://www.fb.com/" target="_blank" rel="noreferrer">
                         <span className="fab fa-facebook"></span>
                       </a>
                     </li>
                     <li>
-                      <a href="http://www.instagram.com/" target="_blank">
+                      <a href="http://www.instagram.com/" target="_blank" rel="noreferrer">
                         <span className="fab fa-instagram"></span>
                       </a>
                     </li>
                     <li>
-                      <a href="http://www.googleplus.com/" target="_blank">
+                      <a href="http://www.googleplus.com/" target="_blank" rel="noreferrer">
                         <span className="fab fa-google-plus-g"></span>
                       </a>
                     </li>
@@ -124,7 +124,7 @@ class index extends Component {
                       className="blog-img img rounded"
                       href="#this"
                       style={{ backgroundImage: `url(${image1})` }}
-                    ></a>
+                    > </a>
                     <div className="text">
                       <div className="meta">
                         <div>
@@ -146,9 +146,10 @@ class index extends Component {
                   </div>
                   <div className="block-21 mb-4 d-flex">
                     <a
+                      href
                       className="blog-img img rounded"
                       style={{ backgroundImage: `url(${image2})` }}
-                    ></a>
+                    > </a>
                     <div className="text">
                       <div className="meta">
                         <div>
@@ -171,8 +172,9 @@ class index extends Component {
                   <div className="block-21 mb-4 d-flex">
                     <a
                       className="blog-img img rounded"
+                      href="#this"
                       style={{ backgroundImage: `url(${image4})` }}
-                    ></a>
+                    > </a>
                     <div className="text">
                       <div className="meta">
                         <div>
@@ -225,7 +227,7 @@ class index extends Component {
                     Copyright &copy; 2021
                     Design by
                     <a
-                      href="#"
+                      href="#this"
                       rel="nofollow noopener"
                     >
                       Academia
