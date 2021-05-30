@@ -29,12 +29,11 @@ class Subject extends Component {
         axios.get(URL)
             .then(
                 res => {
-                    console.log({res});
                     this.setState({subjects: res.data.data})
                 }
             )
             .catch(
-                err => {
+                () => {
                     this.setState({notfound: true})
                 }
             )
@@ -56,14 +55,18 @@ class Subject extends Component {
         if(!!subjects[0]) {
             toRen = subjects.map((item) =>
                 <div
-                    className="col-12 text-center d-flex align-items-stretch flex-wrap mb-2"
+                    className="col-6 text-center d-flex align-items-stretch flex-wrap mb-2"
                     key={item.id}>
                     <Link to={`/subject/${item.id}/class`} className="services-2">
+                        <div className="icon">
+                            <i className={`${item.image} fa-2x`}></i>
+                            </div>
                         <div className="text d-flex flex-column-reverse justify-content-between align-items-center">
                             <h2>{`${item.name}`}</h2>
                         </div>
                     </Link>
-                </div>);
+                </div>
+            );
         } else if (!!previousValue) {
             toRen = <p>There is no subject name: {previousValue}, please try again</p>
         } else {
@@ -74,7 +77,7 @@ class Subject extends Component {
     }
     
     render() {
-        const { notfound, subjects, previousValue, toRen } = this.state
+        const { notfound, toRen } = this.state
         return (
             <div className="row">
 

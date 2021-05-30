@@ -50,9 +50,7 @@ class index extends Component {
   componentDidMount() {
     const { id_subject, level } = this.props;
     this.handleLoading(true) //mount loading component
-
-    console.log(this.props.match);
-    
+        
     if (id_subject) {
       // get all class of subject 
         axios
@@ -82,12 +80,13 @@ class index extends Component {
           console.log(err)
         });
       } else {
+
       axios
       .get(API.API_CURRENT + `api/v1/classes/chatbot/all/${level}`)
       .then((res) => {
         console.log(res);
-        this.handleLoading(false)
-        this.setInfoClass(res)
+        this.handleLoading(false);
+        this.setInfoClass(res);
 
       })
       .catch((err) => {
@@ -125,7 +124,7 @@ class index extends Component {
     if (dataClass) {
       result = dataClass.map((item, index) => {
         return (
-          <div className="col-md-6 col-lg-4" key={index}>
+          <div className="col-9 col-md-6 col-lg-4 my-2" key={index}>
             <Classes
               nameClass={item.name} //item.name
               teacherName={item.teacher.name}
@@ -137,6 +136,8 @@ class index extends Component {
               id_class={item.id}
               handleLoading={this.handleLoading}
               teacher_rate={item.teacher.rate}
+              current_user={item.curent_user ? item.curent_user : 0}
+              limit={item.limit}
             />
           </div>
         );

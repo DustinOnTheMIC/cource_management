@@ -1,15 +1,17 @@
-import React, { Component } from "react"
-import "./UserProfileCss.css"
-import CardExam from "../CardExam/CardExam"
-import FormInfo from '../FormInfo/FormInfo'
-import swal from "sweetalert"
-import axios from "axios"
-import Loading from '../../Loading/Loading'
-import * as USER from '../../../constant'
+import React, { Component } from "react";
+import "./UserProfileCss.css";
+import CardExam from "../CardExam/CardExam";
+import FormInfo from '../FormInfo/FormInfo';
+import swal from "sweetalert";
+import axios from "axios";
+import Loading from '../../Loading/Loading';
+import * as USER from '../../../constant';
 import Table from "../Table/Table"
 import { Redirect } from "react-router-dom";
-
-
+import { axiosService } from '../../../Services/axiosServices';
+import { API_CURRENT, API_URL } from "../../../env";
+import { messageServices } from "../../../Services/messageService";
+import defaultAvatar from '../../../Assets/images/img6.jpg';
 class UserProfile extends Component {
   constructor(props) {
     super(props)
@@ -22,6 +24,7 @@ class UserProfile extends Component {
       userClasses: null,
       userExam: null,
       doneExam: null,
+      avatar: ""
     }
   }
 
@@ -55,6 +58,7 @@ class UserProfile extends Component {
               dateEnd: item.class.course.day_end,
               teacher: item.class.teacher.name
             })
+            return 0;
           })
 
           this.setState({ 
@@ -90,6 +94,8 @@ class UserProfile extends Component {
             timeStart: item.id_exams.time_begin,
             duration: item.duration
           });
+          
+          return 0;
         });
 
         this.setState({
@@ -149,15 +155,24 @@ class UserProfile extends Component {
     )
     
     .then(res => {
-      this.onLoading(false)
-
+      this.onLoading(false);
+      let responsed  = res.data.data
       userInfo = {
-        name: res.data.data.name,
-        email: res.data.data.email,
-        phone: res.data.data.phone,
+        name: responsed.name,
+        email: responsed.email,
+        phone: responsed.phone,
         password: null
       }
-      this.setState({userInfo : userInfo});
+
+      this.setState({ userInfo : userInfo });
+
+      if(responsed.avatar){
+        this.setState({ avatar: `${API_CURRENT}${responsed.avatar}` });
+        
+      } else {
+        this.setState({ avatar: defaultAvatar });
+      }
+
       let user = [];
       for (const [key, value] of Object.entries(userInfo)) {
         user.push({name: key, content: value})
@@ -237,7 +252,7 @@ class UserProfile extends Component {
     e.preventDefault()
 
     swal({
-      text: `Are you sure to change this value?`,
+      text: `Are you sure to change this info?`,
       buttons: true,
       dangerMode: true,
     })
@@ -279,11 +294,42 @@ class UserProfile extends Component {
       }
     })
   }
+
   
+  handleClickInput() {
+    document.getElementById('choose_img').click();
+  }
+
+  handleUploadImage(file) {
+
+    this.onLoading(true);
+
+    let formData = new FormData();
+
+    formData.append("file", file);
+
+    let info = {
+      url: API_URL.CHANGE_AVATAR,
+      data: formData,
+      token: this.state.token
+    }
+
+    axiosService.postService(info)
+    .then( () => {
+      this.onLoading(false);
+
+      let src = URL.createObjectURL(file);
+      document.getElementById('avatar').src = src;
+
+      messageServices.showMessage('Done, you changed your avatar', messageServices.ICON.SUCCESS);
+    })
+    .catch( () => this.onLoading(false) );
+
+  }
 
   render() {
 
-    const { userClasses, userExam } = this.state;
+    const { userClasses, userExam, avatar } = this.state;
 
     return (
       <div className="mb-5">
@@ -317,18 +363,20 @@ class UserProfile extends Component {
               <div className="row">
                 <div className="col-md-6 ml-auto mr-auto">
                   <div className="profile">
-                    <div className="avatar col-5 col-xl-4 col-lg-5 col-md-6">
+                    <div className="avatar img-div" onClick={this.handleClickInput}>
                       <img
-                        src="https://i.pinimg.com/564x/fc/8f/4b/fc8f4bf12fdaa964f267e79d83324ab3.jpg"
+                        id="avatar"
+                        src={avatar}
                         alt="Circle"
                         className="img-raised rounded-circle img-fluid"
                       ></img>
+                      <input id="choose_img" type="file" className="d-none" accept="image/*" onChange={e => this.handleUploadImage(e.target.files[0])} excludeAcceptAllOption={true}></input>
                     </div>
                   </div>
                 </div>
-                <div className="name d-flex flex-wrap mt-4 justify-content-center">
+                <div className="name d-flex flex-wrap justify-content-center">
                   <div className="panel col-md-10 col-12 d-flex justify-content-center flex-column mb-5">
-                    <h1 className="title">Bio Graph</h1>
+                    <h1 className="title" style={{marginTop: "0"}}>Bio Graph</h1>
                     <div className="panel-body bio-graph-info">
 
                       {this.state.user.map(item => {

@@ -22,10 +22,10 @@ class ContactBody extends Component {
                                             <div className="w-100 social-media mt-5">
                                                 <h3>Follow us here</h3>
                                                 <p>
-                                                    <a href="#">Facebook</a>
-                                                    <a href="#">Twitter</a>
-                                                    <a href="#">Instagram</a>
-                                                    <a href="#">Dribbble</a>
+                                                    <a href="#this">Facebook</a>
+                                                    <a href="#this">Twitter</a>
+                                                    <a href="#this">Instagram</a>
+                                                    <a href="#this">Dribbble</a>
                                                 </p>
                                             </div>
                                         </div>

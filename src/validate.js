@@ -9,7 +9,7 @@ export function checkValidate(name, value) {
                 if (value.search(/[!#$%^&*()]/) !== -1 ||
                     !value.includes("@") || !value.includes(".com")
                 ) {
-                    err = "Invalid email (abc@gmail.com)";
+                    err = "Invalid email (abc@cde.com)";
 
                 } else {
                     err = "";
@@ -22,13 +22,10 @@ export function checkValidate(name, value) {
                 err = "Invalid information!!";
 
             } else {
-                if (value.search(/[!@#$%^&*()]/) !== -1 ||
-                    value.search(/[a-zA-Z]/) === -1 ||
-                    value.search(" ") !== -1
-                ) {
-                    err = "Does not contain special characters and spaces"
-                } else {
+                if (/^[A-Za-z ]+$/.test(value)) {
                     err = "";
+                } else {
+                    err = "Name does not contain special characters"
                 }
             }
 
@@ -53,7 +50,7 @@ export function checkValidate(name, value) {
         case ('phone'):
             // PASS
             var phoneRule = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-            if (value.match(phoneRule)) {
+            if (""+value.match(phoneRule)) {
                 err = "";
             } else {
                 err = "Your phone number is invalid, must be 10 number"

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import bg2 from "../../../Assets/images/bg_2.jpg";
 import './IntroduceCss.css'
-
 class Introduce extends Component {
   render() {
     return (

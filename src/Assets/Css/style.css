@@ -62,7 +62,6 @@ body {
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
-  background-color: #F8F8F8;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -240,11 +239,11 @@ sup {
 }
 
 a {
-  color: #0d6efd;
+  color: #1eb2a6;
   text-decoration: underline;
 }
 a:hover {
-  color: #0a58ca;
+  color: #1eb2a6;
 }
 
 a:not([href]):not([class]),
@@ -603,6 +602,26 @@ progress {
 .img-fluid {
   max-width: 100%;
   height: auto;
+}
+
+.img-div{
+  position:relative; display: inline-block;
+}
+
+.img-div:hover:after{
+    content:'';
+    position:absolute;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 100%;
+    background: url('https://img-premium.flaticon.com/png/512/61/61456.png?token=exp=1621913652~hmac=3d3c64301600127da2ec97fa93e6dce0') center no-repeat;
+    background-size: 50px;
+    border-radius: 50%;
+}
+
+.img-div:hover img{
+  filter: blur(5px);
 }
 
 .img-thumbnail {
@@ -11386,7 +11405,6 @@ a:focus,
 button:hover,
 button:focus {
   text-decoration: none;
-  color: #1eb2a6;
   outline: none !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
@@ -12078,8 +12096,7 @@ textarea.form-control {
 .services-2 .icon {
   margin-bottom: 8px;
 }
-.services-2 .icon span {
-  font-size: 70px;
+.services-2 .icon i {
   line-height: 1.2;
   color: #1eb2a6;
 }
@@ -12094,7 +12111,7 @@ textarea.form-control {
   margin-bottom: 2px;
   font-family: "Roboto", Arial, sans-serif;
 }
-.services-2 .text span {
+.services-2 .text i {
   font-size: 13px;
   font-weight: 500;
   background: #f8f8f8;
@@ -12108,8 +12125,8 @@ textarea.form-control {
   -moz-box-shadow: 0px 5px 25px -2px rgba(0, 0, 0, 0.18);
   box-shadow: 0px 5px 25px -2px rgba(0, 0, 0, 0.18);
 }
-.services-2:hover .icon span,
-.services-2.active .icon span {
+.services-2:hover .icon i,
+.services-2.active .icon i {
   color: #fff;
 }
 .services-2:hover .text h2,
@@ -12247,6 +12264,7 @@ textarea.form-control {
   position: relative;
   width: 100%;
   overflow-x: hidden;
+  background: #f8f8f8;
 }
 @media (max-width: 575.98px) {
   .ftco-section {
@@ -12837,8 +12855,7 @@ textarea.form-control {
 }
 
 .courses {
-  width: 97%;
-  background: #fff;
+  max-width: 100%;
   padding: 30px 30px 40px 30px;
   margin-bottom: 20px;
   -moz-transition: all 0.3s ease;
@@ -12846,8 +12863,8 @@ textarea.form-control {
   -webkit-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  min-height: 400px;
 }
+
 @media (max-width: 1199.98px) {
   .courses {
     margin-bottom: 20px;
@@ -12924,7 +12941,6 @@ textarea.form-control {
   -webkit-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  margin-bottom: 20px;
   -webkit-box-shadow: 0px 24px 48px -13px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 0px 24px 48px -13px rgba(0, 0, 0, 0.05);
   box-shadow: 0px 24px 48px -13px rgba(0, 0, 0, 0.05);
@@ -13461,4 +13477,20 @@ textarea.form-control {
 .sidelink li.active a {
   color: #000000;
   font-style: italic;
+}
+
+.ftco-section::-webkit-scrollbar{
+  display: none;
+}
+
+.class-shadow{
+  box-shadow: 5px 9px 12px rgba(0,0,0,.1);
+}
+
+.wrap-classes{
+  max-width: 425px;
+}
+
+.bg-custom{
+  background: #f8f8f8;
 }

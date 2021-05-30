@@ -33,14 +33,19 @@ class SuggestClass extends Component {
                 break;
         }
 
-        this.setState({ redirect: true })
+        this.setState({ redirect: true }, () => window.location.reload() );
     }
 
     render() {
         const { math } = this.state
         return (
             <div className="row">
-                { this.state.redirect ? (<Redirect push to={this.state.goTo} />) : null }
+                { this.state.redirect ? (
+                    <div>
+                        <Redirect push to="/" />
+                        <Redirect push to={this.state.goTo} />
+                    </div>
+                ) : null }
                 
   
                 { math >= 8 ? 
@@ -68,42 +73,6 @@ class SuggestClass extends Component {
             </div>
         );
     }
-    
-    // render() {
-    //     const { math, like } = this.state
-    //     return (
-    //         <div className="row">
-    //             { this.state.redirect ? (<Redirect push to={this.state.goTo} />) : null }
-                
-    //             { math > 5 && like === "web" ?
-    //                 <div>
-    //                     <button style={{color:"yellow"}} onClick={e => this.handleClick(6, "web")}>Click here to go to your suitable classes</button>
-    //                 </div>
-    //                 : math >= 8 && like === "web" ? 
-    //                     <div>
-    //                         <button style={{color:"yellow"}} onClick={e => this.handleClick(8, "web")}>Click here to go to your suitable classes</button>
-    //                     </div>
-    //                     : math < 5 && like === "web" ?
-    //                         <div>
-    //                             <button style={{color:"yellow"}} onClick={e => this.handleClick(5, "web")}>Click here to go to your suitable classes</button>
-    //                         </div>
-    //                         : math > 5 && like === "app" ?
-    //                             <div>
-    //                                 <button style={{color:"yellow"}} onClick={e => this.handleClick(6, "app")}>Click here to go to your suitable classes</button>
-    //                             </div>
-    //                             : math >= 8 && like === "app" ?
-    //                                 <div>
-    //                                     <button style={{color:"yellow"}} onClick={e => this.handleClick(8, "web")}>Click here to go to your suitable classes</button>
-    //                                 </div>
-    //                                 : math < 5 && like === "app" ?
-    //                                     <div>
-    //                                         <button style={{color:"yellow"}} onClick={e => this.handleClick(5, "web")}>Click here to go to your suitable classes</button>
-    //                                     </div>
-    //                                     : null
-    //             }
-    //         </div>
-    //     );
-    // }
 }
 
 export default SuggestClass;
