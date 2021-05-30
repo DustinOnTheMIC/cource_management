@@ -60,8 +60,8 @@ class index extends Component {
               }
             }
 
-            console.log(info);
-
+            this.props.handleLoading(true);
+            
             axiosService.subscribeClass(info)
             .then( () => this.handleSubscribeSuccess())
             .catch( err => this.handleSubscribeFailed(err));

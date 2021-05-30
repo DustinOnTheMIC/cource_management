@@ -1,16 +1,17 @@
-import React, { Component } from "react"
-import "./UserProfileCss.css"
-import CardExam from "../CardExam/CardExam"
-import FormInfo from '../FormInfo/FormInfo'
-import swal from "sweetalert"
-import axios from "axios"
-import Loading from '../../Loading/Loading'
-import * as USER from '../../../constant'
+import React, { Component } from "react";
+import "./UserProfileCss.css";
+import CardExam from "../CardExam/CardExam";
+import FormInfo from '../FormInfo/FormInfo';
+import swal from "sweetalert";
+import axios from "axios";
+import Loading from '../../Loading/Loading';
+import * as USER from '../../../constant';
 import Table from "../Table/Table"
 import { Redirect } from "react-router-dom";
 import { axiosService } from '../../../Services/axiosServices';
-import { API_CURRENT, API_URL, BASE_URL } from "../../../env"
-import { messageServices } from "../../../Services/messageService"
+import { API_CURRENT, API_URL, BASE_URL } from "../../../env";
+import { messageServices } from "../../../Services/messageService";
+import defaultAvatar from '../../../Assets/images/img6.jpg'
 
 class UserProfile extends Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class UserProfile extends Component {
       userClasses: null,
       userExam: null,
       doneExam: null,
+      avatar: ""
     }
   }
 
@@ -151,16 +153,23 @@ class UserProfile extends Component {
     )
     
     .then(res => {
-      this.onLoading(false)
+      this.onLoading(false);
+      let responsed  = res.data.data
       userInfo = {
-        name: res.data.data.name,
-        email: res.data.data.email,
-        phone: res.data.data.phone,
+        name: responsed.name,
+        email: responsed.email,
+        phone: responsed.phone,
         password: null
       }
 
       this.setState({ userInfo : userInfo });
-      this.setState({ avatar: res.data.data.avatar });
+
+      if(responsed.avatar){
+        this.setState({ avatar: `${API_CURRENT}${responsed.avatar}` });
+        
+      } else {
+        this.setState({ avatar: defaultAvatar });
+      }
 
       let user = [];
       for (const [key, value] of Object.entries(userInfo)) {
@@ -352,10 +361,10 @@ class UserProfile extends Component {
               <div className="row">
                 <div className="col-md-6 ml-auto mr-auto">
                   <div className="profile">
-                    <div className="avatar col-5 col-xl-4 col-lg-5 col-md-6 img-div" onClick={this.handleClickInput}>
+                    <div className="avatar img-div" onClick={this.handleClickInput}>
                       <img
                         id="avatar"
-                        src={`${API_CURRENT}${avatar}`}
+                        src={avatar}
                         alt="Circle"
                         className="img-raised rounded-circle img-fluid"
                       ></img>
