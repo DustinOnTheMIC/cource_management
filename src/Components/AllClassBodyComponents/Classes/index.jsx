@@ -1,27 +1,28 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
-import swal from "sweetalert";
-import axios from "axios";
 import * as API from "../../../env";
 import * as USER from '../../../constant';
 import { axiosService } from '../../../Services/axiosServices';
-import { URL } from '../../../env';
 import { messageServices } from '../../../Services/messageService';
-
 class index extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLog: false,
       token: USER.TOKEN(),
-      isCollab: true
+      isCollab: true,
+      iconBg: ""
     };
   }
 
   componentDidMount() {
     this.handleDrawStart(this.props.teacher_rate);
+
+    this.props.isCarousel ? this.setState({padding: "27px 15px 29px -28px"}) : this.setState({padding: "0"});
+
+    
+    this.props.changeBg ?  this.setState({iconBg: "#FFFF"}) : this.setState({iconBg: "#f8f8f8"});
   }
-  
   
   handleSubscribe(e) {
 
@@ -32,13 +33,12 @@ class index extends Component {
     let id_class = this.props.id_class;
     let price = this.props.priceClass;
 
-    this.props.handleLoading(true);
-
       messageServices.showConfirmMessage('Do you want to subscribe to this class?')
       .then(
         value => {
           if(value) {
-            this.props.handleLoading(true);
+
+            
 
           if(!USER.STATUS() && !USER.TOKEN()) {
               this.handleMoveToLogin();
@@ -55,8 +55,8 @@ class index extends Component {
               }
             }
 
-            console.log(info);
-
+            this.props.handleLoading(true);
+            
             axiosService.subscribeClass(info)
             .then( () => this.handleSubscribeSuccess())
             .catch( err => this.handleSubscribeFailed(err));
@@ -87,7 +87,7 @@ class index extends Component {
     this.props.handleLoading(false);
     const status = err.response.status;
 
-    if(status === 500){
+    if(status === 422){
       messageServices.showMessage(`Please pay the tuition for the previous class before you subscribe one.`, "warning");
 
     } else if(status === 401) {
@@ -99,7 +99,7 @@ class index extends Component {
         }
       });
 
-    } else if(status === 422) {
+    } else if(status === 500) {
       messageServices.showMessage('You can not subscribe this class again, find another class please.');
 
     } else if(status === 400) {
@@ -155,7 +155,7 @@ class index extends Component {
     const { rate, isNotRated, isCollab } = this.state;
 
     return (
-      <div data-aos="flip-left" data-aos-delay="100" data-aos-duration="1000">
+      <div data-aos="flip-left" data-aos-delay="100" data-aos-duration="1000" className="class-shadow" style={{margin: this.state.padding}}>
 
         {this.state.isLog ? (
           this.state.isLog === "not" ? (
@@ -167,7 +167,7 @@ class index extends Component {
           <div className="d-flex">
             {
               classPic !== "." ? 
-                <div className="icon" style={{backgroundColor: "#FFFFFF"}}>
+                <div className="icon" style={{backgroundColor: this.state.iconBg}}>
                   <i className={`${classPic} fa-4x`}></i>
                 </div>
               :
@@ -197,9 +197,12 @@ class index extends Component {
                 {
                   descriptionClass.length>= 70 && isCollab ? 
                     <div>
-                      {descriptionClass.slice(0,70)}...
-                      <br></br>
-                      <i className="row justify-content-end" onClick={e => this.handleCollab(e)} style={{color:"#1eb2a6", cursor:"pointer"}}>Show More</i>
+                      {descriptionClass.slice(0,60)}
+                      <i
+                        onClick={e => this.handleCollab(e)} 
+                        style={{color:"#1eb2a6", cursor:"pointer"}}>
+                         ...Show More
+                      </i>
                     </div>
                   : descriptionClass  
                 }

@@ -37,7 +37,7 @@ class index extends Component {
         <Introduce pageTitle="Team" />
         <section className="ftco-section">
           <div className="container">
-            <div className="row">
+            <div className="row justify-content-center">
               {this.dataTeacher(dataTeacher)}
             </div>
           </div>

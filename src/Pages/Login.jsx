@@ -7,6 +7,7 @@ import Loading from '../Components/Loading/Loading'
 import * as USER from '../constant'
 import { checkValidate } from '../validate'
 import '../Assets/Css/customLogin.css'
+import { messageServices } from '../Services/messageService';
 
 class Login extends Component {
 
@@ -105,45 +106,51 @@ class Login extends Component {
 
     handleSignIn(e) {
         e.preventDefault()
-        
-        let data = {
-            email: this.state.email,
-            password: this.state.password
-        }
-        USER.CLEAR_LOCALSTORAGE() // clear local storage
-        //if true =>
-        this.setState({isLoading: true})
 
-        
-        //call API check Password
-        axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/auth/login', data)
-
-        .then(res => {
-            localStorage.setItem('idUser', res.data.data.id) // set idUser
-            localStorage.setItem('token', res.data.data.access_token) // set token
-            this.clearTimer()
-            localStorage.removeItem('name')
-            localStorage.removeItem('email')
-            localStorage.removeItem('phone')
-            this.setState({isLoading: false})
-            this.setState({redirect: true})
-        })
-
-        .catch(err => {
-            this.setState({isLoading: false})
-            const status = err.response.status;            
-
-            if(status === 400) {
-                swal({
-                    text: `Your password is incorrect`,
-                    icon: 'warning'
-                })
-            } else {
-                swal(`There is an error with the server, please try again.`, {
-                    icon: "error",
-                })
+        if(this.state.password) {
+            let data = {
+                email: this.state.email,
+                password: this.state.password
             }
-        })
+    
+            USER.CLEAR_LOCALSTORAGE() // clear local storage
+            //if true =>
+            this.setState({isLoading: true})
+            
+            //call API check Password
+            axios.post('https://quanlikhoahoc.herokuapp.com/api/v1/auth/login', data)
+    
+            .then(res => {
+                localStorage.setItem('idUser', res.data.data.id) // set idUser
+                localStorage.setItem('token', res.data.data.access_token) // set token
+                this.clearTimer()
+                localStorage.removeItem('name')
+                localStorage.removeItem('email')
+                localStorage.removeItem('phone')
+                this.setState({isLoading: false})
+                this.setState({redirect: true})
+            })
+    
+            .catch(err => {
+                this.setState({isLoading: false})
+                const status = err.response.status;            
+    
+                if(status === 400) {
+                    swal({
+                        text: `Your password is incorrect`,
+                        icon: 'warning'
+                    })
+                } else {
+                    swal(`There is an error with the server, please try again.`, {
+                        icon: "error",
+                    })
+                }
+            })
+        } else {
+            messageServices.showMessage("You didn't enter the password.", messageServices.ICON.WARNING);
+        }
+        
+        
     }
 
     handleSignUp = e => {
@@ -156,7 +163,23 @@ class Login extends Component {
         localStorage.removeItem('token')
         this.clearTimer()
         this.setTimer()
-        this.setState({redirect: true})
+
+        const { name, phone } = this.state
+        if(name && phone) {
+            if(checkValidate("phone", phone) === "" && checkValidate("name", name) === "") {
+                this.setState({redirect: true});
+            } else if(name){
+                if(checkValidate("name", name) !== "") {
+                    messageServices.showMessage(checkValidate("name", name), messageServices.ICON.WARNING)
+                }
+            } else if(phone) {
+                if(checkValidate("phone", phone) !== "")
+                messageServices.showMessage(checkValidate("phone", phone), messageServices.ICON.WARNING)
+            }
+        } else {
+            messageServices.showMessage("You have to enter every information", messageServices.ICON.WARNING);
+        }
+
     }
     
     handleForgetPassword = e => {
@@ -225,7 +248,7 @@ class Login extends Component {
                                                 <input type="text" placeholder="Email" name="email" className="form-control" onChange={e => this.handleInputChange(e)}></input>
                                                 {this.state.verifyEmail ===true ? "" : <p className="validate">your email is not valid</p>}
                                             </div>
-                                            <input type="submit" value="Next Step" className="btn btn-block mt-5 btn-primary clearfix" onClick={e => this.handleCheckEmail(e)}></input>
+                                            <input id="nextStep" type="submit" value="Next Step" className="btn btn-block mt-5 btn-primary clearfix" onClick={e => this.handleCheckEmail(e)}></input>
                                         </form>
                                     </div>
                                 </div>
@@ -240,7 +263,6 @@ class Login extends Component {
                                                 <label>Your Password</label>
                                                 <input type="password" placeholder="Password" name="password" className="form-control mb-5" onChange={e => this.handleInputChange(e)}></input>
                                             </div>
-                                            <a href="#forgetpassword" onClick={e => this.handleForgetPassword(e)} className="">forget password?</a>
                                                 <div className="d-flex flex-row-reverse">
                                                     <input type="submit" value="Sign In" className="btn btn-block mt-5 btn-primary clearfix" onClick={e => this.handleSignIn(e)}></input>
                                                     <input type="submit" value="Turn Back" className="btn btn-block mt-5 btn-outline-primary clearfix" onClick={e => this.handleTurnBack(e)}></input>

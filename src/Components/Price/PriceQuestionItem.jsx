@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-
 class PriceQuestionItem extends Component {
-    constructor(props) {
-        super(props)
-    }
     render() {
-        let {idCollapse,isShow} = this.props
+        let { idCollapse } = this.props
         return (
             <div className="accordion-item">
                 <h2 className="accordion-header" id="headingOne">

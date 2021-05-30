@@ -60,7 +60,7 @@ class InfoTeacher extends Component {
                       <img
                         src={`${API.API_CURRENT}/${img}`}
                         alt={name}
-                        className="rounded-circle custom-img"
+                        className="rounded-circle custom-img shadow"
                         width="150"
                       />
                       <div className="mt-3">
