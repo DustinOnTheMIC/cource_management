@@ -1,7 +1,7 @@
 import Subject from './share/allSubject/Subject';
 import SuggestClass from './share/suggestClass/SuggestClass';
 import Teacher from './share/TopTeacher/Teacher';
-import logo from '../../Assets/images/logo.png'
+import logo from '../../Assets/images/icon_logo.png'
 import botAvatar from "../../Assets/images/img5.jpg";
 import userAvatar from '../../Assets/images/img2.jpg'
 
@@ -138,13 +138,10 @@ export const config ={
     userAvatar: userAvatar,
     headerTitle: 
         <div>
-            <img src={logo} alt="logo" style={{width: "38%"}}></img>
+            <img src={logo} alt="logo" style={{width: "20%", marginRight:"10px"}}></img>
             <i style={{color:"#b2bec3"}}>AI-401-21</i>
         </div>,
     botDelay:0,
     enableSmoothScroll: true,
-    handleEnd: (value)=> {
-        // window.location.href = value.values.pop()
-    },
     background:'#353740'
 };
