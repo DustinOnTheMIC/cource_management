@@ -28,17 +28,16 @@ class index extends Component {
 
     e.preventDefault();
 
-    this.setState({ isLog: USER.STATUS()});
-    this.setState({token:`Bearer ${ USER.TOKEN() }`});
+    this.setState({ isLog: USER.STATUS() });
+    this.setState({ token:`Bearer ${ USER.TOKEN() }` });
     let id_class = this.props.id_class;
     let price = this.props.priceClass;
+    let token = this.state.token;
 
       messageServices.showConfirmMessage('Do you want to subscribe to this class?')
       .then(
         value => {
           if(value) {
-
-            
 
           if(!USER.STATUS() && !USER.TOKEN()) {
               this.handleMoveToLogin();
@@ -47,7 +46,7 @@ class index extends Component {
             const info = {
               token: this.state.token,
               data: {
-                price: price - price*10/100,
+                price: price - price * 10/100,
                 id_class: id_class,
                 name: USER.NAME(),
                 email: USER.EMAIL(),
@@ -58,8 +57,11 @@ class index extends Component {
             this.props.handleLoading(true);
             
             axiosService.subscribeClass(info)
-            .then( () => this.handleSubscribeSuccess())
-            .catch( err => this.handleSubscribeFailed(err));
+            .then( () => {
+
+              this.handleSubscribeSuccess(!token)
+            })
+            .catch( err => this.handleSubscribeFailed(err, !token));
           }
         }
       }
@@ -77,19 +79,24 @@ class index extends Component {
     });
   }
 
-  handleSubscribeSuccess() {
+  handleSubscribeSuccess(isResetStorage) {
     this.props.handleLoading(false);
+    if(isResetStorage) {
+      USER.CLEAR_LOCALSTORAGE();
+    }
     return messageServices.showMessage('Done! You just subscribe this class', "success");
   }
 
-  handleSubscribeFailed(err) {
+  handleSubscribeFailed(err, isResetStorage) {
 
     this.props.handleLoading(false);
     const status = err.response.status;
 
     if(status === 422){
       messageServices.showMessage(`Please pay the tuition for the previous class before you subscribe one.`, "warning");
-
+      if(isResetStorage) {
+        USER.CLEAR_LOCALSTORAGE();
+      }
     } else if(status === 401) {
 
       messageServices.showMessage('Please Login again to use this feature.', "error")

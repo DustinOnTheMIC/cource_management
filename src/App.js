@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router,Route,Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import routes from './Routers/route'
 import MoveToTop from './Components/MoveToTop'
 import './index.css'
