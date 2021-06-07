@@ -92,7 +92,7 @@ const routes = [
     
      // EXAM
      {
-        path : '/:idExam/detail_test',
+        path : '/test/:idExam/detail',
         name : 'TestDetail',
         exact : true,
         main : ({match,history}) => <TestDetail match={match} history={history} />
