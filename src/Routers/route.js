@@ -91,7 +91,7 @@ const routes = [
     },
      // EXAM
      {
-        path : '/test/:idExam/detail',
+        path : '/:idExam/detail_test',
         name : 'TestDetail',
         exact : true,
         main : ({match,history}) => <TestDetail match={match} history={history} />
