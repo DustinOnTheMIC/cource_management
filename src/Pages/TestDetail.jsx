@@ -38,23 +38,23 @@ class TestDetail extends Component {
           duration: res.data.data.duration,
         };
         // CHECK TIME CAN DO TEST
-        // let time = new Date();
-        // let h_exam = parseInt(infoExam.timeBegin.split(":")[0]);
-        // let m_exam = parseInt(infoExam.timeBegin.split(":")[1]);
-        // let d_exam = parseInt(infoExam.date.split("-")[2]);
-        // let mon_exam = parseInt(infoExam.date.split("2")[1]);
-        // if (
-        //   time.getHours() < h_exam &&
-        //   time.getMinutes() < m_exam &&
-        //   time.getDate() !== d_exam &&
-        //   time.getMonth() !== mon_exam ||
-        //   (time.getMinutes() - m_exam) * -1 >=30 ||
-        //   (time.getHours() - h_exam) !== 0
-        // ) {
-        //   this.setState({
-        //     isDo: false,
-        //   });
-        // }
+        let time = new Date();
+        let h_exam = parseInt(infoExam.timeBegin.split(":")[0]);
+        let m_exam = parseInt(infoExam.timeBegin.split(":")[1]);
+        let d_exam = parseInt(infoExam.date.split("-")[2]);
+        let mon_exam = parseInt(infoExam.date.split("2")[1]);
+        if (
+          time.getHours() < h_exam &&
+          time.getMinutes() < m_exam &&
+          time.getDate() !== d_exam &&
+          time.getMonth() !== mon_exam ||
+          (time.getMinutes() - m_exam) * -1 >=30 ||
+          (time.getHours() - h_exam) !== 0
+        ) {
+          this.setState({
+            isDo: false,
+          });
+        }
         localStorage.setItem("infoTest", JSON.stringify(infoExam));
       })
       .catch((err) => console.log(err));
