@@ -27,21 +27,16 @@ class Subject extends Component {
         previousStep.value ? this.setState({previousValue: previousStep.value}) : this.setState({previousValue: null});
 
         axios.get(URL)
-            .then(
-                res => {
-                    this.setState({subjects: res.data.data})
-                }
-            )
-            .catch(
-                () => {
-                    this.setState({notfound: true})
-                }
-            )
-        
-        setTimeout(() => {
-            this.renderSubjects()
-
-        }, 2000);
+        .then(
+            res => {
+                this.setState({subjects: res.data.data}, () => this.renderSubjects())
+            }
+        )
+        .catch(
+            () => {
+                this.setState({notfound: true})
+            }
+        )
     }
 
     setURL(link) {

@@ -27,19 +27,15 @@ class Teacher extends Component {
         previousStep.value ? this.setState({previousValue: previousStep.value}) : this.setState({previousValue: null});
         
         axios.get(URL)
-            .then(
-                res => {
-                    console.log(res.data.data);
-                    this.setState({teachers: res.data.data})
-                }
-            )
-            .catch(
-                () => this.setState({notfound: true})
-            )
-        
-        setTimeout(() => {
-            this.renderTeachers();
-        }, 2000);
+        .then(
+            res => {
+                console.log(res.data.data);
+                this.setState({teachers: res.data.data}, () =>  this.renderTeachers())
+            }
+        )
+        .catch(
+            () => this.setState({notfound: true})
+        )
     }
 
     setURL(link) {
