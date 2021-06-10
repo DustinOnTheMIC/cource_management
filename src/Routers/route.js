@@ -106,7 +106,7 @@ const routes = [
         path : '/:idTest/result_test',
         name : 'ResultTest',
         exact : true,
-        main : ({match,history}) => <ResultTest match={ match} history={history}  />
+        main : ({ match,history }) => <ResultTest match={ match} history={history}  />
     },
     {
         path : '*',
