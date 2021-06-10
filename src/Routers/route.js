@@ -89,7 +89,6 @@ const routes = [
         exact : true,
         main: ({match}) => <AllClass match={match}/>
     },
-    
      // EXAM
      {
         path : '/:idExam/detail_test',
@@ -107,7 +106,7 @@ const routes = [
         path : '/:idTest/result_test',
         name : 'ResultTest',
         exact : true,
-        main : ({match}) => <ResultTest match={ match}  />
+        main : ({match,history}) => <ResultTest match={ match} history={history}  />
     },
     {
         path : '*',
