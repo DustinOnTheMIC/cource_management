@@ -28,7 +28,6 @@ class CommentRate extends Component {
           loading: false,
         });
       })
-      .catch((err) => console.log(err));
   }
 
   render() {

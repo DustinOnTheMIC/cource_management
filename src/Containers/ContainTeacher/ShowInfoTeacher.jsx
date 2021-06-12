@@ -28,7 +28,6 @@ class ShowInfoTeacher extends Component {
           dataTeacher: [res.data.data],
         });
       })
-      .catch((err) => console.log(err));
     // GET DATA FOR CLASS OF TEACHER
     axios
       .get(API.API_CLASS_OF_TEACHER + `/${this.props.id_teacher}`)
@@ -38,11 +37,10 @@ class ShowInfoTeacher extends Component {
           dataClass: res.data.data,
         });
       })
-      .catch((err) => console.log(err));
   }
 
   handleLoading = (status) => {
-    this.setState({isLoading: status}, ()=> console.log(this.state));
+    this.setState({isLoading: status});
   }
  
   render() {

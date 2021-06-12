@@ -29,7 +29,6 @@ class CommentBox extends Component {
             isCmt: true,
           });
         })
-        .catch(() => console.log("you are not qualified yet>>>>>>>>>>>>>>>>>>"));
     }
   }
 
@@ -77,7 +76,6 @@ class CommentBox extends Component {
             });
             window.location.reload();
           })
-          .catch((err) => console.log(err));
       } else {
         swal({
           title: "Thank you",

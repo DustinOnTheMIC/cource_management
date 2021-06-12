@@ -56,13 +56,11 @@ class index extends Component {
         axios
         .get(API.API_CLASS + `/${id_subject}`)
         .then((res) => {
-          console.log(res);
           this.handleLoading(false)
           this.setInfoClass(res)
         })
         .catch((err) => {
           this.handleLoading(false) //un mount loading component
-          console.log(err)
         });
     } else if(!level) {
       // get all class of system
@@ -77,21 +75,18 @@ class index extends Component {
         })
         .catch((err) => {
           this.handleLoading(false) //un mount loading component
-          console.log(err)
         });
       } else {
 
       axios
       .get(API.API_CURRENT + `api/v1/classes/chatbot/all/${level}`)
       .then((res) => {
-        console.log(res);
         this.handleLoading(false);
         this.setInfoClass(res);
 
       })
       .catch((err) => {
         this.handleLoading(false) //un mount loading component
-        console.log(err)
       });
     }
   }

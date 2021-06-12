@@ -29,7 +29,7 @@ class Teacher extends Component {
         axios.get(URL)
         .then(
             res => {
-                console.log(res.data.data);
+
                 this.setState({teachers: res.data.data}, () =>  this.renderTeachers())
             }
         )
@@ -44,7 +44,6 @@ class Teacher extends Component {
 
     renderTeachers () {
         const { teachers, previousValue } = this.state;
-        console.log(this.state);
         let toRen = ""
         if(!!teachers[0]) {
             toRen = teachers.map((item) =>

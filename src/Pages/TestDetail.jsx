@@ -57,7 +57,6 @@ class TestDetail extends Component {
         // }
         localStorage.setItem("infoTest", JSON.stringify(infoExam));
       })
-      .catch((err) => console.log(err));
   }
 
   render() {

@@ -22,7 +22,6 @@ class index extends Component {
           dataTeacher: res.data.data,
         });
       })
-      .catch((err) => console.log(err));
   }
 
   render() {

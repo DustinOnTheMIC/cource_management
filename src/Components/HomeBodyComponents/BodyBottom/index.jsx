@@ -19,9 +19,6 @@ class index extends Component {
           dataSubject: res.data.data,
         });
       })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   render() {

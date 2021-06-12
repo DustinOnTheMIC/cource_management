@@ -15,7 +15,6 @@ class CardExam extends Component {
     }
 
     checkPercent(scores) {
-        console.log(this.props);
         if(scores >= 10) {
             return this.setStatusBar(5);
         }
@@ -96,7 +95,7 @@ class CardExam extends Component {
                             </div>
                             <div className="col-4">
                                 <i className="fa fa-percent fa-sm"></i>
-                                <p>{ scores * 10 }%</p>
+                                <p>{ parseFloat(scores * 10).toFixed(0) }%</p>
                             </div>
                         </div>
                     </div>

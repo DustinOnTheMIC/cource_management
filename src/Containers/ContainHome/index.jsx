@@ -30,7 +30,7 @@ class index extends Component {
           });
         }
       })
-      .catch((err) => console.log(err), this.handleLoading(false));
+      .catch(() => this.handleLoading(false));
   }
 
   render() {
