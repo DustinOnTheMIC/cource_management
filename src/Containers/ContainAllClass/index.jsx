@@ -119,7 +119,7 @@ class index extends Component {
     if (dataClass) {
       result = dataClass.map((item, index) => {
         return (
-          <div className="col-9 col-md-6 col-lg-4 my-2" key={index}>
+          <div className="col-12 col-md-6 col-lg-4 my-2" key={index}>
             <Classes
               nameClass={item.name} //item.name
               teacherName={item.teacher.name}
