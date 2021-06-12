@@ -92,7 +92,7 @@ const steps = [
                 id: "showResult",
                 component: <SuggestClass point={"previousValue"}/>,
                 asMessage: true,
-                trigger: "isTurnBack"
+                end: true
             },
         
         // search teacher
