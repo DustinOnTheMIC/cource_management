@@ -228,7 +228,7 @@ class index extends Component {
           </div>
           <div className="text-center">
             <button
-              id="1"
+              id="enroll"
               onClick={(e) => this.handleSubscribe(e)}
               className="btn d-block btn-primary btn-outline-primary py-3 col-12"
             >
