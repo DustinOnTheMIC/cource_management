@@ -19,7 +19,7 @@ class CommentBox extends Component {
   componentDidMount() {
     if (USER.IDUSER()) {
       axios
-        .get(`${API.API_CHECK_SHOW_SUB_CMT}/${USER.IDUSER()}`, {
+        .get(`${API.API_CHECK_SHOW_SUB_CMT}/${this.props.id_teacher}`, {
           headers: {
             Authorization: `Bearer ${USER.TOKEN()}`,
           },
@@ -29,7 +29,10 @@ class CommentBox extends Component {
             isCmt: true,
           });
         })
-        .catch(() => console.log("you are not qualified yet>>>>>>>>>>>>>>>>>>"));
+        .catch((err) => {
+          console.log(err);
+          console.log("you are not qualified yet>>>>>>>>>>>>>>>>>>");
+        }) 
     }
   }
 
