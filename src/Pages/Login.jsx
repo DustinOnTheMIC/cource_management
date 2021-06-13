@@ -239,8 +239,8 @@ class Login extends Component {
                                     <div className="col-md-8">
                                         <div className="mb-4">
                                             <h3>Check Your Email</h3>
-                                            <p className="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur
-                                                adipisicing.</p>
+                                            <p className="mb-4">Please enter your email to our system to check,
+                                             don't worry if you didn't have any account, we will transfer you to register.</p>
                                         </div>
                                         <form action="#" method="post">
                                             <div className="form-group first mt-5">
@@ -274,8 +274,9 @@ class Login extends Component {
                                     <div className="col-md-8">
                                         <div className="mb-4">
                                             <h3>Sign Up</h3>
-                                            <p className="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur
-                                                adipisicing.</p>
+                                            <p className="mb-4">Seem like you didn't have account.
+                                             So please enter all the information below to continue to use our services.
+                                             Have a great day.</p>
                                         </div>
                                         <form action="#" method="post">
                                             <div className="form-group first mt-5">
