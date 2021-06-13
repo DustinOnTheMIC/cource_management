@@ -77,7 +77,7 @@ class index extends Component {
               classPic={item.subject.image}
               id_class={item.id}
               handleLoading={this.handleLoading}
-              current_user={item.current_user ? item.current_user : 0}
+              current_user={item.curent_user ? item.curent_user : 0}
               limit={item.limit}
             />
           </div>

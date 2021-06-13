@@ -116,6 +116,7 @@ class ShowInfoTeacher extends Component {
             handleLoading = {status => this.handleLoading(status)}
             isCarousel={true}
             changeBg={true}
+            current_user={item.curent_user ? item.curent_user : 0}
           />
         );
       });
