@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import swal from "@sweetalert/with-react";
-import "./Rating.css";
-import axios from "axios";
-import * as API from "../../../env";
-import * as USER from "../../../constant";
+import React, { Component } from 'react';
+import swal from '@sweetalert/with-react';
+import './Rating.css';
+import axios from 'axios';
+import * as API from '../../../env';
+import * as USER from '../../../constant';
 
 class CommentBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      teacher_cmt: "",
-      teacher_rating: "",
+      teacher_cmt: '',
+      teacher_rating: '',
       isCardRating: false,
       isCmt: false,
     };
@@ -19,7 +19,7 @@ class CommentBox extends Component {
   componentDidMount() {
     if (USER.IDUSER()) {
       axios
-        .get(`${API.API_CHECK_SHOW_SUB_CMT}/${USER.IDUSER()}`, {
+        .get(`${API.API_CHECK_SHOW_SUB_CMT}/${this.props.id_teacher}`, {
           headers: {
             Authorization: `Bearer ${USER.TOKEN()}`,
           },
@@ -29,7 +29,11 @@ class CommentBox extends Component {
             isCmt: true,
           });
         })
-        .catch(() => console.log("you are not qualified yet>>>>>>>>>>>>>>>>>>"));
+        .catch((err) => {
+          console.log(err);
+          console.log('you are not qualified yet>>>>>>>>>>>>>>>>>>');
+        })
+         
     }
   }
 
@@ -45,16 +49,16 @@ class CommentBox extends Component {
   handlePickingStar(e) {
     e.preventDefault();
     swal({
-      title: "Submit!",
-      text: "Submit your rating",
-      icon: "success",
-      button: "Submit",
+      title: 'Submit!',
+      text: 'Submit your rating',
+      icon: 'success',
+      button: 'Submit',
     }).then((result) => {
       if (result) {
         this.setState({
           teacher_rating: e.target.value,
         });
-        let { teacher_cmt, teacher_rating  } = this.state;
+        let { teacher_cmt, teacher_rating } = this.state;
         axios
           .post(
             `${API.API_POST_CMT}`,
@@ -71,8 +75,8 @@ class CommentBox extends Component {
           )
           .then(() => {
             this.setState({
-              teacher_cmt: "",
-              teacher_rating: "",
+              teacher_cmt: '',
+              teacher_rating: '',
               isCardRating: false,
             });
             window.location.reload();
@@ -80,9 +84,9 @@ class CommentBox extends Component {
           .catch((err) => console.log(err));
       } else {
         swal({
-          title: "Thank you",
-          text: "Submit is false",
-          icon: "warning",
+          title: 'Thank you',
+          text: 'Submit is false',
+          icon: 'warning',
         });
       }
     });
@@ -106,62 +110,25 @@ class CommentBox extends Component {
       <div className="comment-box">
         <div
           className="parent-card"
-          id={isCardRating ? "show-parent-card" : ""}
+          id={isCardRating ? 'show-parent-card' : ''}
           onClick={() => this.closePopup()}
         ></div>
-        <div
-          className="card-rating"
-          id={isCardRating ? "show-parent-card" : ""}
-        >
+        <div className="card-rating" id={isCardRating ? 'show-parent-card' : ''}>
           <h1>How many star do you want to give the teacher?</h1>
           <div className="rating">
-            <input
-              type="radio"
-              name="rating"
-              value="5"
-              id="5"
-              onClick={(e) => this.handlePickingStar(e)}
-            ></input>
+            <input type="radio" name="rating" value="5" id="5" onClick={(e) => this.handlePickingStar(e)}></input>
             <label htmlFor="5">☆</label>
-            <input
-              type="radio"
-              name="rating"
-              value="4"
-              id="4"
-              onClick={(e) => this.handlePickingStar(e)}
-            ></input>
+            <input type="radio" name="rating" value="4" id="4" onClick={(e) => this.handlePickingStar(e)}></input>
             <label htmlFor="4">☆</label>
-            <input
-              type="radio"
-              name="rating"
-              value="3"
-              id="3"
-              onClick={(e) => this.handlePickingStar(e)}
-            ></input>
+            <input type="radio" name="rating" value="3" id="3" onClick={(e) => this.handlePickingStar(e)}></input>
             <label htmlFor="3">☆</label>
-            <input
-              type="radio"
-              name="rating"
-              value="2"
-              id="2"
-              onClick={(e) => this.handlePickingStar(e)}
-            ></input>
+            <input type="radio" name="rating" value="2" id="2" onClick={(e) => this.handlePickingStar(e)}></input>
             <label htmlFor="2">☆</label>
-            <input
-              type="radio"
-              name="rating"
-              value="1"
-              id="1"
-              onClick={(e) => this.handlePickingStar(e)}
-            ></input>
+            <input type="radio" name="rating" value="1" id="1" onClick={(e) => this.handlePickingStar(e)}></input>
             <label htmlFor="1">☆</label>
           </div>
           <div className="input-group-append text-center mt-2">
-            <button
-              className="btn btn-secondary py-2 "
-              onClick={() => this.closePopup()}
-              type="button"
-            >
+            <button className="btn btn-secondary py-2 " onClick={() => this.closePopup()} type="button">
               Cancel
             </button>
           </div>
@@ -182,7 +149,7 @@ class CommentBox extends Component {
                 className="btn btn-submit-cmt py-2"
                 onClick={(e) => this.openPopup(e)}
                 type="button"
-                disabled={isCmt ? false : "disabled"}
+                disabled={isCmt ? false : 'disabled'}
               >
                 Submit
               </button>
