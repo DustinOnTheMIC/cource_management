@@ -7,7 +7,6 @@ const getService = (info) => {
 
     if(info.token) {
         header = { Authorization: info.token };
-        console.log(header);
         return axios.get( url, { headers: header })
     } else {
         return axios.get( url );

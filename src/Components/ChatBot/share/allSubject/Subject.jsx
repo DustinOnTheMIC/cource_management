@@ -17,7 +17,7 @@ class Subject extends Component {
     
     componentDidMount() {
         const { isGetTop, previousStep } = this.props;
-        console.log(this.props);
+
         let URL = isGetTop ? 
                 this.setURL("/chatbot/top/subject")
             : previousStep.value ?
@@ -34,7 +34,7 @@ class Subject extends Component {
         )
         .catch(
             () => {
-                this.setState({notfound: true})
+                this.setState({notfound: true});
             }
         )
     }
@@ -45,7 +45,7 @@ class Subject extends Component {
 
     renderSubjects () {
         const { subjects, previousValue } = this.state;
-        console.log(this.state);
+
         let toRen = ""
         if(!!subjects[0]) {
             toRen = subjects.map((item) =>

@@ -26,7 +26,6 @@ class index extends Component {
           dataStatistic: res.data,
         });
       })
-      .catch((err) => console.log(err));
   }
 
   render() {

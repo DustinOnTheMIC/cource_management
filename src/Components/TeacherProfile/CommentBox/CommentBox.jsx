@@ -80,7 +80,6 @@ class CommentBox extends Component {
             });
             window.location.reload();
           })
-          .catch((err) => console.log(err));
       } else {
         swal({
           title: "Thank you",

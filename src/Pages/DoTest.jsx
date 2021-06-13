@@ -68,7 +68,6 @@ class DoTest extends Component {
                     loading: false,
                   });
                 })
-                .catch((err) => console.log(err));
             }
           }
         });
