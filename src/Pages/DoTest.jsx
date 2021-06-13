@@ -28,7 +28,7 @@ class DoTest extends Component {
     let infoTest = JSON.parse(localStorage.getItem("infoTest"));
     if (idTest && infoTest) {
       let t_begin = infoTest.timeBegin; //SET TIME BEGIN TEMP
-      let checkTime = parseInt(t_begin.split(":")[1]) + 60;
+      let checkTime = parseInt(t_begin.split(":")[1]) + infoTest.duration;
       let date = new Date();
       if (Math.ceil(checkTime / 60) > 0) {
         let t_end = `${parseInt(t_begin.split(":")[0]) +
